@@ -1,21 +1,14 @@
 package io.swagger.dao.db.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class FireStationEntity implements Comparable<FireStationEntity> {
+  @Getter @Setter
   private Integer station;
-  private String address;
   
-  public Integer getStation() {
-    return station;
-  }
-  public void setStation(Integer station) {
-    this.station = station;
-  }
-  public String getAddress() {
-    return address;
-  }
-  public void setAddress(String address) {
-    this.address = address;
-  }
+  @Getter @Setter
+  private String address;
 
   // -----------------------------------------------------------------------------------------------
   @Override

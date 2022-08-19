@@ -30,11 +30,11 @@ import io.swagger.dao.json.entities.SafetyNetJson;
 
 @Component
 public class SafetyNetDataBase {
-  private TreeSet<PersonEntity> personEntities = new TreeSet<>();
-  private TreeSet<FireStationEntity> fireStationEntities = new TreeSet<>();
-  private TreeSet<AllergyEntity> allergyEntities = new TreeSet<>();
-  private TreeSet<MedicationEntity> medicationEntities = new TreeSet<>();
-  private TreeSet<MedicalRecordEntity> medicalRecordEntities = new TreeSet<>();
+  private TreeSet<PersonEntity> personEntities = new TreeSet<PersonEntity>();
+  private TreeSet<FireStationEntity> fireStationEntities = new TreeSet<FireStationEntity>();
+  private TreeSet<AllergyEntity> allergyEntities = new TreeSet<AllergyEntity>();
+  private TreeSet<MedicationEntity> medicationEntities = new TreeSet<MedicationEntity>();
+  private TreeSet<MedicalRecordEntity> medicalRecordEntities = new TreeSet<MedicalRecordEntity>();
 
   // -----------------------------------------------------------------------------------------------
   @EventListener(ContextRefreshedEvent.class)
@@ -55,40 +55,20 @@ public class SafetyNetDataBase {
     return personEntities;
   }
 
-  public void setPersonEntities(TreeSet<PersonEntity> personEntities) {
-    this.personEntities = personEntities;
-  }
-
   public TreeSet<FireStationEntity> getFireStationEntities() {
     return fireStationEntities;
-  }
-
-  public void setFireStationEntities(TreeSet<FireStationEntity> fireStationEntities) {
-    this.fireStationEntities = fireStationEntities;
   }
 
   public TreeSet<AllergyEntity> getAllergyEntities() {
     return allergyEntities;
   }
 
-  public void setAllergyEntities(TreeSet<AllergyEntity> allergyEntities) {
-    this.allergyEntities = allergyEntities;
-  }
-
   public TreeSet<MedicationEntity> getMedicationEntities() {
     return medicationEntities;
   }
 
-  public void setMedicationEntities(TreeSet<MedicationEntity> medicationEntities) {
-    this.medicationEntities = medicationEntities;
-  }
-
   public TreeSet<MedicalRecordEntity> getMedicalRecordEntities() {
     return medicalRecordEntities;
-  }
-
-  public void setMedicalRecordEntities(TreeSet<MedicalRecordEntity> medicalRecordEntities) {
-    this.medicalRecordEntities = medicalRecordEntities;
   }
 
   // -----------------------------------------------------------------------------------------------

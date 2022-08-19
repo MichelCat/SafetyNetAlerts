@@ -1,15 +1,11 @@
 package io.swagger.dao.db.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class MedicalRecordAllergyEntity implements Comparable<MedicalRecordAllergyEntity> {
+  @Getter @Setter
   private Integer idAlergy;
-
-  public Integer getIdAlergy() {
-    return idAlergy;
-  }
-
-  public void setIdAlergy(Integer idAlergy) {
-    this.idAlergy = idAlergy;
-  }
 
   // -----------------------------------------------------------------------------------------------
   @Override

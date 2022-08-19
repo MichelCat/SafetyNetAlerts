@@ -1,24 +1,14 @@
 package io.swagger.dao.db.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class MedicalRecordMedicationEntity implements Comparable<MedicalRecordMedicationEntity> {
+  @Getter @Setter
   private Integer idMedication;
+  
+  @Getter @Setter
   private String dosage;
-
-  public Integer getIdMedication() {
-    return idMedication;
-  }
-
-  public void setIdMedication(Integer idMedication) {
-    this.idMedication = idMedication;
-  }
-
-  public String getDosage() {
-    return dosage;
-  }
-
-  public void setDosage(String dosage) {
-    this.dosage = dosage;
-  }
 
   // -----------------------------------------------------------------------------------------------
   @Override

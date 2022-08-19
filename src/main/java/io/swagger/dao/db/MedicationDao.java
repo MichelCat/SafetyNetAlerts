@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 public class MedicationDao {
 
   @Autowired
-  SafetyNetDataBase safetyNetDataBase;
+  private SafetyNetDataBase safetyNetDataBase;
 
 }

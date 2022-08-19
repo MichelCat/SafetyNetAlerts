@@ -1,53 +1,24 @@
 package io.swagger.dao.db.entities;
 
 import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 
 public class MedicalRecordEntity implements Comparable<MedicalRecordEntity> {
+  @Getter @Setter
   private Integer idPerson;
+  
+  @Getter @Setter
   private String firstName;
+  
+  @Getter @Setter
   private String lastName;
+  
+  @Getter @Setter
   private List<MedicalRecordAllergyEntity> allergies;
+  
+  @Getter @Setter
   private List<MedicalRecordMedicationEntity> medications;
-
-  public Integer getIdPerson() {
-    return idPerson;
-  }
-
-  public void setIdPerson(Integer idPerson) {
-    this.idPerson = idPerson;
-  }
-
-  public String getFirstName() {
-    return firstName;
-  }
-
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
-
-  public String getLastName() {
-    return lastName;
-  }
-
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
-
-  public List<MedicalRecordAllergyEntity> getAllergies() {
-    return allergies;
-  }
-
-  public void setAllergies(List<MedicalRecordAllergyEntity> allergies) {
-    this.allergies = allergies;
-  }
-
-  public List<MedicalRecordMedicationEntity> getMedications() {
-    return medications;
-  }
-
-  public void setMedications(List<MedicalRecordMedicationEntity> medications) {
-    this.medications = medications;
-  }
 
   // -----------------------------------------------------------------------------------------------
   @Override

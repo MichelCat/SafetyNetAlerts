@@ -11,7 +11,7 @@ import io.swagger.model.Person;
 
 @Service
 public class PersonBusiness {
-  
+
   private final PersonDao personDao;
 
   public PersonBusiness(PersonDao personDao) {
@@ -24,23 +24,11 @@ public class PersonBusiness {
   }
 
   public int getAdultsLivingIn(List<Person> persons, String stationNumber) {
-    int numberAdults = 0;
-    for (Person person : persons) {
-      if (person.getAge() > 18) {
-        numberAdults++;
-      }
-    }
-    return numberAdults;
+    return (int) persons.stream().filter(person -> person.getAge() > 18).count();
   }
 
   public int getChildrenLivingIn(List<Person> persons, String stationNumber) {
-    int numberChildren = 0;
-    for (Person person : persons) {
-      if (person.getAge() <= 18) {
-        numberChildren++;
-      }
-    }
-    return numberChildren;
+    return (int) persons.stream().filter(person -> person.getAge() <= 18).count();
   }
 
   private Person from(PersonEntity personEntity) {

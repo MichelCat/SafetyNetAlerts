@@ -1,24 +1,14 @@
 package io.swagger.dao.db.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class AllergyEntity implements Comparable<AllergyEntity> {
+  @Getter @Setter
   private Integer id;
+  
+  @Getter @Setter
   private String allergy;
-
-  public Integer getId() {
-    return id;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
-  }
-
-  public String getAllergy() {
-    return allergy;
-  }
-
-  public void setAllergy(String allergy) {
-    this.allergy = allergy;
-  }
 
   // -----------------------------------------------------------------------------------------------
   @Override
