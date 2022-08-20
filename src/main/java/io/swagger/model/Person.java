@@ -12,10 +12,10 @@ import javax.validation.constraints.*;
  * Person
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-08-09T21:09:55.880Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-08-19T23:12:48.239Z[GMT]")
 
 
-public class Person {
+public class Person   {
   @JsonProperty("id")
   private Integer id = null;
 
@@ -46,39 +46,23 @@ public class Person {
   @JsonProperty("email")
   private String email = null;
 
-  /**
-   * Get id
-   * 
-   * @return id
-   **/
-  @Schema(description = "")
-
-  public Integer getId() {
-    return id;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
-  }
-
   public Person id(Integer id) {
     this.id = id;
     return this;
   }
 
   /**
-   * Get firstName
-   * 
-   * @return firstName
+   * Get id
+   * @return id
    **/
   @Schema(description = "")
-
-  public String getFirstName() {
-    return firstName;
+  
+    public Integer getId() {
+    return id;
   }
 
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
+  public void setId(Integer id) {
+    this.id = id;
   }
 
   public Person firstName(String firstName) {
@@ -87,18 +71,17 @@ public class Person {
   }
 
   /**
-   * Get lastName
-   * 
-   * @return lastName
+   * Get firstName
+   * @return firstName
    **/
   @Schema(description = "")
-
-  public String getLastName() {
-    return lastName;
+  
+    public String getFirstName() {
+    return firstName;
   }
 
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
   }
 
   public Person lastName(String lastName) {
@@ -107,18 +90,17 @@ public class Person {
   }
 
   /**
-   * Get address
-   * 
-   * @return address
+   * Get lastName
+   * @return lastName
    **/
   @Schema(description = "")
-
-  public String getAddress() {
-    return address;
+  
+    public String getLastName() {
+    return lastName;
   }
 
-  public void setAddress(String address) {
-    this.address = address;
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
   }
 
   public Person address(String address) {
@@ -127,18 +109,17 @@ public class Person {
   }
 
   /**
-   * Get phoneNumber
-   * 
-   * @return phoneNumber
+   * Get address
+   * @return address
    **/
   @Schema(description = "")
-
-  public String getPhoneNumber() {
-    return phoneNumber;
+  
+    public String getAddress() {
+    return address;
   }
 
-  public void setPhoneNumber(String phoneNumber) {
-    this.phoneNumber = phoneNumber;
+  public void setAddress(String address) {
+    this.address = address;
   }
 
   public Person phoneNumber(String phoneNumber) {
@@ -147,18 +128,17 @@ public class Person {
   }
 
   /**
-   * Get zipCode
-   * 
-   * @return zipCode
+   * Get phoneNumber
+   * @return phoneNumber
    **/
   @Schema(description = "")
-
-  public String getZipCode() {
-    return zipCode;
+  
+    public String getPhoneNumber() {
+    return phoneNumber;
   }
 
-  public void setZipCode(String zipCode) {
-    this.zipCode = zipCode;
+  public void setPhoneNumber(String phoneNumber) {
+    this.phoneNumber = phoneNumber;
   }
 
   public Person zipCode(String zipCode) {
@@ -167,18 +147,17 @@ public class Person {
   }
 
   /**
-   * Get age
-   * 
-   * @return age
+   * Get zipCode
+   * @return zipCode
    **/
   @Schema(description = "")
-
-  public Integer getAge() {
-    return age;
+  
+    public String getZipCode() {
+    return zipCode;
   }
 
-  public void setAge(Integer age) {
-    this.age = age;
+  public void setZipCode(String zipCode) {
+    this.zipCode = zipCode;
   }
 
   public Person age(Integer age) {
@@ -187,18 +166,17 @@ public class Person {
   }
 
   /**
-   * Get city
-   * 
-   * @return city
+   * Get age
+   * @return age
    **/
   @Schema(description = "")
-
-  public String getCity() {
-    return city;
+  
+    public Integer getAge() {
+    return age;
   }
 
-  public void setCity(String city) {
-    this.city = city;
+  public void setAge(Integer age) {
+    this.age = age;
   }
 
   public Person city(String city) {
@@ -207,18 +185,17 @@ public class Person {
   }
 
   /**
-   * Get birthdate
-   * 
-   * @return birthdate
+   * Get city
+   * @return city
    **/
   @Schema(description = "")
-
-  public String getBirthdate() {
-    return birthdate;
+  
+    public String getCity() {
+    return city;
   }
 
-  public void setBirthdate(String birthdate) {
-    this.birthdate = birthdate;
+  public void setCity(String city) {
+    this.city = city;
   }
 
   public Person birthdate(String birthdate) {
@@ -227,23 +204,36 @@ public class Person {
   }
 
   /**
-   * Get email
-   * 
-   * @return email
+   * Get birthdate
+   * @return birthdate
    **/
   @Schema(description = "")
-
-  public String getEmail() {
-    return email;
+  
+    public String getBirthdate() {
+    return birthdate;
   }
 
-  public void setEmail(String email) {
-    this.email = email;
+  public void setBirthdate(String birthdate) {
+    this.birthdate = birthdate;
   }
 
   public Person email(String email) {
     this.email = email;
     return this;
+  }
+
+  /**
+   * Get email
+   * @return email
+   **/
+  @Schema(description = "")
+  
+    public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
   }
 
 
@@ -256,27 +246,28 @@ public class Person {
       return false;
     }
     Person person = (Person) o;
-    return Objects.equals(this.id, person.id) && Objects.equals(this.firstName, person.firstName)
-        && Objects.equals(this.lastName, person.lastName)
-        && Objects.equals(this.address, person.address)
-        && Objects.equals(this.phoneNumber, person.phoneNumber)
-        && Objects.equals(this.zipCode, person.zipCode) && Objects.equals(this.age, person.age)
-        && Objects.equals(this.city, person.city)
-        && Objects.equals(this.birthdate, person.birthdate)
-        && Objects.equals(this.email, person.email);
+    return Objects.equals(this.id, person.id) &&
+        Objects.equals(this.firstName, person.firstName) &&
+        Objects.equals(this.lastName, person.lastName) &&
+        Objects.equals(this.address, person.address) &&
+        Objects.equals(this.phoneNumber, person.phoneNumber) &&
+        Objects.equals(this.zipCode, person.zipCode) &&
+        Objects.equals(this.age, person.age) &&
+        Objects.equals(this.city, person.city) &&
+        Objects.equals(this.birthdate, person.birthdate) &&
+        Objects.equals(this.email, person.email);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, firstName, lastName, address, phoneNumber, zipCode, age, city,
-        birthdate, email);
+    return Objects.hash(id, firstName, lastName, address, phoneNumber, zipCode, age, city, birthdate, email);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Person {\n");
-
+    
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
     sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
@@ -292,7 +283,8 @@ public class Person {
   }
 
   /**
-   * Convert the given object to string with each line indented by 4 spaces (except the first line).
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
    */
   private String toIndentedString(java.lang.Object o) {
     if (o == null) {
