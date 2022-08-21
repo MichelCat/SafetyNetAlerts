@@ -1,6 +1,6 @@
 package io.swagger.api;
 
-import io.swagger.business.FireStationBusiness;
+import io.swagger.business.ChildAlertBusiness;
 import io.swagger.dao.db.entities.PersonEntity;
 import io.swagger.model.ChildLivingInArea;
 import io.swagger.model.Error;
@@ -47,10 +47,10 @@ public class ChildAlertApiController implements ChildAlertApi {
 
   private final HttpServletRequest request;
 
-  private final FireStationBusiness fireStationBusiness;
+  private final ChildAlertBusiness fireStationBusiness;
 
   @org.springframework.beans.factory.annotation.Autowired
-  public ChildAlertApiController(ObjectMapper objectMapper, HttpServletRequest request, FireStationBusiness fireStationBusiness) {
+  public ChildAlertApiController(ObjectMapper objectMapper, HttpServletRequest request, ChildAlertBusiness fireStationBusiness) {
     this.objectMapper = objectMapper;
     this.request = request;
     this.fireStationBusiness = fireStationBusiness;
@@ -59,7 +59,7 @@ public class ChildAlertApiController implements ChildAlertApi {
   public ResponseEntity<List<ChildLivingInArea>> getChildAlert(@Parameter(in = ParameterIn.QUERY, description = "", schema = @Schema()) @Valid @RequestParam(value = "address", required = false) String address) {
     List<Person> children = fireStationBusiness.getChildLivingInArea(address);
 
-    List<ChildLivingInArea> ChildrenLivingInArea = new ArrayList<ChildLivingInArea>();
+    List<ChildLivingInArea> childrenLivingInArea = new ArrayList<ChildLivingInArea>();
     for (Person child : children) {
       ChildLivingInArea childLivingInArea = new ChildLivingInArea();
       childLivingInArea.setIdentity(child);
@@ -67,9 +67,9 @@ public class ChildAlertApiController implements ChildAlertApi {
       List<Person> familyMembers = fireStationBusiness.getOtherHouseholdPersons(child.getFirstName(), child.getLastName());
       childLivingInArea.setFamilyMembers(familyMembers);
 
-      ChildrenLivingInArea.add(childLivingInArea);
+      childrenLivingInArea.add(childLivingInArea);
     }
-    return ResponseEntity.ok(ChildrenLivingInArea);
+    return ResponseEntity.ok(childrenLivingInArea);
   }
 
 }

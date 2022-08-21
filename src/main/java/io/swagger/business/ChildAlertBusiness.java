@@ -9,10 +9,10 @@ import io.swagger.dao.db.entities.PersonEntity;
 import io.swagger.model.Person;
 
 @Service
-public class FireStationBusiness {
+public class ChildAlertBusiness {
   private final PersonDao personDao;
 
-  public FireStationBusiness(PersonDao personDao) {
+  public ChildAlertBusiness(PersonDao personDao) {
     this.personDao = personDao;
   }
   

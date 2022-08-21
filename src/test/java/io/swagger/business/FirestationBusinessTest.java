@@ -15,8 +15,8 @@ import io.swagger.dao.db.entities.PersonEntity;
 import io.swagger.model.Person;
 
 @SpringBootTest
-public class PersonBusinessTest {
-  private static PersonBusiness personBusiness;
+public class FirestationBusinessTest {
+  private static FirestationBusiness personBusiness;
 
   private static List<PersonEntity> personEntities;
   private static List<Person> persons;

@@ -1,9 +1,10 @@
 package io.swagger.api;
 
-import io.swagger.business.FirestationBusiness;
+import io.swagger.business.PhoneAlertBusiness;
+import io.swagger.model.ChildLivingInArea;
 import io.swagger.model.Error;
 import io.swagger.model.Person;
-import io.swagger.model.PersonsInFireStation;
+import io.swagger.model.PhoneInFireStation;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -32,39 +33,39 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-08-09T21:09:55.880Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-08-20T22:36:24.460Z[GMT]")
 @RestController
-public class FirestationApiController implements FirestationApi {
+public class PhoneAlertApiController implements PhoneAlertApi {
 
-    private static final Logger log = LoggerFactory.getLogger(FirestationApiController.class);
+    private static final Logger log = LoggerFactory.getLogger(PhoneAlertApiController.class);
 
     private final ObjectMapper objectMapper;
 
     private final HttpServletRequest request;
     
-    private final FirestationBusiness personBusiness;
+    private final PhoneAlertBusiness phoneAlertBusiness;
 
     @org.springframework.beans.factory.annotation.Autowired
-    public FirestationApiController(ObjectMapper objectMapper, HttpServletRequest request, FirestationBusiness personBusiness) {
+    public PhoneAlertApiController(ObjectMapper objectMapper, HttpServletRequest request, PhoneAlertBusiness phoneAlertBusiness) {
         this.objectMapper = objectMapper;
         this.request = request;
-        this.personBusiness = personBusiness;
+        this.phoneAlertBusiness = phoneAlertBusiness;
     }
 
-    public ResponseEntity<PersonsInFireStation> getFirestation(@Parameter(in = ParameterIn.QUERY, description = "the station number" ,schema=@Schema()) @Valid @RequestParam(value = "stationNumber", required = false) String stationNumber) {
-      List<Person> persons = personBusiness.getPersonsLivingNearStation(stationNumber);
-      int adults = personBusiness.getAdultsLivingIn(persons, stationNumber);
-      int children = personBusiness.getChildrenLivingIn(persons, stationNumber);
+    public ResponseEntity<List<PhoneInFireStation>> getPhoneAlert(@Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "firestation", required = false) String firestation) {
+      List<Person> persons = phoneAlertBusiness.getPersonsLivingNearStation(firestation);
       
-      PersonsInFireStation personsInFireStation = new PersonsInFireStation();
-      personsInFireStation.setPersons(persons);
-      personsInFireStation.setAdultsCount(adults);
-      personsInFireStation.setChildrenCount(children);
-      
-      return ResponseEntity.ok(personsInFireStation);
+      List<PhoneInFireStation> phonesInFireStation = new ArrayList<PhoneInFireStation>();
+      for (Person person : persons) {
+        PhoneInFireStation phoneInFireStation = new PhoneInFireStation();
+        phoneInFireStation.setPerson(person);
+        phonesInFireStation.add(phoneInFireStation);
+      }
+      return ResponseEntity.ok(phonesInFireStation);
     }
 
 }

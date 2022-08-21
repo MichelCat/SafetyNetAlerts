@@ -6,23 +6,22 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
-import io.swagger.business.ChildAlertBusiness;
 
-@WebMvcTest(controllers = ChildAlertApiController.class)
-public class ChildAlertApiControllerTest {
+@SpringBootTest
+@AutoConfigureMockMvc
+public class PhoneAlertApiControllerIT {
 
   @Autowired
   private MockMvc mockMvc;
 
-  @MockBean
-  private ChildAlertBusiness fireStationBusiness;
-
   @Test
-  public void getChildAlert_returnPersonsFromAddress() throws Exception {
-    mockMvc.perform(get("/childAlert?address=1509 Culver St"))
-    .andExpect(status().isOk());
+  public void getPhoneAlert_returnPersonsFromStationThree() throws Exception {
+    mockMvc.perform(get("/phoneAlert?firestation=3"))
+    .andExpect(status().isOk())
+    .andExpect(jsonPath("$[0].person.lastName", is("Boyd")));
   }
+
 }

@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
-import io.swagger.business.PersonBusiness;
+import io.swagger.business.FirestationBusiness;
 
 @WebMvcTest(controllers = FirestationApiController.class)
 public class FirestationApiControllerTest {
@@ -18,7 +18,7 @@ public class FirestationApiControllerTest {
   private MockMvc mockMvc;
 
   @MockBean
-  private PersonBusiness personBusiness;
+  private FirestationBusiness personBusiness;
 
   @Test
   public void getFirestation_returnPersonsFromStationThree() throws Exception {
