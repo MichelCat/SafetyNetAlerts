@@ -7,6 +7,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.SortedSet;
 import java.util.TreeSet;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -21,8 +22,8 @@ import io.swagger.model.Person;
 public class PersonDaoTest {
 
   private static PersonDao personDao;
-  private static TreeSet<FireStationEntity> fireStationEntities;
-  private static TreeSet<PersonEntity> personEntities;
+  private static SortedSet<FireStationEntity> fireStationEntities;
+  private static SortedSet<PersonEntity> personEntities;
 
   private static List<PersonEntity> PersonEntityList;
   private static List<Person> personList;

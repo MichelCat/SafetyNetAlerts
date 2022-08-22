@@ -15,35 +15,35 @@ import javax.validation.constraints.*;
  * ChildLivingInArea
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-08-09T21:09:55.880Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-08-21T15:04:05.884Z[GMT]")
 
 
 public class ChildLivingInArea   {
-  @JsonProperty("Identity")
-  private Person identity = null;
+  @JsonProperty("child")
+  private Person child = null;
 
   @JsonProperty("familyMembers")
   @Valid
   private List<Person> familyMembers = null;
 
-  public ChildLivingInArea identity(Person identity) {
-    this.identity = identity;
+  public ChildLivingInArea child(Person child) {
+    this.child = child;
     return this;
   }
 
   /**
-   * Get identity
-   * @return identity
+   * Get child
+   * @return child
    **/
   @Schema(description = "")
   
     @Valid
-    public Person getIdentity() {
-    return identity;
+    public Person getChild() {
+    return child;
   }
 
-  public void setIdentity(Person identity) {
-    this.identity = identity;
+  public void setChild(Person child) {
+    this.child = child;
   }
 
   public ChildLivingInArea familyMembers(List<Person> familyMembers) {
@@ -83,13 +83,13 @@ public class ChildLivingInArea   {
       return false;
     }
     ChildLivingInArea childLivingInArea = (ChildLivingInArea) o;
-    return Objects.equals(this.identity, childLivingInArea.identity) &&
+    return Objects.equals(this.child, childLivingInArea.child) &&
         Objects.equals(this.familyMembers, childLivingInArea.familyMembers);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(identity, familyMembers);
+    return Objects.hash(child, familyMembers);
   }
 
   @Override
@@ -97,7 +97,7 @@ public class ChildLivingInArea   {
     StringBuilder sb = new StringBuilder();
     sb.append("class ChildLivingInArea {\n");
     
-    sb.append("    identity: ").append(toIndentedString(identity)).append("\n");
+    sb.append("    child: ").append(toIndentedString(child)).append("\n");
     sb.append("    familyMembers: ").append(toIndentedString(familyMembers)).append("\n");
     sb.append("}");
     return sb.toString();

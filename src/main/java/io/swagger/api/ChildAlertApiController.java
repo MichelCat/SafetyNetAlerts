@@ -62,7 +62,7 @@ public class ChildAlertApiController implements ChildAlertApi {
     List<ChildLivingInArea> childrenLivingInArea = new ArrayList<ChildLivingInArea>();
     for (Person child : children) {
       ChildLivingInArea childLivingInArea = new ChildLivingInArea();
-      childLivingInArea.setIdentity(child);
+      childLivingInArea.setChild(child);
 
       List<Person> familyMembers = fireStationBusiness.getOtherHouseholdPersons(child.getFirstName(), child.getLastName());
       childLivingInArea.setFamilyMembers(familyMembers);

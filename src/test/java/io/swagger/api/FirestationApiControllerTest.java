@@ -18,7 +18,7 @@ public class FirestationApiControllerTest {
   private MockMvc mockMvc;
 
   @MockBean
-  private FirestationBusiness personBusiness;
+  private FirestationBusiness firestationBusiness;
 
   @Test
   public void getFirestation_returnPersonsFromStationThree() throws Exception {

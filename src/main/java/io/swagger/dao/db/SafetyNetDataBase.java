@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.SortedSet;
 import java.util.TreeSet;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
@@ -30,11 +31,11 @@ import io.swagger.dao.json.entities.SafetyNetJson;
 
 @Component
 public class SafetyNetDataBase {
-  private TreeSet<PersonEntity> personEntities = new TreeSet<PersonEntity>();
-  private TreeSet<FireStationEntity> fireStationEntities = new TreeSet<FireStationEntity>();
-  private TreeSet<AllergyEntity> allergyEntities = new TreeSet<AllergyEntity>();
-  private TreeSet<MedicationEntity> medicationEntities = new TreeSet<MedicationEntity>();
-  private TreeSet<MedicalRecordEntity> medicalRecordEntities = new TreeSet<MedicalRecordEntity>();
+  private SortedSet<PersonEntity> personEntities = new TreeSet<PersonEntity>();
+  private SortedSet<FireStationEntity> fireStationEntities = new TreeSet<FireStationEntity>();
+  private SortedSet<AllergyEntity> allergyEntities = new TreeSet<AllergyEntity>();
+  private SortedSet<MedicationEntity> medicationEntities = new TreeSet<MedicationEntity>();
+  private SortedSet<MedicalRecordEntity> medicalRecordEntities = new TreeSet<MedicalRecordEntity>();
 
   // -----------------------------------------------------------------------------------------------
   @EventListener(ContextRefreshedEvent.class)
@@ -51,31 +52,33 @@ public class SafetyNetDataBase {
   }
 
   // -----------------------------------------------------------------------------------------------
-  public TreeSet<PersonEntity> getPersonEntities() {
+  public SortedSet<PersonEntity> getPersonEntities() {
     return personEntities;
   }
 
-  public TreeSet<FireStationEntity> getFireStationEntities() {
+  public SortedSet<FireStationEntity> getFireStationEntities() {
     return fireStationEntities;
   }
 
-  public TreeSet<AllergyEntity> getAllergyEntities() {
+  public SortedSet<AllergyEntity> getAllergyEntities() {
     return allergyEntities;
   }
 
-  public TreeSet<MedicationEntity> getMedicationEntities() {
+  public SortedSet<MedicationEntity> getMedicationEntities() {
     return medicationEntities;
   }
 
-  public TreeSet<MedicalRecordEntity> getMedicalRecordEntities() {
+  public SortedSet<MedicalRecordEntity> getMedicalRecordEntities() {
     return medicalRecordEntities;
   }
 
   // -----------------------------------------------------------------------------------------------
   private void setListPersonEntity(SafetyNetJson safetyNetJson) {
+    Integer personSequence = 0;
     for (PersonJson personJson : safetyNetJson.getPersons()) {
+      ++ personSequence;
       PersonEntity personEntity = new PersonEntity();
-      personEntity.setId(null);
+      personEntity.setId(personSequence);
       personEntity.setFirstName(personJson.getFirstName());
       personEntity.setLastName(personJson.getLastName());
       personEntity.setAddress(personJson.getAddress());
@@ -99,25 +102,33 @@ public class SafetyNetDataBase {
 
   // -----------------------------------------------------------------------------------------------
   private void setListAllergyEntity(SafetyNetJson safetyNetJson) {
+    Integer allergySequence = 0;
     for (MedicalRecordJson medicalRecordJson : safetyNetJson.getMedicalrecords()) {
       for (String allergyJson : medicalRecordJson.getAllergies()) {
         AllergyEntity allergyEntity = new AllergyEntity();
-        allergyEntity.setId(null);
         allergyEntity.setAllergy(allergyJson);
-        allergyEntities.add(allergyEntity);
+        if (!allergyEntities.contains(allergyEntity)) {
+          ++allergySequence;
+          allergyEntity.setId(allergySequence);
+          allergyEntities.add(allergyEntity);
+        }
       }
     }
   }
 
   // -----------------------------------------------------------------------------------------------
   private void setListMedicationEntity(SafetyNetJson safetyNetJson) {
+    Integer medicamentSequence = 0;
     for (MedicalRecordJson medicalRecordJson : safetyNetJson.getMedicalrecords()) {
       for (String medicationJson : medicalRecordJson.getMedications()) {
         if (medicationJson.split(":").length == 2) {
           MedicationEntity medicationEntity = new MedicationEntity();
-          medicationEntity.setId(null);
           medicationEntity.setMedication(medicationJson.split(":")[0]);
-          medicationEntities.add(medicationEntity);
+          if (!medicationEntities.contains(medicationEntity)) {
+            ++medicamentSequence;
+            medicationEntity.setId(medicamentSequence);
+            medicationEntities.add(medicationEntity);
+          }
         }
       }
     }
