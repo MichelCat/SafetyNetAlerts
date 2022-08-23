@@ -2,6 +2,7 @@ package io.swagger.business;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import io.swagger.dao.db.AllergyDao;
 import io.swagger.dao.db.FireStationDao;
@@ -11,13 +12,13 @@ import io.swagger.dao.db.MedicationDao;
 import io.swagger.dao.db.PersonDao;
 import io.swagger.dao.db.entities.FireStationEntity;
 import io.swagger.dao.db.entities.MedicalRecordAllergyEntity;
-import io.swagger.dao.db.entities.MedicalRecordEntity;
 import io.swagger.dao.db.entities.MedicalRecordMedicationEntity;
 import io.swagger.dao.db.entities.PersonEntity;
 import io.swagger.model.Allergy;
 import io.swagger.model.FireStation;
 import io.swagger.model.Medication;
 import io.swagger.model.Person;
+import io.swagger.utils.PersonUtils;
 
 @Service
 public class FireBusiness {
@@ -27,6 +28,9 @@ public class FireBusiness {
   private final MedicationDao medicationDao;
   private final MedicalRecordAllergyDao medicalRecordAllergyDao;
   private final AllergyDao allergyDao;
+  
+  @Autowired
+  private PersonUtils personUtils;
 
   public FireBusiness(PersonDao personDao
                     , FireStationDao fireStationDao
@@ -43,8 +47,10 @@ public class FireBusiness {
   }
 
   public List<Person> getPersonsLivingInAddress(final String personAddress) {
-    List<PersonEntity> personEntities = personDao.findPersonByAddress(personAddress);
-    return personDao.conversionListPersonEntityToPerson(personEntities);
+    List<String> stationAddresses = new ArrayList<String>();
+    stationAddresses.add(personAddress);
+    List<PersonEntity> personEntities = personDao.findPersonByAddresses(stationAddresses);
+    return personUtils.conversionListPersonEntityToPerson(personEntities);
   }
   
   public List<Medication> getMedicationByName(final String firstName, final String lastName) {

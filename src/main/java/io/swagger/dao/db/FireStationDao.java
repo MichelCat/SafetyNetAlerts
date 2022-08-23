@@ -13,13 +13,14 @@ public class FireStationDao {
   private SafetyNetDataBase safetyNetDataBase;
   
   // -----------------------------------------------------------------------------------------------
-  public String fireStationAddressByStationNumber(Integer stationNumber) {
+  public List<String> fireStationAddressByStationNumber(Integer stationNumber) {
+    List<String> stationAddresses = new ArrayList<String>();
     for (FireStationEntity fireStationEntity : safetyNetDataBase.getFireStationEntities()) {
       if (fireStationEntity.getStation().equals(stationNumber)) {
-        return fireStationEntity.getAddress();
+        stationAddresses.add(fireStationEntity.getAddress());
       }
     }
-    return "";
+    return stationAddresses;
   }
 
   // -----------------------------------------------------------------------------------------------

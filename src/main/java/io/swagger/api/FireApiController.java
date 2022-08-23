@@ -1,9 +1,7 @@
 package io.swagger.api;
 
 import io.swagger.business.FireBusiness;
-import io.swagger.dao.db.entities.MedicalRecordEntity;
 import io.swagger.model.Allergy;
-import io.swagger.model.ChildLivingInArea;
 import io.swagger.model.Error;
 import io.swagger.model.FireStation;
 import io.swagger.model.Medication;

@@ -1,16 +1,19 @@
 package io.swagger.business;
 
-import java.util.ArrayList;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import io.swagger.dao.db.FireStationDao;
 import io.swagger.dao.db.PersonDao;
 import io.swagger.dao.db.entities.PersonEntity;
 import io.swagger.model.Person;
+import io.swagger.utils.PersonUtils;
 
 @Service
 public class ChildAlertBusiness {
   private final PersonDao personDao;
+  
+  @Autowired
+  private PersonUtils personUtils;
 
   public ChildAlertBusiness(PersonDao personDao) {
     this.personDao = personDao;
@@ -18,11 +21,11 @@ public class ChildAlertBusiness {
   
   public List<Person> getChildLivingInArea(final String address) {
     List<PersonEntity> personEntities = personDao.findChildByAddress(address);
-    return personDao.conversionListPersonEntityToPerson(personEntities);
+    return personUtils.conversionListPersonEntityToPerson(personEntities);
   }
 
-  public List<Person> getOtherHouseholdPersons(final String firstName, final String lastName) {
-    List<PersonEntity> personEntities = personDao.findOtherHouseholdPersonsByName(firstName, lastName);
-    return personDao.conversionListPersonEntityToPerson(personEntities);
+  public List<Person> getOtherHouseholdPersons(final String firstName, final String lastName, final String address) {
+    List<PersonEntity> personEntities = personDao.findOtherHouseholdPersonsByName(firstName, lastName, address);
+    return personUtils.conversionListPersonEntityToPerson(personEntities);
   }
 }

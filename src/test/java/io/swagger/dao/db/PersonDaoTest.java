@@ -25,80 +25,11 @@ public class PersonDaoTest {
   private static SortedSet<FireStationEntity> fireStationEntities;
   private static SortedSet<PersonEntity> personEntities;
 
-  private static List<PersonEntity> PersonEntityList;
-  private static List<Person> personList;
-
-  @MockBean
-  private SafetyNetDataBase safetyNetDataBase;
-
   @BeforeEach
   private void setUpPerTest() {
     personDao = new PersonDao();
     fireStationEntities = new TreeSet<FireStationEntity>();
     personEntities = new TreeSet<PersonEntity>();
-
-    PersonEntityList = new ArrayList<PersonEntity>();
-    personList = new ArrayList<Person>();
-  }
-
-  // -----------------------------------------------------------------------------------------------
-  // Method conversionListPersonEntityToPerson
-  // -----------------------------------------------------------------------------------------------
-  @Test
-  @DisplayName("")
-  public void conversionListPersonEntityToPerson_nullPersonEntities_returnNull() {
-    // GIVEN
-    // WHEN
-    List<Person> result = personDao.conversionListPersonEntityToPerson(PersonEntityList);
-    // THEN
-    assertThat(result.equals(personList));
-  }
-  
-  @Test
-  @DisplayName("")
-  public void conversionListPersonEntityToPerson_PersonEntity_returnPersons() {
-    // GIVEN
-    PersonEntity personEntity = new PersonEntity();
-    personEntity.setId(1);
-    personEntity.setFirstName("John");
-    personEntity.setLastName("lastName");
-    personEntity.setBirthdate(new Date("2002/06/05"));
-    PersonEntityList.add(personEntity);
-    
-    Person person = new Person();
-    person.setId(personEntity.getId());
-    person.setFirstName(personEntity.getFirstName());
-    person.setLastName(personEntity.getLastName());
-    person.setAge(personEntity.getAge());
-    personList.add(person);
-    // WHEN
-    List<Person> result = personDao.conversionListPersonEntityToPerson(PersonEntityList);
-    // THEN
-    assertThat(result.equals(personList));
-  }
-
-  // -----------------------------------------------------------------------------------------------
-  // Method conversionPersonEntityToPerson
-  // -----------------------------------------------------------------------------------------------
-  @Test
-  @DisplayName("")
-  public void conversionPersonEntityToPerson_personEntity_returnPerson() {
-    // GIVEN
-    PersonEntity personEntity = new PersonEntity();
-    personEntity.setId(1);
-    personEntity.setFirstName("John");
-    personEntity.setLastName("lastName");
-    personEntity.setBirthdate(new Date("2002/06/05"));
-    
-    Person person = new Person();
-    person.setId(personEntity.getId());
-    person.setFirstName(personEntity.getFirstName());
-    person.setLastName(personEntity.getLastName());
-    person.setAge(personEntity.getAge());
-    // WHEN
-    Person result = personDao.conversionPersonEntityToPerson(personEntity);
-    // THEN
-    assertThat(result.equals(person));
   }
 
   // -----------------------------------------------------------------------------------------------

@@ -10,6 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
@@ -28,6 +29,8 @@ import io.swagger.dao.json.entities.FireStationJson;
 import io.swagger.dao.json.entities.MedicalRecordJson;
 import io.swagger.dao.json.entities.PersonJson;
 import io.swagger.dao.json.entities.SafetyNetJson;
+import io.swagger.utils.DateUtils;
+import io.swagger.utils.PersonUtils;
 
 @Component
 public class SafetyNetDataBase {
@@ -36,6 +39,9 @@ public class SafetyNetDataBase {
   private SortedSet<AllergyEntity> allergyEntities = new TreeSet<AllergyEntity>();
   private SortedSet<MedicationEntity> medicationEntities = new TreeSet<MedicationEntity>();
   private SortedSet<MedicalRecordEntity> medicalRecordEntities = new TreeSet<MedicalRecordEntity>();
+  
+  @Autowired
+  public DateUtils dateUtils;
 
   // -----------------------------------------------------------------------------------------------
   @EventListener(ContextRefreshedEvent.class)
@@ -141,7 +147,7 @@ public class SafetyNetDataBase {
 
       // -----------------------------------------------------------------------------------------------
       personEntities.remove(personEntity);
-      personEntity.setBirthdate(stringToDateConversion(medicalRecordJson.getBirthdate()));
+      personEntity.setBirthdate(dateUtils.stringToDateConversion(medicalRecordJson.getBirthdate()));
       personEntities.add(personEntity);
 
       // -----------------------------------------------------------------------------------------------
@@ -181,15 +187,6 @@ public class SafetyNetDataBase {
       if (personEntity.getFirstName().equalsIgnoreCase(firstName) && personEntity.getLastName().equalsIgnoreCase(lastName)) {
         return personEntity;
       }
-    }
-    return null;
-  }
-
-  // -----------------------------------------------------------------------------------------------
-  private Date stringToDateConversion(String stringDate) {
-    try {
-      return (new SimpleDateFormat("dd/MM/yyyy").parse(stringDate));
-    } catch (ParseException e) {
     }
     return null;
   }

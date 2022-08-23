@@ -15,4 +15,10 @@ public class AllergyEntity implements Comparable<AllergyEntity> {
   public int compareTo(AllergyEntity o) {
     return this.allergy.compareTo(o.allergy);
   }
+
+  // -----------------------------------------------------------------------------------------------
+  @Override
+  public String toString() {
+    return "AllergyEntity [id=" + id + ", allergy=" + allergy + "]";
+  }
 }

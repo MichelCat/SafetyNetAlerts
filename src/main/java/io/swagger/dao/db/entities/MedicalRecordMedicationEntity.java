@@ -15,4 +15,10 @@ public class MedicalRecordMedicationEntity implements Comparable<MedicalRecordMe
   public int compareTo(MedicalRecordMedicationEntity o) {
     return this.idMedication.compareTo(o.idMedication);
   }
+
+  // -----------------------------------------------------------------------------------------------
+  @Override
+  public String toString() {
+    return "MedicalRecordMedicationEntity [idMedication=" + idMedication + ", dosage=" + dosage + "]";
+  }
 }

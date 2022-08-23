@@ -1,7 +1,6 @@
 package io.swagger.api;
 
 import io.swagger.business.ChildAlertBusiness;
-import io.swagger.dao.db.entities.PersonEntity;
 import io.swagger.model.ChildLivingInArea;
 import io.swagger.model.Error;
 import io.swagger.model.Person;
@@ -64,7 +63,10 @@ public class ChildAlertApiController implements ChildAlertApi {
       ChildLivingInArea childLivingInArea = new ChildLivingInArea();
       childLivingInArea.setChild(child);
 
-      List<Person> familyMembers = fireStationBusiness.getOtherHouseholdPersons(child.getFirstName(), child.getLastName());
+      List<Person> familyMembers = fireStationBusiness.getOtherHouseholdPersons(
+                                          child.getFirstName()
+                                          , child.getLastName()
+                                          , address);
       childLivingInArea.setFamilyMembers(familyMembers);
 
       childrenLivingInArea.add(childLivingInArea);

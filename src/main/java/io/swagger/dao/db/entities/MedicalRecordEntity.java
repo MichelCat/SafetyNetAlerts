@@ -23,14 +23,16 @@ public class MedicalRecordEntity implements Comparable<MedicalRecordEntity> {
   // -----------------------------------------------------------------------------------------------
   @Override
   public int compareTo(MedicalRecordEntity o) {
-    if (this.firstName.compareTo(o.firstName) < 0)
-      return -1;
-    else if (this.firstName.compareTo(o.firstName) > 0)
-      return 1;
-    else if (this.lastName.compareTo(o.lastName) < 0)
-      return -1;
-    else if (this.lastName.compareTo(o.lastName) > 0)
-      return 1;
-    return 0;
+    if (getLastName().equals(o.getLastName())) {
+      return getFirstName().compareTo(o.getFirstName());
+    } else {
+      return getLastName().compareTo(o.getLastName());
+    }
+  }
+
+  // -----------------------------------------------------------------------------------------------
+  @Override
+  public String toString() {
+    return "MedicalRecordEntity [idPerson=" + idPerson + ", firstName=" + firstName + ", lastName=" + lastName + ", allergies=" + allergies + ", medications=" + medications + "]";
   }
 }

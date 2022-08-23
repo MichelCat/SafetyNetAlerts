@@ -13,6 +13,16 @@ public class FireStationEntity implements Comparable<FireStationEntity> {
   // -----------------------------------------------------------------------------------------------
   @Override
   public int compareTo(FireStationEntity o) {
-    return this.station.compareTo(o.station);
+    if (getStation().equals(o.getStation())) {
+      return getAddress().compareTo(o.getAddress());
+    } else {
+      return getStation().compareTo(o.getStation());
+    }
+  }
+
+  // -----------------------------------------------------------------------------------------------
+  @Override
+  public String toString() {
+    return "FireStationEntity [station=" + station + ", address=" + address + "]";
   }
 }

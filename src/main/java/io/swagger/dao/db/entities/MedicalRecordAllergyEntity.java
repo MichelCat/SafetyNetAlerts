@@ -12,4 +12,10 @@ public class MedicalRecordAllergyEntity implements Comparable<MedicalRecordAller
   public int compareTo(MedicalRecordAllergyEntity o) {
     return this.idAlergy.compareTo(o.idAlergy);
   }
+
+  // -----------------------------------------------------------------------------------------------
+  @Override
+  public String toString() {
+    return "MedicalRecordAllergyEntity [idAlergy=" + idAlergy + "]";
+  }
 }
