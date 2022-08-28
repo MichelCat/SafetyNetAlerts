@@ -6,7 +6,7 @@
 package io.swagger.api;
 
 import io.swagger.model.Error;
-import io.swagger.model.PersonInFireStation;
+import io.swagger.model.PersonAndMedicalRecordInFireStation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -35,19 +35,19 @@ import java.util.Map;
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-08-27T22:35:44.562Z[GMT]")
 @Validated
-public interface FirestationApi {
+public interface FloodApi {
 
-    @Operation(summary = "getPersonsInFirestationArea", description = "", tags={  })
+    @Operation(summary = "GetPersonsAndMedicalRecordInFireStation", description = "", tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(implementation = PersonInFireStation.class))),
+        @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = PersonAndMedicalRecordInFireStation.class)))),
         
         @ApiResponse(responseCode = "204", description = "No Content"),
         
         @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))) })
-    @RequestMapping(value = "/firestation",
+    @RequestMapping(value = "/flood/stations",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<PersonInFireStation> getFirestation(@Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "stationNumber", required = false) String stationNumber);
+    ResponseEntity<List<PersonAndMedicalRecordInFireStation>> getFloodStations(@Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "stations", required = false) String stations);
 
 }
 

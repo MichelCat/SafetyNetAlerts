@@ -12,13 +12,13 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * PersonsInFireStation
+ * PersonInFireStation
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-08-09T21:09:55.880Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-08-27T22:35:44.562Z[GMT]")
 
 
-public class PersonsInFireStation   {
+public class PersonInFireStation   {
   @JsonProperty("adultsCount")
   private Integer adultsCount = null;
 
@@ -29,7 +29,7 @@ public class PersonsInFireStation   {
   @Valid
   private List<Person> persons = null;
 
-  public PersonsInFireStation adultsCount(Integer adultsCount) {
+  public PersonInFireStation adultsCount(Integer adultsCount) {
     this.adultsCount = adultsCount;
     return this;
   }
@@ -48,7 +48,7 @@ public class PersonsInFireStation   {
     this.adultsCount = adultsCount;
   }
 
-  public PersonsInFireStation childrenCount(Integer childrenCount) {
+  public PersonInFireStation childrenCount(Integer childrenCount) {
     this.childrenCount = childrenCount;
     return this;
   }
@@ -67,12 +67,12 @@ public class PersonsInFireStation   {
     this.childrenCount = childrenCount;
   }
 
-  public PersonsInFireStation persons(List<Person> persons) {
+  public PersonInFireStation persons(List<Person> persons) {
     this.persons = persons;
     return this;
   }
 
-  public PersonsInFireStation addPersonsItem(Person personsItem) {
+  public PersonInFireStation addPersonsItem(Person personsItem) {
     if (this.persons == null) {
       this.persons = new ArrayList<Person>();
     }
@@ -103,10 +103,10 @@ public class PersonsInFireStation   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PersonsInFireStation personsInFireStation = (PersonsInFireStation) o;
-    return Objects.equals(this.adultsCount, personsInFireStation.adultsCount) &&
-        Objects.equals(this.childrenCount, personsInFireStation.childrenCount) &&
-        Objects.equals(this.persons, personsInFireStation.persons);
+    PersonInFireStation personInFireStation = (PersonInFireStation) o;
+    return Objects.equals(this.adultsCount, personInFireStation.adultsCount) &&
+        Objects.equals(this.childrenCount, personInFireStation.childrenCount) &&
+        Objects.equals(this.persons, personInFireStation.persons);
   }
 
   @Override
@@ -117,7 +117,7 @@ public class PersonsInFireStation   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PersonsInFireStation {\n");
+    sb.append("class PersonInFireStation {\n");
     
     sb.append("    adultsCount: ").append(toIndentedString(adultsCount)).append("\n");
     sb.append("    childrenCount: ").append(toIndentedString(childrenCount)).append("\n");

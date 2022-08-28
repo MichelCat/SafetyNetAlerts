@@ -36,34 +36,34 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-08-19T23:12:48.239Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-08-24T21:40:24.842Z[GMT]")
 @RestController
 public class ChildAlertApiController implements ChildAlertApi {
 
-  private static final Logger log = LoggerFactory.getLogger(ChildAlertApiController.class);
+    private static final Logger log = LoggerFactory.getLogger(ChildAlertApiController.class);
 
-  private final ObjectMapper objectMapper;
+    private final ObjectMapper objectMapper;
 
-  private final HttpServletRequest request;
+    private final HttpServletRequest request;
 
-  private final ChildAlertBusiness fireStationBusiness;
+    private final ChildAlertBusiness childAlertBusiness;
 
-  @org.springframework.beans.factory.annotation.Autowired
-  public ChildAlertApiController(ObjectMapper objectMapper, HttpServletRequest request, ChildAlertBusiness fireStationBusiness) {
-    this.objectMapper = objectMapper;
-    this.request = request;
-    this.fireStationBusiness = fireStationBusiness;
-  }
+    @org.springframework.beans.factory.annotation.Autowired
+    public ChildAlertApiController(ObjectMapper objectMapper, HttpServletRequest request, ChildAlertBusiness childAlertBusiness) {
+        this.objectMapper = objectMapper;
+        this.request = request;
+        this.childAlertBusiness = childAlertBusiness;
+    }
 
-  public ResponseEntity<List<ChildLivingInArea>> getChildAlert(@Parameter(in = ParameterIn.QUERY, description = "", schema = @Schema()) @Valid @RequestParam(value = "address", required = false) String address) {
-    List<Person> children = fireStationBusiness.getChildLivingInArea(address);
+    public ResponseEntity<List<ChildLivingInArea>> getChildAlert(@Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "address", required = false) String address) {
+    List<Person> children = childAlertBusiness.getChildLivingInArea(address);
 
     List<ChildLivingInArea> childrenLivingInArea = new ArrayList<ChildLivingInArea>();
     for (Person child : children) {
       ChildLivingInArea childLivingInArea = new ChildLivingInArea();
       childLivingInArea.setChild(child);
 
-      List<Person> familyMembers = fireStationBusiness.getOtherHouseholdPersons(
+      List<Person> familyMembers = childAlertBusiness.getOtherHouseholdPersons(
                                           child.getFirstName()
                                           , child.getLastName()
                                           , address);
@@ -72,6 +72,6 @@ public class ChildAlertApiController implements ChildAlertApi {
       childrenLivingInArea.add(childLivingInArea);
     }
     return ResponseEntity.ok(childrenLivingInArea);
-  }
+    }
 
 }
