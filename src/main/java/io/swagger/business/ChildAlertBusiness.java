@@ -10,14 +10,11 @@ import io.swagger.utils.PersonUtils;
 
 @Service
 public class ChildAlertBusiness {
-  private final PersonDao personDao;
   
   @Autowired
   private PersonUtils personUtils;
-
-  public ChildAlertBusiness(PersonDao personDao) {
-    this.personDao = personDao;
-  }
+  @Autowired
+  private PersonDao personDao;
   
   public List<Person> getChildLivingInArea(final String address) {
     List<PersonEntity> personEntities = personDao.findChildByAddress(address);

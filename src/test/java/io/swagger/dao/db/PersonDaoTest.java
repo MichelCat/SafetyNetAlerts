@@ -21,16 +21,16 @@ import io.swagger.model.Person;
 @SpringBootTest
 public class PersonDaoTest {
 
-  private static PersonDao personDao;
-  private static SortedSet<FireStationEntity> fireStationEntities;
-  private static SortedSet<PersonEntity> personEntities;
-
-  @BeforeEach
-  private void setUpPerTest() {
-    personDao = new PersonDao();
-    fireStationEntities = new TreeSet<FireStationEntity>();
-    personEntities = new TreeSet<PersonEntity>();
-  }
+//  private static PersonDao personDao;
+//  private static SortedSet<FireStationEntity> fireStationEntities;
+//  private static SortedSet<PersonEntity> personEntities;
+//
+//  @BeforeEach
+//  private void setUpPerTest() {
+//    personDao = new PersonDao();
+//    fireStationEntities = new TreeSet<FireStationEntity>();
+//    personEntities = new TreeSet<PersonEntity>();
+//  }
 
   // -----------------------------------------------------------------------------------------------
   // Method findPersonByStationNumber

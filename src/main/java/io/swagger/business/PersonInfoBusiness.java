@@ -5,32 +5,24 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import io.swagger.dao.db.AllergyDao;
-import io.swagger.dao.db.FireStationDao;
 import io.swagger.dao.db.MedicalRecordDao;
 import io.swagger.dao.db.MedicationDao;
 import io.swagger.dao.db.PersonDao;
-import io.swagger.dao.db.entities.FireStationEntity;
 import io.swagger.dao.db.entities.MedicalRecordAllergyEntity;
 import io.swagger.dao.db.entities.MedicalRecordMedicationEntity;
 import io.swagger.dao.db.entities.PersonEntity;
 import io.swagger.model.Allergy;
-import io.swagger.model.FireStation;
 import io.swagger.model.Medication;
 import io.swagger.model.Person;
-import io.swagger.utils.FireStationUtils;
 import io.swagger.utils.PersonUtils;
 
 @Service
-public class FireBusiness {
+public class PersonInfoBusiness {
   
   @Autowired
   private PersonUtils personUtils;
   @Autowired
-  private FireStationUtils fireStationUtils;
-  @Autowired
   private PersonDao personDao;
-  @Autowired
-  private FireStationDao fireStationDao;
   @Autowired
   private MedicalRecordDao medicalRecordDao;
   @Autowired
@@ -38,10 +30,8 @@ public class FireBusiness {
   @Autowired
   private AllergyDao allergyDao;
 
-  public List<Person> getPersonsLivingInAddress(final String personAddress) {
-    List<String> stationAddresses = new ArrayList<>();
-    stationAddresses.add(personAddress);
-    List<PersonEntity> personEntities = personDao.findPersonByAddresses(stationAddresses);
+  public List<Person> getAllPersonsWithTheSameName(final String firstName, final String lastName) {
+    List<PersonEntity> personEntities = personDao.findAllPersonsWithTheSameName(firstName, lastName);
     return personUtils.conversionListPersonEntityToPerson(personEntities);
   }
   
@@ -70,9 +60,5 @@ public class FireBusiness {
     }
     return allergies;
   }
-  
-  public FireStation getFireStationByStationAddress(final String stationAddress) {
-    FireStationEntity fireStationEntity = fireStationDao.fireStationByStationAddress(stationAddress);
-    return fireStationUtils.conversionFireStationEntityToFireStation(fireStationEntity);
-  }
+
 }

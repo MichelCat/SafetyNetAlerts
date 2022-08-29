@@ -2,14 +2,8 @@ package io.swagger.dao.db;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
-import java.util.SortedSet;
-import java.util.TreeSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
@@ -30,18 +24,22 @@ import io.swagger.dao.json.entities.MedicalRecordJson;
 import io.swagger.dao.json.entities.PersonJson;
 import io.swagger.dao.json.entities.SafetyNetJson;
 import io.swagger.utils.DateUtils;
-import io.swagger.utils.PersonUtils;
 
 @Component
 public class SafetyNetDataBase {
-  private SortedSet<PersonEntity> personEntities = new TreeSet<PersonEntity>();
-  private SortedSet<FireStationEntity> fireStationEntities = new TreeSet<FireStationEntity>();
-  private SortedSet<AllergyEntity> allergyEntities = new TreeSet<AllergyEntity>();
-  private SortedSet<MedicationEntity> medicationEntities = new TreeSet<MedicationEntity>();
-  private SortedSet<MedicalRecordEntity> medicalRecordEntities = new TreeSet<MedicalRecordEntity>();
   
   @Autowired
   public DateUtils dateUtils;
+  @Autowired
+  private AllergyDao allergyDao;
+  @Autowired
+  private MedicationDao medicationDao;
+  @Autowired
+  private FireStationDao fireStationDao;
+  @Autowired
+  private MedicalRecordDao medicalRecordDao;
+  @Autowired
+  private PersonDao personDao;
 
   // -----------------------------------------------------------------------------------------------
   @EventListener(ContextRefreshedEvent.class)
@@ -58,27 +56,6 @@ public class SafetyNetDataBase {
   }
 
   // -----------------------------------------------------------------------------------------------
-  public SortedSet<PersonEntity> getPersonEntities() {
-    return personEntities;
-  }
-
-  public SortedSet<FireStationEntity> getFireStationEntities() {
-    return fireStationEntities;
-  }
-
-  public SortedSet<AllergyEntity> getAllergyEntities() {
-    return allergyEntities;
-  }
-
-  public SortedSet<MedicationEntity> getMedicationEntities() {
-    return medicationEntities;
-  }
-
-  public SortedSet<MedicalRecordEntity> getMedicalRecordEntities() {
-    return medicalRecordEntities;
-  }
-
-  // -----------------------------------------------------------------------------------------------
   private void setListPersonEntity(SafetyNetJson safetyNetJson) {
     Integer personSequence = 0;
     for (PersonJson personJson : safetyNetJson.getPersons()) {
@@ -92,7 +69,7 @@ public class SafetyNetDataBase {
       personEntity.setZip(personJson.getZip());
       personEntity.setCity(personJson.getCity());
       personEntity.setEmail(personJson.getEmail());
-      personEntities.add(personEntity);
+      personDao.save(personEntity);
     }
   }
 
@@ -102,39 +79,29 @@ public class SafetyNetDataBase {
       FireStationEntity fireStationEntity = new FireStationEntity();
       fireStationEntity.setStation(Integer.valueOf(fireStationJson.getStation()));
       fireStationEntity.setAddress(fireStationJson.getAddress());
-      fireStationEntities.add(fireStationEntity);
+      fireStationDao.save(fireStationEntity);
     }
   }
 
   // -----------------------------------------------------------------------------------------------
   private void setListAllergyEntity(SafetyNetJson safetyNetJson) {
-    Integer allergySequence = 0;
     for (MedicalRecordJson medicalRecordJson : safetyNetJson.getMedicalrecords()) {
       for (String allergyJson : medicalRecordJson.getAllergies()) {
         AllergyEntity allergyEntity = new AllergyEntity();
         allergyEntity.setAllergy(allergyJson);
-        if (!allergyEntities.contains(allergyEntity)) {
-          ++allergySequence;
-          allergyEntity.setId(allergySequence);
-          allergyEntities.add(allergyEntity);
-        }
+        allergyDao.save(allergyEntity);
       }
     }
   }
 
   // -----------------------------------------------------------------------------------------------
   private void setListMedicationEntity(SafetyNetJson safetyNetJson) {
-    Integer medicamentSequence = 0;
     for (MedicalRecordJson medicalRecordJson : safetyNetJson.getMedicalrecords()) {
       for (String medicationJson : medicalRecordJson.getMedications()) {
         if (medicationJson.split(":").length == 2) {
           MedicationEntity medicationEntity = new MedicationEntity();
           medicationEntity.setMedication(medicationJson.split(":")[0]);
-          if (!medicationEntities.contains(medicationEntity)) {
-            ++medicamentSequence;
-            medicationEntity.setId(medicamentSequence);
-            medicationEntities.add(medicationEntity);
-          }
+          medicationDao.save(medicationEntity);
         }
       }
     }
@@ -143,12 +110,11 @@ public class SafetyNetDataBase {
   // -----------------------------------------------------------------------------------------------
   private void setListMedicalRecordEntity(SafetyNetJson safetyNetJson) {
     for (MedicalRecordJson medicalRecordJson : safetyNetJson.getMedicalrecords()) {
-      PersonEntity personEntity = findPersonByName(medicalRecordJson.getFirstName(), medicalRecordJson.getLastName());
+      PersonEntity personEntity = personDao.findPersonByName(medicalRecordJson.getFirstName(), medicalRecordJson.getLastName());
 
       // -----------------------------------------------------------------------------------------------
-      personEntities.remove(personEntity);
       personEntity.setBirthdate(dateUtils.stringToDateConversion(medicalRecordJson.getBirthdate()));
-      personEntities.add(personEntity);
+      personDao.update(personEntity);
 
       // -----------------------------------------------------------------------------------------------
       MedicalRecordEntity medicalRecordEntity = new MedicalRecordEntity();
@@ -159,7 +125,7 @@ public class SafetyNetDataBase {
       List<MedicalRecordAllergyEntity> allergies = new ArrayList<>();
       for (String allergyJson : medicalRecordJson.getAllergies()) {
         MedicalRecordAllergyEntity medicalRecordAllergyEntity = new MedicalRecordAllergyEntity();
-        medicalRecordAllergyEntity.setIdAlergy(findIdAllergyByName(allergyJson));
+        medicalRecordAllergyEntity.setIdAlergy(allergyDao.findIdAllergyByName(allergyJson));
         allergies.add(medicalRecordAllergyEntity);
       }
       medicalRecordEntity.setAllergies(allergies);
@@ -168,37 +134,15 @@ public class SafetyNetDataBase {
       for (String medicationJson : medicalRecordJson.getMedications()) {
         if (medicationJson.split(":").length == 2) {
           MedicalRecordMedicationEntity medicalRecordMedicationEntity = new MedicalRecordMedicationEntity();
-          medicalRecordMedicationEntity.setIdMedication(findIdMedicationByName(medicationJson.split(":")[0]));
+          medicalRecordMedicationEntity.setIdMedication(medicationDao.findIdMedicationByName(medicationJson.split(":")[0]));
           medicalRecordMedicationEntity.setDosage(medicationJson.split(":")[1]);
           medications.add(medicalRecordMedicationEntity);
         }
       }
       medicalRecordEntity.setMedications(medications);
 
-      medicalRecordEntities.add(medicalRecordEntity);
+      // -----------------------------------------------------------------------------------------------
+      medicalRecordDao.save(medicalRecordEntity);
     }
   }
-
-  // -----------------------------------------------------------------------------------------------
-  private PersonEntity findPersonByName(String firstName, String lastName) {
-    Iterator<PersonEntity> iterator = personEntities.iterator();
-    while (iterator.hasNext()) {
-      PersonEntity personEntity = iterator.next();
-      if (personEntity.getFirstName().equalsIgnoreCase(firstName) && personEntity.getLastName().equalsIgnoreCase(lastName)) {
-        return personEntity;
-      }
-    }
-    return null;
-  }
-
-  // -----------------------------------------------------------------------------------------------
-  private Integer findIdAllergyByName(String allergy) {
-    return allergyEntities.stream().filter(element -> element.getAllergy().equalsIgnoreCase(allergy)).findAny().get().getId();
-  }
-
-  // -----------------------------------------------------------------------------------------------
-  private Integer findIdMedicationByName(String medication) {
-    return medicationEntities.stream().filter(element -> element.getMedication().equalsIgnoreCase(medication)).findAny().get().getId();
-  }
-
 }

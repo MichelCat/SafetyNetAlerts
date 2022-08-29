@@ -6,8 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import io.swagger.dao.db.AllergyDao;
 import io.swagger.dao.db.FireStationDao;
-import io.swagger.dao.db.MedicalRecordAllergyDao;
-import io.swagger.dao.db.MedicalRecordMedicationDao;
+import io.swagger.dao.db.MedicalRecordDao;
 import io.swagger.dao.db.MedicationDao;
 import io.swagger.dao.db.PersonDao;
 import io.swagger.dao.db.entities.FireStationEntity;
@@ -18,33 +17,26 @@ import io.swagger.model.Allergy;
 import io.swagger.model.FireStation;
 import io.swagger.model.Medication;
 import io.swagger.model.Person;
+import io.swagger.utils.FireStationUtils;
 import io.swagger.utils.PersonUtils;
 
 @Service
 public class FloodBusiness {
-  private final PersonDao personDao;
-  private final FireStationDao fireStationDao;
-  private final MedicalRecordMedicationDao medicalRecordMedicationDao;
-  private final MedicationDao medicationDao;
-  private final MedicalRecordAllergyDao medicalRecordAllergyDao;
-  private final AllergyDao allergyDao;
   
   @Autowired
   private PersonUtils personUtils;
-
-  public FloodBusiness(PersonDao personDao
-                  , FireStationDao fireStationDao
-                    , MedicalRecordMedicationDao medicalRecordMedicationDao
-                    , MedicationDao medicationDao
-                    , MedicalRecordAllergyDao medicalRecordAllergyDao
-                    , AllergyDao allergyDao) {
-    this.personDao = personDao;
-    this.fireStationDao = fireStationDao;
-    this.medicalRecordMedicationDao = medicalRecordMedicationDao;
-    this.medicationDao = medicationDao;
-    this.medicalRecordAllergyDao = medicalRecordAllergyDao;
-    this.allergyDao = allergyDao;
-  }
+  @Autowired
+  private FireStationUtils fireStationUtils;
+  @Autowired
+  private PersonDao personDao;
+  @Autowired
+  private FireStationDao fireStationDao;
+  @Autowired
+  private MedicalRecordDao medicalRecordDao;
+  @Autowired
+  private MedicationDao medicationDao;
+  @Autowired
+  private AllergyDao allergyDao;
 
   public List<Person> getPersonsLivingNearStation(final String stationNumber) {
     List<String> stationAddresses = fireStationDao.fireStationAddressByStationNumber(Integer.valueOf(stationNumber));
@@ -53,9 +45,9 @@ public class FloodBusiness {
   }
   
   public List<Medication> getMedicationByName(final String firstName, final String lastName) {
-    List<MedicalRecordMedicationEntity> medicalRecordMedicationEntities = medicalRecordMedicationDao.findMedicationEntityByName(firstName, lastName);
+    List<MedicalRecordMedicationEntity> medicalRecordMedicationEntities = medicalRecordDao.findMedicationEntityByName(firstName, lastName);
     
-    List<Medication> medications = new ArrayList<Medication>(); 
+    List<Medication> medications = new ArrayList<>(); 
     for (MedicalRecordMedicationEntity medicalRecordMedicationEntity : medicalRecordMedicationEntities) {
       Medication medication = new Medication();
       medication.setMedication(medicationDao.medicationById(medicalRecordMedicationEntity.getIdMedication())
@@ -67,9 +59,9 @@ public class FloodBusiness {
   }
   
   public List<Allergy> getAllergyByName(final String firstName, final String lastName) {
-    List<MedicalRecordAllergyEntity> medicalRecordAllergyEntities = medicalRecordAllergyDao.findAllergyEntityByName(firstName, lastName);
+    List<MedicalRecordAllergyEntity> medicalRecordAllergyEntities = medicalRecordDao.findAllergyEntityByName(firstName, lastName);
     
-    List<Allergy> allergies = new ArrayList<Allergy>(); 
+    List<Allergy> allergies = new ArrayList<>(); 
     for (MedicalRecordAllergyEntity medicalRecordAllergyEntity : medicalRecordAllergyEntities) {
       Allergy allergy = new Allergy();
       allergy.setAllergy(allergyDao.allergyById(medicalRecordAllergyEntity.getIdAlergy()));
@@ -80,10 +72,6 @@ public class FloodBusiness {
   
   public FireStation getFireStationByStationAddress(final String stationAddress) {
     FireStationEntity fireStationEntity = fireStationDao.fireStationByStationAddress(stationAddress);
-    
-    FireStation fireStation = new FireStation();
-    fireStation.setId(fireStationEntity.getStation());
-    fireStation.setAddress(fireStationEntity.getAddress());
-    return fireStation;
+    return fireStationUtils.conversionFireStationEntityToFireStation(fireStationEntity);
   }
 }

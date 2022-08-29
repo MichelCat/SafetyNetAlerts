@@ -61,7 +61,7 @@ public class FireApiController implements FireApi {
     public ResponseEntity<List<PersonAndMedicalRecordInAddress>> getFire(@Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "address", required = false) String address) {
       List<Person> persons = fireBusiness.getPersonsLivingInAddress(address);
       
-      List<PersonAndMedicalRecordInAddress> personsAndMedicalRecordInAddress = new ArrayList<PersonAndMedicalRecordInAddress>();
+      List<PersonAndMedicalRecordInAddress> personsAndMedicalRecordInAddress = new ArrayList<>();
       for (Person person : persons) {
         PersonAndMedicalRecordInAddress personAndMedicalRecordInAddress = new PersonAndMedicalRecordInAddress();
         personAndMedicalRecordInAddress.setPerson(person);

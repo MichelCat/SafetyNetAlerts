@@ -11,16 +11,13 @@ import io.swagger.utils.PersonUtils;
 
 @Service
 public class FirestationBusiness {
-  private final PersonDao personDao;
-  private final FireStationDao fireStationDao;
   
   @Autowired
   private PersonUtils personUtils;
-
-  public FirestationBusiness(PersonDao personDao, FireStationDao fireStationDao) {
-    this.personDao = personDao;
-    this.fireStationDao = fireStationDao;
-  }
+  @Autowired
+  private PersonDao personDao;
+  @Autowired
+  private FireStationDao fireStationDao;
 
   public List<Person> getPersonsLivingNearStation(final String stationNumber) {
     List<String> stationAddresses = fireStationDao.fireStationAddressByStationNumber(Integer.valueOf(stationNumber));
@@ -29,10 +26,22 @@ public class FirestationBusiness {
   }
 
   public int getAdultsLivingIn(List<Person> persons, String stationNumber) {
-    return (int) persons.stream().filter(person -> person.getAge() > 18).count();
+    int numberAdults = 0;
+    for (Person person : persons) {
+      if (person.getAge() > 18) {
+        ++numberAdults;
+      }
+    }
+    return numberAdults;
   }
 
   public int getChildrenLivingIn(List<Person> persons, String stationNumber) {
-    return (int) persons.stream().filter(person -> person.getAge() <= 18).count();
+    int numberChildreen = 0;
+    for (Person person : persons) {
+      if (person.getAge() <= 18) {
+        ++numberChildreen;
+      }
+    }
+    return numberChildreen;
   }
 }

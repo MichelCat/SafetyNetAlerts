@@ -58,7 +58,7 @@ public class ChildAlertApiController implements ChildAlertApi {
     public ResponseEntity<List<ChildLivingInArea>> getChildAlert(@Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "address", required = false) String address) {
     List<Person> children = childAlertBusiness.getChildLivingInArea(address);
 
-    List<ChildLivingInArea> childrenLivingInArea = new ArrayList<ChildLivingInArea>();
+    List<ChildLivingInArea> childrenLivingInArea = new ArrayList<>();
     for (Person child : children) {
       ChildLivingInArea childLivingInArea = new ChildLivingInArea();
       childLivingInArea.setChild(child);

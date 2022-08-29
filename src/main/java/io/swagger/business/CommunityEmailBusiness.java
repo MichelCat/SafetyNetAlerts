@@ -10,14 +10,11 @@ import io.swagger.utils.PersonUtils;
 
 @Service
 public class CommunityEmailBusiness {
-  private final PersonDao personDao;
   
   @Autowired
   private PersonUtils personUtils;
-
-  public CommunityEmailBusiness(PersonDao personDao) {
-    this.personDao = personDao;
-  }
+  @Autowired
+  private PersonDao personDao;
   
   public List<Person> getPersonByCity(final String city) {
     List<PersonEntity> personEntities = personDao.findPersonByCity(city);

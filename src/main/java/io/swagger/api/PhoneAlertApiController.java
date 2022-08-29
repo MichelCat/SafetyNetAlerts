@@ -58,7 +58,7 @@ public class PhoneAlertApiController implements PhoneAlertApi {
     public ResponseEntity<List<PhoneInFireStation>> getPhoneAlert(@Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "firestation", required = false) String firestation) {
       List<Person> persons = phoneAlertBusiness.getPersonsLivingNearStation(firestation);
       
-      List<PhoneInFireStation> phonesInFireStation = new ArrayList<PhoneInFireStation>();
+      List<PhoneInFireStation> phonesInFireStation = new ArrayList<>();
       for (Person person : persons) {
         PhoneInFireStation phoneInFireStation = new PhoneInFireStation();
         phoneInFireStation.setPerson(person);

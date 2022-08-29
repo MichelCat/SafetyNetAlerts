@@ -11,16 +11,13 @@ import io.swagger.utils.PersonUtils;
 
 @Service
 public class PhoneAlertBusiness {
-  private final PersonDao personDao;
-  private final FireStationDao fireStationDao;
   
   @Autowired
   private PersonUtils personUtils;
-
-  public PhoneAlertBusiness(PersonDao personDao, FireStationDao fireStationDao) {
-    this.personDao = personDao;
-    this.fireStationDao = fireStationDao;
-  }
+  @Autowired
+  private PersonDao personDao;
+  @Autowired
+  private FireStationDao fireStationDao;
 
   public List<Person> getPersonsLivingNearStation(final String stationNumber) {
     List<String> stationAddresses = fireStationDao.fireStationAddressByStationNumber(Integer.valueOf(stationNumber));

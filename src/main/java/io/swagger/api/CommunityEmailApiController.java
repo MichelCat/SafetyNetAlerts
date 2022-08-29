@@ -58,7 +58,7 @@ public class CommunityEmailApiController implements CommunityEmailApi {
     public ResponseEntity<List<EmailInCity>> getCommunityEmail(@Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "city", required = false) String city) {
       List<Person> persons = communityEmailBusiness.getPersonByCity(city);
       
-      List<EmailInCity> emailsInCity = new ArrayList<EmailInCity>();
+      List<EmailInCity> emailsInCity = new ArrayList<>();
       for (Person person : persons) {
         EmailInCity emailInCity = new EmailInCity();
         emailInCity.setEmail(person.getEmail());
