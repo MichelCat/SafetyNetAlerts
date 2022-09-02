@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class FireStationEntityTest {
+class FireStationEntityTest {
 
   private static FireStationEntity fireStationEntity;
 
@@ -21,7 +21,7 @@ public class FireStationEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Read null station")
-  public void getStation_nullStation_returnNull() {
+  void getStation_nullStation_returnNull() {
     // GIVEN
     // WHEN
     // THEN
@@ -33,7 +33,7 @@ public class FireStationEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Write station")
-  public void setStation_writetation() {
+  void setStation_writetation() {
     // GIVEN
     // WHEN
     fireStationEntity.setStation(1);
@@ -46,7 +46,7 @@ public class FireStationEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Read null address")
-  public void getAddress_nullAddress_returnNull() {
+  void getAddress_nullAddress_returnNull() {
     // GIVEN
     // WHEN
     // THEN
@@ -58,7 +58,7 @@ public class FireStationEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Write address")
-  public void setAddress_writeAddress() {
+  void setAddress_writeAddress() {
     // GIVEN
     // WHEN
     fireStationEntity.setAddress("1509 Culver St");

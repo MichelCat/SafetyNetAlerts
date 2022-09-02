@@ -11,7 +11,7 @@ import io.swagger.business.CommunityEmailBusiness;
 import io.swagger.business.FireBusiness;
 
 @WebMvcTest(controllers = CommunityEmailApiController.class)
-public class CommunityEmailApiControllerTest {
+class CommunityEmailApiControllerTest {
 
   @Autowired
   private MockMvc mockMvc;
@@ -20,7 +20,7 @@ public class CommunityEmailApiControllerTest {
   private CommunityEmailBusiness communityEmailBusiness;
 
   @Test
-  public void getCommunityEmail_returnEmailFromCity() throws Exception {
+  void getCommunityEmail_returnEmailFromCity() throws Exception {
     mockMvc.perform(get("/communityEmail?city=Culver"))
     .andExpect(status().isOk());
   }

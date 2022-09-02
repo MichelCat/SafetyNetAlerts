@@ -13,12 +13,6 @@ public class AllergyDaoImpl implements AllergyDao {
 
   // -----------------------------------------------------------------------------------------------
   @Override
-  public SortedSet<AllergyEntity> getAllergyEntities() {
-    return allergyEntities;
-  }
-
-  // -----------------------------------------------------------------------------------------------
-  @Override
   public String allergyById(Integer idAllergy) {
     for (AllergyEntity allergyEntity : allergyEntities) {
       if (allergyEntity.getId().equals(idAllergy)) {

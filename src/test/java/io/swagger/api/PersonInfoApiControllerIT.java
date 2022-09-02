@@ -12,13 +12,13 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class PersonInfoApiControllerIT {
+class PersonInfoApiControllerIT {
 
   @Autowired
   private MockMvc mockMvc;
 
   @Test
-  public void getPersonInfo_returnPersonAndMedicalRecordInFirstNameLastName() throws Exception {
+  void getPersonInfo_returnPersonAndMedicalRecordInFirstNameLastName() throws Exception {
       mockMvc.perform(get("/personInfo?firstName=John&lastName=Boyd"))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$[0].firstName", is("Allison")));

@@ -12,13 +12,13 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class FloodApiControllerIT {
+class FloodApiControllerIT {
 
   @Autowired
   private MockMvc mockMvc;
   
   @Test
-  public void getFirestation_returnPersonsFromStationThree() throws Exception {
+  void getFirestation_returnPersonsFromStationThree() throws Exception {
       mockMvc.perform(get("/flood/stations?stations=3"))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$[0].lastName", is("Boyd")));

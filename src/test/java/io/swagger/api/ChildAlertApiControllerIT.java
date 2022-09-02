@@ -13,13 +13,13 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class ChildAlertApiControllerIT {
+class ChildAlertApiControllerIT {
 
   @Autowired
   private MockMvc mockMvc;
 
   @Test
-  public void getChildAlert_returnPersonsFromAddress() throws Exception {
+  void getChildAlert_returnPersonsFromAddress() throws Exception {
       mockMvc.perform(get("/childAlert?address=1509 Culver St"))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$[0].child.firstName", is("Roger")));

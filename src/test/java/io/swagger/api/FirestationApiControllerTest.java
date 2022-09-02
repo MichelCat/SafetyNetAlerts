@@ -12,7 +12,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import io.swagger.business.FirestationBusiness;
 
 @WebMvcTest(controllers = FirestationApiController.class)
-public class FirestationApiControllerTest {
+class FirestationApiControllerTest {
 
   @Autowired
   private MockMvc mockMvc;
@@ -21,7 +21,7 @@ public class FirestationApiControllerTest {
   private FirestationBusiness firestationBusiness;
 
   @Test
-  public void getFirestation_returnPersonsFromStationThree() throws Exception {
+  void getFirestation_returnPersonsFromStationThree() throws Exception {
     mockMvc.perform(get("/firestation?stationNumber=3"))
     .andExpect(status().isOk());
   }

@@ -5,7 +5,6 @@ import java.util.SortedSet;
 import io.swagger.dao.db.entities.PersonEntity;
 
 public interface PersonDao {
-  SortedSet<PersonEntity> getPersonEntities();
   PersonEntity findPersonByName(String firstName, String lastName);
   List<PersonEntity> findPersonByAddresses(List<String> addresses);
   List<PersonEntity> findChildByAddress(String address);

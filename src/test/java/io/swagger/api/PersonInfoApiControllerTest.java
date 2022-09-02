@@ -10,7 +10,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import io.swagger.business.FireBusiness;
 
 @WebMvcTest(controllers = PersonInfoApiController.class)
-public class PersonInfoApiControllerTest {
+class PersonInfoApiControllerTest {
 
   @Autowired
   private MockMvc mockMvc;
@@ -19,7 +19,7 @@ public class PersonInfoApiControllerTest {
   private FireBusiness fireBusiness;
 
   @Test
-  public void getPersonInfo_returnPersonAndMedicalRecordInFirstNameLastName() throws Exception {
+  void getPersonInfo_returnPersonAndMedicalRecordInFirstNameLastName() throws Exception {
     mockMvc.perform(get("/personInfo?firstName=John&lastName=Boyd"))
     .andExpect(status().isOk());
   }

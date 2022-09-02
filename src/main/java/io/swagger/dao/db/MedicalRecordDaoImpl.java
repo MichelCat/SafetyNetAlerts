@@ -16,12 +16,6 @@ public class MedicalRecordDaoImpl implements MedicalRecordDao {
 
   // -----------------------------------------------------------------------------------------------
   @Override
-  public SortedSet<MedicalRecordEntity> getMedicalRecordEntities() {
-    return medicalRecordEntities;
-  }
-
-  // -----------------------------------------------------------------------------------------------
-  @Override
   public List<MedicalRecordAllergyEntity> findAllergyEntityByName(String firstName, String lastName) {
     for (MedicalRecordEntity medicalRecordEntity : medicalRecordEntities) {
       if (medicalRecordEntity.getLastName().equals(lastName)

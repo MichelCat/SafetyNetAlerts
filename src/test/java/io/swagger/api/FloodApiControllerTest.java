@@ -10,7 +10,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import io.swagger.business.FloodBusiness;
 
 @WebMvcTest(controllers = FloodApiController.class)
-public class FloodApiControllerTest {
+class FloodApiControllerTest {
 
   @Autowired
   private MockMvc mockMvc;
@@ -19,7 +19,7 @@ public class FloodApiControllerTest {
   private FloodBusiness floodBusiness;
 
   @Test
-  public void getFloodStations_returnPersonsFromStationThree() throws Exception {
+  void getFloodStations_returnPersonsFromStationThree() throws Exception {
     mockMvc.perform(get("/flood/stations?stations=3"))
     .andExpect(status().isOk());
   }

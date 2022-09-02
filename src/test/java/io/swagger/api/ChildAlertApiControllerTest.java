@@ -12,7 +12,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import io.swagger.business.ChildAlertBusiness;
 
 @WebMvcTest(controllers = ChildAlertApiController.class)
-public class ChildAlertApiControllerTest {
+class ChildAlertApiControllerTest {
 
   @Autowired
   private MockMvc mockMvc;
@@ -21,7 +21,7 @@ public class ChildAlertApiControllerTest {
   private ChildAlertBusiness childAlertBusiness;
 
   @Test
-  public void getChildAlert_returnPersonsFromAddress() throws Exception {
+  void getChildAlert_returnPersonsFromAddress() throws Exception {
     mockMvc.perform(get("/childAlert?address=1509 Culver St"))
     .andExpect(status().isOk());
   }

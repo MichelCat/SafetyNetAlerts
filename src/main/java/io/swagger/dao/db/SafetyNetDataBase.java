@@ -57,11 +57,8 @@ public class SafetyNetDataBase {
 
   // -----------------------------------------------------------------------------------------------
   private void setListPersonEntity(SafetyNetJson safetyNetJson) {
-    Integer personSequence = 0;
     for (PersonJson personJson : safetyNetJson.getPersons()) {
-      ++ personSequence;
       PersonEntity personEntity = new PersonEntity();
-      personEntity.setId(personSequence);
       personEntity.setFirstName(personJson.getFirstName());
       personEntity.setLastName(personJson.getLastName());
       personEntity.setAddress(personJson.getAddress());
@@ -69,7 +66,7 @@ public class SafetyNetDataBase {
       personEntity.setZip(personJson.getZip());
       personEntity.setCity(personJson.getCity());
       personEntity.setEmail(personJson.getEmail());
-      personDao.save(personEntity);
+      personEntity = personDao.save(personEntity);
     }
   }
 
@@ -79,7 +76,7 @@ public class SafetyNetDataBase {
       FireStationEntity fireStationEntity = new FireStationEntity();
       fireStationEntity.setStation(Integer.valueOf(fireStationJson.getStation()));
       fireStationEntity.setAddress(fireStationJson.getAddress());
-      fireStationDao.save(fireStationEntity);
+      fireStationEntity = fireStationDao.save(fireStationEntity);
     }
   }
 
@@ -89,7 +86,7 @@ public class SafetyNetDataBase {
       for (String allergyJson : medicalRecordJson.getAllergies()) {
         AllergyEntity allergyEntity = new AllergyEntity();
         allergyEntity.setAllergy(allergyJson);
-        allergyDao.save(allergyEntity);
+        allergyEntity = allergyDao.save(allergyEntity);
       }
     }
   }
@@ -101,7 +98,7 @@ public class SafetyNetDataBase {
         if (medicationJson.split(":").length == 2) {
           MedicationEntity medicationEntity = new MedicationEntity();
           medicationEntity.setMedication(medicationJson.split(":")[0]);
-          medicationDao.save(medicationEntity);
+          medicationEntity = medicationDao.save(medicationEntity);
         }
       }
     }
@@ -113,7 +110,7 @@ public class SafetyNetDataBase {
       PersonEntity personEntity = personDao.findPersonByName(medicalRecordJson.getFirstName(), medicalRecordJson.getLastName());
 
       // -----------------------------------------------------------------------------------------------
-      personEntity.setBirthdate(dateUtils.stringToDateConversion(medicalRecordJson.getBirthdate()));
+      personEntity.setBirthdate(dateUtils.stringDDMMYYYYToDateConversion(medicalRecordJson.getBirthdate()));
       personDao.update(personEntity);
 
       // -----------------------------------------------------------------------------------------------
@@ -142,7 +139,7 @@ public class SafetyNetDataBase {
       medicalRecordEntity.setMedications(medications);
 
       // -----------------------------------------------------------------------------------------------
-      medicalRecordDao.save(medicalRecordEntity);
+      medicalRecordEntity = medicalRecordDao.save(medicalRecordEntity);
     }
   }
 }

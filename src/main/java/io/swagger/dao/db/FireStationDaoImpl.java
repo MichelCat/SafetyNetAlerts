@@ -14,12 +14,6 @@ public class FireStationDaoImpl implements FireStationDao {
 
   // -----------------------------------------------------------------------------------------------
   @Override
-  public SortedSet<FireStationEntity> getFireStationEntities() {
-    return fireStationEntities;
-  }
-
-  // -----------------------------------------------------------------------------------------------
-  @Override
   public List<String> fireStationAddressByStationNumber(Integer stationNumber) {
     List<String> stationAddresses = new ArrayList<>();
     for (FireStationEntity fireStationEntity : fireStationEntities) {

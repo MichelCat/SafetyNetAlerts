@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class MedicalRecordAllergyEntityTest {
+class MedicalRecordAllergyEntityTest {
 
   private static MedicalRecordAllergyEntity medicalRecordAllergyEntity;
 
@@ -21,7 +21,7 @@ public class MedicalRecordAllergyEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Read null ID Alergy")
-  public void getIdAlergy_nullIdAlergy_returnNull() {
+  void getIdAlergy_nullIdAlergy_returnNull() {
     // GIVEN
     // WHEN
     // THEN
@@ -33,7 +33,7 @@ public class MedicalRecordAllergyEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Write ID Alergy")
-  public void setIdAlergy_writeIdAlergy() {
+  void setIdAlergy_writeIdAlergy() {
     // GIVEN
     // WHEN
     medicalRecordAllergyEntity.setIdAlergy(1);

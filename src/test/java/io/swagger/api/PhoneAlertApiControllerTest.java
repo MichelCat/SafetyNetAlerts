@@ -10,7 +10,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import io.swagger.business.PhoneAlertBusiness;
 
 @WebMvcTest(controllers = PhoneAlertApiController.class)
-public class PhoneAlertApiControllerTest {
+class PhoneAlertApiControllerTest {
 
   @Autowired
   private MockMvc mockMvc;
@@ -19,7 +19,7 @@ public class PhoneAlertApiControllerTest {
   private PhoneAlertBusiness phoneAlertBusiness;
 
   @Test
-  public void getPhoneAlert_returnPersonsFromStationThree() throws Exception {
+  void getPhoneAlert_returnPersonsFromStationThree() throws Exception {
     mockMvc.perform(get("/phoneAlert?firestation=3")).andExpect(status().isOk());
   }
 

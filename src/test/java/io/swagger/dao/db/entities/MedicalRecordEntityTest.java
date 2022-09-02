@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class MedicalRecordEntityTest {
+class MedicalRecordEntityTest {
 
   private static MedicalRecordEntity medicalRecordEntity;
   private static List<MedicalRecordAllergyEntity> allergyList;
@@ -32,7 +32,7 @@ public class MedicalRecordEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Read null ID person")
-  public void getIdPerson_nullIdPerson_returnNull() {
+  void getIdPerson_nullIdPerson_returnNull() {
     // GIVEN
     // WHEN
     // THEN
@@ -44,7 +44,7 @@ public class MedicalRecordEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Write ID person")
-  public void setIdPerson_writeIdPerson() {
+  void setIdPerson_writeIdPerson() {
     // GIVEN
     // WHEN
     medicalRecordEntity.setIdPerson(1);
@@ -57,7 +57,7 @@ public class MedicalRecordEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Read null firstName")
-  public void getFirstName_nullFirstName_returnNull() {
+  void getFirstName_nullFirstName_returnNull() {
     // GIVEN
     // WHEN
     // THEN
@@ -69,7 +69,7 @@ public class MedicalRecordEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Write firstName")
-  public void setFirstName_writeFirstName() {
+  void setFirstName_writeFirstName() {
     // GIVEN
     // WHEN
     medicalRecordEntity.setFirstName("John");
@@ -82,7 +82,7 @@ public class MedicalRecordEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Read null lastName")
-  public void getLastName_nullLastName_returnNull() {
+  void getLastName_nullLastName_returnNull() {
     // GIVEN
     // WHEN
     // THEN
@@ -94,7 +94,7 @@ public class MedicalRecordEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Write lastName")
-  public void setLastName_writeLastName() {
+  void setLastName_writeLastName() {
     // GIVEN
     // WHEN
     medicalRecordEntity.setLastName("Boyd");
@@ -107,7 +107,7 @@ public class MedicalRecordEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Read null Allergy list")
-  public void getAllergies_nullAllergies_returnNull() {
+  void getAllergies_nullAllergies_returnNull() {
     // GIVEN
     // WHEN
     // THEN
@@ -119,7 +119,7 @@ public class MedicalRecordEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Write Allergy list")
-  public void setAllergies_writeAllergies() {
+  void setAllergies_writeAllergies() {
     // GIVEN
     // WHEN
     medicalRecordEntity.setAllergies(allergyList);
@@ -132,7 +132,7 @@ public class MedicalRecordEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Read null Medication list")
-  public void getMedications_nullMedications_returnNull() {
+  void getMedications_nullMedications_returnNull() {
     // GIVEN
     // WHEN
     // THEN
@@ -144,7 +144,7 @@ public class MedicalRecordEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Write Medication list")
-  public void setMedications_writeMedications() {
+  void setMedications_writeMedications() {
     // GIVEN
     // WHEN
     medicalRecordEntity.setMedications(medicationList);

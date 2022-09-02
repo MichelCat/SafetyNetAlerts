@@ -1,18 +1,27 @@
 package io.swagger.utils;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import org.springframework.stereotype.Service;
 
 @Service
 public class DateUtils {
 
-  public Date stringToDateConversion(String stringDate) {
+  public Date stringDDMMYYYYToDateConversion(String stringDate) {
     try {
       return (new SimpleDateFormat("dd/MM/yyyy").parse(stringDate));
     } catch (Exception e) {
     }
     return null;
   }
+  
+//  public Date stringCetToDateConversion(String stringDate) {
+//    try {
+//      return (new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH).parse(stringDate));
+//    } catch (Exception e) {
+//    }
+//    return null;
+//  }
+  
 }

@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class PersonEntityTest {
+class PersonEntityTest {
 
   private static PersonEntity personEntity;
   private static Date todayDate;
@@ -25,7 +25,7 @@ public class PersonEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Read null ID person")
-  public void getId_nullId_returnNull() {
+  void getId_nullId_returnNull() {
     // GIVEN
     // WHEN
     // THEN
@@ -37,7 +37,7 @@ public class PersonEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Write ID person")
-  public void setId_writeId() {
+  void setId_writeId() {
     // GIVEN
     // WHEN
     personEntity.setId(1);
@@ -50,7 +50,7 @@ public class PersonEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Read null first name")
-  public void getFirstName_nullFirstName_returnNull() {
+  void getFirstName_nullFirstName_returnNull() {
     // GIVEN
     // WHEN
     // THEN
@@ -62,7 +62,7 @@ public class PersonEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Write first name")
-  public void setFirstName_writeFirstName() {
+  void setFirstName_writeFirstName() {
     // GIVEN
     // WHEN
     personEntity.setFirstName("John");
@@ -75,7 +75,7 @@ public class PersonEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Read null last name")
-  public void getLastName_nullLastName_returnNull() {
+  void getLastName_nullLastName_returnNull() {
     // GIVEN
     // WHEN
     // THEN
@@ -87,7 +87,7 @@ public class PersonEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Write last name")
-  public void setLastName_writeLastName() {
+  void setLastName_writeLastName() {
     // GIVEN
     // WHEN
     personEntity.setLastName("Boyd");
@@ -100,7 +100,7 @@ public class PersonEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Read null address")
-  public void getAddress_nullAddress_returnNull() {
+  void getAddress_nullAddress_returnNull() {
     // GIVEN
     // WHEN
     // THEN
@@ -112,7 +112,7 @@ public class PersonEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Write address")
-  public void setAddress_writeAddress() {
+  void setAddress_writeAddress() {
     // GIVEN
     // WHEN
     personEntity.setAddress("1509 Culver St");
@@ -125,7 +125,7 @@ public class PersonEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Read null city")
-  public void getCity_nullCity_returnNull() {
+  void getCity_nullCity_returnNull() {
     // GIVEN
     // WHEN
     // THEN
@@ -137,7 +137,7 @@ public class PersonEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Write city")
-  public void setCity_writeCity() {
+  void setCity_writeCity() {
     // GIVEN
     // WHEN
     personEntity.setCity("Culver");
@@ -150,7 +150,7 @@ public class PersonEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Read null zip")
-  public void getZip_nullZip_returnNull() {
+  void getZip_nullZip_returnNull() {
     // GIVEN
     // WHEN
     // THEN
@@ -162,7 +162,7 @@ public class PersonEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Write zip")
-  public void setZip_writeZip() {
+   void setZip_writeZip() {
     // GIVEN
     // WHEN
     personEntity.setZip("97451");
@@ -175,7 +175,7 @@ public class PersonEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Read null phone number")
-  public void getPhoneNumber_nullPhoneNumber_returnNull() {
+  void getPhoneNumber_nullPhoneNumber_returnNull() {
     // GIVEN
     // WHEN
     // THEN
@@ -187,7 +187,7 @@ public class PersonEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Write phone number")
-  public void setPhoneNumber_writePhoneNumber() {
+  void setPhoneNumber_writePhoneNumber() {
     // GIVEN
     // WHEN
     personEntity.setPhoneNumber("841-874-6512");
@@ -200,7 +200,7 @@ public class PersonEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Read null email")
-  public void getEmail_nullEmail_returnNull() {
+  void getEmail_nullEmail_returnNull() {
     // GIVEN
     // WHEN
     // THEN
@@ -212,7 +212,7 @@ public class PersonEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Write email")
-  public void setEmail_writeEmail() {
+  void setEmail_writeEmail() {
     // GIVEN
     // WHEN
     personEntity.setEmail("jaboyd@email.com");
@@ -225,7 +225,7 @@ public class PersonEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Read null birthdate")
-  public void getBirthdate_nullBirthdate_returnNull() {
+  void getBirthdate_nullBirthdate_returnNull() {
     // GIVEN
     // WHEN
     // THEN
@@ -237,7 +237,7 @@ public class PersonEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Write birthdate")
-  public void setBirthdate_writeBirthdate() {
+  void setBirthdate_writeBirthdate() {
     // GIVEN
     // WHEN
     personEntity.setBirthdate(todayDate);
@@ -250,7 +250,7 @@ public class PersonEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Null birthdate, age zero")
-  public void getAge_nullDate_returnZero() {
+  void getAge_nullDate_returnZero() {
     // GIVEN
     // WHEN
     personEntity.setBirthdate(null);
@@ -260,7 +260,7 @@ public class PersonEntityTest {
 
   @Test
   @DisplayName("20 years, return 20")
-  public void getAge_20Years_return20() {
+  void getAge_20Years_return20() {
     // GIVEN
     Calendar c = Calendar.getInstance();
     c.setTime(todayDate);

@@ -10,10 +10,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import io.swagger.dao.db.entities.PersonEntity;
+import io.swagger.data.PersonData;
 import io.swagger.model.Person;
 
 @SpringBootTest
-public class PersonUtilsTest {
+class PersonUtilsTest {
   
   private static PersonUtils personUtils;
   private static List<PersonEntity> PersonEntities;
@@ -31,7 +32,7 @@ public class PersonUtilsTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("")
-  public void conversionListPersonEntityToPerson_nullPersonEntities_returnNull() {
+  void conversionListPersonEntityToPerson_nullPersonEntities_returnNull() {
     // GIVEN
     // WHEN
     List<Person> result = personUtils.conversionListPersonEntityToPerson(PersonEntities);
@@ -41,20 +42,12 @@ public class PersonUtilsTest {
   
   @Test
   @DisplayName("")
-  public void conversionListPersonEntityToPerson_PersonEntity_returnPersons() {
+  void conversionListPersonEntityToPerson_PersonEntity_returnPersons() {
     // GIVEN
-    PersonEntity personEntity = new PersonEntity();
-    personEntity.setId(1);
-    personEntity.setFirstName("John");
-    personEntity.setLastName("lastName");
-    personEntity.setBirthdate(new Date("2002/06/05"));
+    PersonEntity personEntity = PersonData.getPersonEntityJohnBoyd();
     PersonEntities.add(personEntity);
     
-    Person person = new Person();
-    person.setId(personEntity.getId());
-    person.setFirstName(personEntity.getFirstName());
-    person.setLastName(personEntity.getLastName());
-    person.setAge(personEntity.getAge());
+    Person person = PersonData.getPersonJohnBoyd();
     persons.add(person);
     // WHEN
     List<Person> result = personUtils.conversionListPersonEntityToPerson(PersonEntities);
@@ -67,19 +60,13 @@ public class PersonUtilsTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("")
-  public void conversionPersonEntityToPerson_personEntity_returnPerson() {
+  void conversionPersonEntityToPerson_personEntity_returnPerson() {
     // GIVEN
-    PersonEntity personEntity = new PersonEntity();
-    personEntity.setId(1);
-    personEntity.setFirstName("John");
-    personEntity.setLastName("lastName");
-    personEntity.setBirthdate(new Date("2002/06/05"));
+    PersonEntity personEntity = PersonData.getPersonEntityJohnBoyd();
+    PersonEntities.add(personEntity);
     
-    Person person = new Person();
-    person.setId(personEntity.getId());
-    person.setFirstName(personEntity.getFirstName());
-    person.setLastName(personEntity.getLastName());
-    person.setAge(personEntity.getAge());
+    Person person = PersonData.getPersonJohnBoyd();
+    persons.add(person);
     // WHEN
     Person result = personUtils.conversionPersonEntityToPerson(personEntity);
     // THEN

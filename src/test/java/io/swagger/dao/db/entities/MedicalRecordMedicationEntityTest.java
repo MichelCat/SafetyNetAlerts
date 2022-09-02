@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class MedicalRecordMedicationEntityTest {
+class MedicalRecordMedicationEntityTest {
 
   private static MedicalRecordMedicationEntity medicalRecordMedicationEntity;
 
@@ -21,7 +21,7 @@ public class MedicalRecordMedicationEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Read null ID medication")
-  public void getIdMedication_nullIdMedication_returnNull() {
+  void getIdMedication_nullIdMedication_returnNull() {
     // GIVEN
     // WHEN
     // THEN
@@ -33,7 +33,7 @@ public class MedicalRecordMedicationEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Write ID medication")
-  public void setIdMedication_writeIdMedication() {
+  void setIdMedication_writeIdMedication() {
     // GIVEN
     // WHEN
     medicalRecordMedicationEntity.setIdMedication(1);
@@ -46,7 +46,7 @@ public class MedicalRecordMedicationEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Read null dosage")
-  public void getDosage_nullDosage_returnNull() {
+  void getDosage_nullDosage_returnNull() {
     // GIVEN
     // WHEN
     // THEN
@@ -58,7 +58,7 @@ public class MedicalRecordMedicationEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Write dosage")
-  public void setDosage_writeDosage() {
+  void setDosage_writeDosage() {
     // GIVEN
     // WHEN
     medicalRecordMedicationEntity.setDosage("350mg");

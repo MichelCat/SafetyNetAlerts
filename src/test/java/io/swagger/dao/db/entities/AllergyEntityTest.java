@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class AllergyEntityTest {
+class AllergyEntityTest {
 
   private static AllergyEntity allergyEntity;
 
@@ -21,7 +21,7 @@ public class AllergyEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Read null ID allergy")
-  public void getId_nullId_returnNull() {
+  void getId_nullId_returnNull() {
     // GIVEN
     // WHEN
     // THEN
@@ -33,7 +33,7 @@ public class AllergyEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Write ID allergy")
-  public void setId_writeId() {
+  void setId_writeId() {
     // GIVEN
     // WHEN
     allergyEntity.setId(1);
@@ -46,7 +46,7 @@ public class AllergyEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Read null allergy")
-  public void getAllergy_nullAllergy_returnNull() {
+  void getAllergy_nullAllergy_returnNull() {
     // GIVEN
     // WHEN
     // THEN
@@ -58,7 +58,7 @@ public class AllergyEntityTest {
   // -----------------------------------------------------------------------------------------------
   @Test
   @DisplayName("Write allergy")
-  public void setAllergy_writeAllergy() {
+  void setAllergy_writeAllergy() {
     // GIVEN
     // WHEN
     allergyEntity.setAllergy("nillacilan");

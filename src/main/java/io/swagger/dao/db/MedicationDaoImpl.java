@@ -13,12 +13,6 @@ public class MedicationDaoImpl implements MedicationDao {
 
   // -----------------------------------------------------------------------------------------------
   @Override
-  public SortedSet<MedicationEntity> getMedicationEntities() {
-    return medicationEntities;
-  }
-
-  // -----------------------------------------------------------------------------------------------
-  @Override
   public String medicationById(Integer idMedication) {
     for (MedicationEntity medicationEntity : medicationEntities) {
       if (medicationEntity.getId().equals(idMedication)) {

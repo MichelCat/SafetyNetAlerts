@@ -11,12 +11,7 @@ import io.swagger.dao.db.entities.PersonEntity;
 public class PersonDaoImpl implements PersonDao {
 
   private static SortedSet<PersonEntity> personEntities = new TreeSet<>();
-
-  // -----------------------------------------------------------------------------------------------
-  @Override
-  public SortedSet<PersonEntity> getPersonEntities() {
-    return personEntities;
-  }
+  private static Integer personSequence = 0;
 
   // -----------------------------------------------------------------------------------------------
   @Override
@@ -96,6 +91,8 @@ public class PersonDaoImpl implements PersonDao {
   // -----------------------------------------------------------------------------------------------
   @Override
   public PersonEntity save(PersonEntity personEntity) {
+    ++ personSequence;
+    personEntity.setId(personSequence);
     personEntities.add(personEntity);
     return personEntity;
   }

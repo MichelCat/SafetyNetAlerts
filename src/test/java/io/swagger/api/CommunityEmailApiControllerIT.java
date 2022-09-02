@@ -12,13 +12,13 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class CommunityEmailApiControllerIT {
+class CommunityEmailApiControllerIT {
 
   @Autowired
   private MockMvc mockMvc;
 
   @Test
-  public void getCommunityEmail_returnEmailFromCity() throws Exception {
+  void getCommunityEmail_returnEmailFromCity() throws Exception {
       mockMvc.perform(get("/communityEmail?city=Culver"))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$[0].email", is("aly@imail.com")));
