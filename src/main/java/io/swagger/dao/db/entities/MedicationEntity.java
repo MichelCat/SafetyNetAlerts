@@ -13,7 +13,7 @@ public class MedicationEntity implements Comparable<MedicationEntity> {
   // -----------------------------------------------------------------------------------------------
   @Override
   public int compareTo(MedicationEntity o) {
-    return this.medication.compareTo(o.medication);
+    return this.medication.compareToIgnoreCase(o.medication);
   }
 
   // -----------------------------------------------------------------------------------------------

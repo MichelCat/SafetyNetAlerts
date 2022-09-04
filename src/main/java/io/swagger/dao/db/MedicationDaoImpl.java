@@ -13,6 +13,12 @@ public class MedicationDaoImpl implements MedicationDao {
 
   // -----------------------------------------------------------------------------------------------
   @Override
+  public void clearTable() {
+    medicationEntities.clear();
+  }
+
+  // -----------------------------------------------------------------------------------------------
+  @Override
   public String medicationById(Integer idMedication) {
     for (MedicationEntity medicationEntity : medicationEntities) {
       if (medicationEntity.getId().equals(idMedication)) {

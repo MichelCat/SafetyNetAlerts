@@ -44,10 +44,10 @@ class PersonUtilsTest {
   @DisplayName("")
   void conversionListPersonEntityToPerson_PersonEntity_returnPersons() {
     // GIVEN
-    PersonEntity personEntity = PersonData.getPersonEntityJohnBoyd();
+    PersonEntity personEntity = PersonData.getPersonEntityMickBoyd();
     PersonEntities.add(personEntity);
     
-    Person person = PersonData.getPersonJohnBoyd();
+    Person person = PersonData.getPersonMickBoyd();
     persons.add(person);
     // WHEN
     List<Person> result = personUtils.conversionListPersonEntityToPerson(PersonEntities);
@@ -62,10 +62,10 @@ class PersonUtilsTest {
   @DisplayName("")
   void conversionPersonEntityToPerson_personEntity_returnPerson() {
     // GIVEN
-    PersonEntity personEntity = PersonData.getPersonEntityJohnBoyd();
+    PersonEntity personEntity = PersonData.getPersonEntityMickBoyd();
     PersonEntities.add(personEntity);
     
-    Person person = PersonData.getPersonJohnBoyd();
+    Person person = PersonData.getPersonMickBoyd();
     persons.add(person);
     // WHEN
     Person result = personUtils.conversionPersonEntityToPerson(personEntity);

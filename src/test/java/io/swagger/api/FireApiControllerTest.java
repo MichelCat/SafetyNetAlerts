@@ -20,8 +20,11 @@ class FireApiControllerTest {
 
   @Test
   void getFire_returnPersonsMedicalFireStationFromAddress() throws Exception {
+    // GIVEN
+    // WHEN
     mockMvc.perform(get("/fire?address=1509 Culver St"))
-    .andExpect(status().isOk());
+        .andExpect(status().isOk());
+    // THEN
   }
 
 }

@@ -71,10 +71,10 @@ public class FloodApiController implements FloodApi {
         personAndMedicalRecordInFireStation.setPhoneNumber(person.getPhoneNumber());
         personAndMedicalRecordInFireStation.setAge(person.getAge());
 
-        List<Medication> medications = floodBusiness.getMedicationByName(person.getFirstName(), person.getLastName());
+        List<Medication> medications = floodBusiness.getMedicationByName(person.getId());
         personAndMedicalRecordInFireStation.setMedications(medications);
         
-        List<Allergy> allergies = floodBusiness.getAllergyByName(person.getFirstName(), person.getLastName());
+        List<Allergy> allergies = floodBusiness.getAllergyByName(person.getId());
         personAndMedicalRecordInFireStation.setAllergies(allergies);
         
         FireStation fireStation = floodBusiness.getFireStationByStationAddress(person.getAddress());

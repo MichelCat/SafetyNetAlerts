@@ -66,10 +66,10 @@ public class FireApiController implements FireApi {
         PersonAndMedicalRecordInAddress personAndMedicalRecordInAddress = new PersonAndMedicalRecordInAddress();
         personAndMedicalRecordInAddress.setPerson(person);
 
-        List<Medication> medications = fireBusiness.getMedicationByName(person.getFirstName(), person.getLastName());
+        List<Medication> medications = fireBusiness.getMedicationByName(person.getId());
         personAndMedicalRecordInAddress.setMedications(medications);
         
-        List<Allergy> allergies = fireBusiness.getAllergyByName(person.getFirstName(), person.getLastName());
+        List<Allergy> allergies = fireBusiness.getAllergyByName(person.getId());
         personAndMedicalRecordInAddress.setAllergies(allergies);
         
         FireStation fireStation = fireBusiness.getFireStationByStationAddress(person.getAddress());

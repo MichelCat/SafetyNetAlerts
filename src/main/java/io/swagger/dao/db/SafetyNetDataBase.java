@@ -24,6 +24,7 @@ import io.swagger.dao.json.entities.MedicalRecordJson;
 import io.swagger.dao.json.entities.PersonJson;
 import io.swagger.dao.json.entities.SafetyNetJson;
 import io.swagger.utils.DateUtils;
+import io.swagger.integration.DataBasePrepareService;
 
 @Component
 public class SafetyNetDataBase {
@@ -40,6 +41,8 @@ public class SafetyNetDataBase {
   private MedicalRecordDao medicalRecordDao;
   @Autowired
   private PersonDao personDao;
+  @Autowired
+  private DataBasePrepareService dataBasePrepareService;
 
   // -----------------------------------------------------------------------------------------------
   @EventListener(ContextRefreshedEvent.class)
@@ -48,6 +51,7 @@ public class SafetyNetDataBase {
     File dataJson = ResourceUtils.getFile("classpath:data.json");
     SafetyNetJson safetyNetJson = objectMapper.readValue(dataJson, SafetyNetJson.class);
 
+    dataBasePrepareService.clearDataBase();
     this.setListPersonEntity(safetyNetJson);
     this.setListFireStationEntity(safetyNetJson);
     this.setListAllergyEntity(safetyNetJson);
@@ -116,8 +120,6 @@ public class SafetyNetDataBase {
       // -----------------------------------------------------------------------------------------------
       MedicalRecordEntity medicalRecordEntity = new MedicalRecordEntity();
       medicalRecordEntity.setIdPerson(personEntity.getId());
-      medicalRecordEntity.setFirstName(medicalRecordJson.getFirstName());
-      medicalRecordEntity.setLastName(medicalRecordJson.getLastName());
 
       List<MedicalRecordAllergyEntity> allergies = new ArrayList<>();
       for (String allergyJson : medicalRecordJson.getAllergies()) {

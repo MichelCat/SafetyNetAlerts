@@ -46,10 +46,10 @@ public class PersonEntity implements Comparable<PersonEntity> {
   // -----------------------------------------------------------------------------------------------
   @Override
   public int compareTo(PersonEntity o) {
-    if (getLastName().equals(o.getLastName())) {
-      return getFirstName().compareTo(o.getFirstName());
+    if (lastName.equalsIgnoreCase(o.lastName)) {
+      return firstName.compareToIgnoreCase(o.firstName);
     } else {
-      return getLastName().compareTo(o.getLastName());
+      return lastName.compareToIgnoreCase(o.lastName);
     }
   }
 

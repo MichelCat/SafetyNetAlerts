@@ -35,8 +35,8 @@ public class PersonInfoBusiness {
     return personUtils.conversionListPersonEntityToPerson(personEntities);
   }
   
-  public List<Medication> getMedicationByName(final String firstName, final String lastName) {
-    List<MedicalRecordMedicationEntity> medicalRecordMedicationEntities = medicalRecordDao.findMedicationEntityByName(firstName, lastName);
+  public List<Medication> getMedicationByName(final Integer idPerson) {
+    List<MedicalRecordMedicationEntity> medicalRecordMedicationEntities = medicalRecordDao.findMedicationEntityById(idPerson);
     
     List<Medication> medications = new ArrayList<>(); 
     for (MedicalRecordMedicationEntity medicalRecordMedicationEntity : medicalRecordMedicationEntities) {
@@ -49,8 +49,8 @@ public class PersonInfoBusiness {
     return medications;
   }
   
-  public List<Allergy> getAllergyByName(final String firstName, final String lastName) {
-    List<MedicalRecordAllergyEntity> medicalRecordAllergyEntities = medicalRecordDao.findAllergyEntityByName(firstName, lastName);
+  public List<Allergy> getAllergyByName(final Integer idPerson) {
+    List<MedicalRecordAllergyEntity> medicalRecordAllergyEntities = medicalRecordDao.findAllergyEntityById(idPerson);
     
     List<Allergy> allergies = new ArrayList<>(); 
     for (MedicalRecordAllergyEntity medicalRecordAllergyEntity : medicalRecordAllergyEntities) {

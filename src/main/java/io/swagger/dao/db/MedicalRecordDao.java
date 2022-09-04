@@ -1,13 +1,13 @@
 package io.swagger.dao.db;
 
 import java.util.List;
-import java.util.SortedSet;
 import io.swagger.dao.db.entities.MedicalRecordAllergyEntity;
 import io.swagger.dao.db.entities.MedicalRecordEntity;
 import io.swagger.dao.db.entities.MedicalRecordMedicationEntity;
 
 public interface MedicalRecordDao {
-  List<MedicalRecordAllergyEntity> findAllergyEntityByName(String firstName, String lastName);
-  List<MedicalRecordMedicationEntity> findMedicationEntityByName(String firstName, String lastName);
+  void clearTable();
+  List<MedicalRecordAllergyEntity> findAllergyEntityById(Integer idPerson);
+  List<MedicalRecordMedicationEntity> findMedicationEntityById(Integer idPerson);
   MedicalRecordEntity save(MedicalRecordEntity medicalRecordEntity);
 }

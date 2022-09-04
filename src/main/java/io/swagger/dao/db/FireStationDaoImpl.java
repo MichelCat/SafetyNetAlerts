@@ -14,6 +14,12 @@ public class FireStationDaoImpl implements FireStationDao {
 
   // -----------------------------------------------------------------------------------------------
   @Override
+  public void clearTable() {
+    fireStationEntities.clear();
+  }
+  
+  // -----------------------------------------------------------------------------------------------
+  @Override
   public List<String> fireStationAddressByStationNumber(Integer stationNumber) {
     List<String> stationAddresses = new ArrayList<>();
     for (FireStationEntity fireStationEntity : fireStationEntities) {
@@ -28,7 +34,7 @@ public class FireStationDaoImpl implements FireStationDao {
   @Override
   public FireStationEntity fireStationByStationAddress(String stationAddress) {
     for (FireStationEntity fireStationEntity : fireStationEntities) {
-      if (fireStationEntity.getAddress().equals(stationAddress)) {
+      if (fireStationEntity.getAddress().equalsIgnoreCase(stationAddress)) {
         return fireStationEntity;
       }
     }

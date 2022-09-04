@@ -22,8 +22,11 @@ class FirestationApiControllerTest {
 
   @Test
   void getFirestation_returnPersonsFromStationThree() throws Exception {
+    // GIVEN
+    // WHEN
     mockMvc.perform(get("/firestation?stationNumber=3"))
-    .andExpect(status().isOk());
+        .andExpect(status().isOk());
+    // THEN
   }
   
 }

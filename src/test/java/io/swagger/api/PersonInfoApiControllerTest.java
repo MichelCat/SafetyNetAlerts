@@ -20,8 +20,11 @@ class PersonInfoApiControllerTest {
 
   @Test
   void getPersonInfo_returnPersonAndMedicalRecordInFirstNameLastName() throws Exception {
+    // GIVEN
+    // WHEN
     mockMvc.perform(get("/personInfo?firstName=John&lastName=Boyd"))
-    .andExpect(status().isOk());
+        .andExpect(status().isOk());
+    // THEN
   }
 
 }

@@ -13,6 +13,12 @@ public class AllergyDaoImpl implements AllergyDao {
 
   // -----------------------------------------------------------------------------------------------
   @Override
+  public void clearTable() {
+    allergyEntities.clear();
+  }
+
+  // -----------------------------------------------------------------------------------------------
+  @Override
   public String allergyById(Integer idAllergy) {
     for (AllergyEntity allergyEntity : allergyEntities) {
       if (allergyEntity.getId().equals(idAllergy)) {

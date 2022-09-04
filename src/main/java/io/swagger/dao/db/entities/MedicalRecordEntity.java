@@ -9,12 +9,6 @@ public class MedicalRecordEntity implements Comparable<MedicalRecordEntity> {
   private Integer idPerson;
   
   @Getter @Setter
-  private String firstName;
-  
-  @Getter @Setter
-  private String lastName;
-  
-  @Getter @Setter
   private List<MedicalRecordAllergyEntity> allergies;
   
   @Getter @Setter
@@ -23,16 +17,12 @@ public class MedicalRecordEntity implements Comparable<MedicalRecordEntity> {
   // -----------------------------------------------------------------------------------------------
   @Override
   public int compareTo(MedicalRecordEntity o) {
-    if (getLastName().equals(o.getLastName())) {
-      return getFirstName().compareTo(o.getFirstName());
-    } else {
-      return getLastName().compareTo(o.getLastName());
-    }
+    return idPerson.compareTo(o.idPerson);
   }
 
   // -----------------------------------------------------------------------------------------------
   @Override
   public String toString() {
-    return "MedicalRecordEntity [idPerson=" + idPerson + ", firstName=" + firstName + ", lastName=" + lastName + ", allergies=" + allergies + ", medications=" + medications + "]";
+    return "MedicalRecordEntity [idPerson=" + idPerson + ", allergies=" + allergies + ", medications=" + medications + "]";
   }
 }

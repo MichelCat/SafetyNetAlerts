@@ -22,7 +22,7 @@ public class ChildAlertBusiness {
   }
 
   public List<Person> getOtherHouseholdPersons(final String firstName, final String lastName, final String address) {
-    List<PersonEntity> personEntities = personDao.findOtherHouseholdPersonsByName(firstName, lastName, address);
+    List<PersonEntity> personEntities = personDao.findOtherHouseholdPersonsByNameAddress(firstName, lastName, address);
     return personUtils.conversionListPersonEntityToPerson(personEntities);
   }
 }

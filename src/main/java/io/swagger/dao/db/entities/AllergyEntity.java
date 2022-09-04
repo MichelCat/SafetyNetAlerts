@@ -13,7 +13,7 @@ public class AllergyEntity implements Comparable<AllergyEntity> {
   // -----------------------------------------------------------------------------------------------
   @Override
   public int compareTo(AllergyEntity o) {
-    return this.allergy.compareTo(o.allergy);
+    return this.allergy.compareToIgnoreCase(o.allergy);
   }
 
   // -----------------------------------------------------------------------------------------------

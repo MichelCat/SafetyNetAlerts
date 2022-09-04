@@ -69,10 +69,10 @@ public class PersonInfoApiController implements PersonInfoApi {
         personAndMedicalRecordInFirstNameLastName.setAge(person.getAge());
         personAndMedicalRecordInFirstNameLastName.setEmail(person.getEmail());
 
-        List<Medication> medications = personInfoBusiness.getMedicationByName(person.getFirstName(), person.getLastName());
+        List<Medication> medications = personInfoBusiness.getMedicationByName(person.getId());
         personAndMedicalRecordInFirstNameLastName.setMedications(medications);
         
-        List<Allergy> allergies = personInfoBusiness.getAllergyByName(person.getFirstName(), person.getLastName());
+        List<Allergy> allergies = personInfoBusiness.getAllergyByName(person.getId());
         personAndMedicalRecordInFirstNameLastName.setAllergies(allergies);
 
         personsAndMedicalRecordInFirstNameLastName.add(personAndMedicalRecordInFirstNameLastName);

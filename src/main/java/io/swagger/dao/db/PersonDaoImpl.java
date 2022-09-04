@@ -15,6 +15,12 @@ public class PersonDaoImpl implements PersonDao {
 
   // -----------------------------------------------------------------------------------------------
   @Override
+  public void clearTable() {
+    personEntities.clear();
+  }
+
+  // -----------------------------------------------------------------------------------------------
+  @Override
   public PersonEntity findPersonByName(String firstName, String lastName) {
     for (PersonEntity personEntity : personEntities) {
       if (personEntity.getFirstName().equalsIgnoreCase(firstName)
@@ -30,8 +36,10 @@ public class PersonDaoImpl implements PersonDao {
   public List<PersonEntity> findPersonByAddresses(List<String> addresses) {
     List<PersonEntity> returnList = new ArrayList<>();
     for (PersonEntity personEntity : personEntities) {
-      if (addresses.contains(personEntity.getAddress())) {
+      for (String address : addresses) {
+        if (address.equalsIgnoreCase(personEntity.getAddress())) {
         returnList.add(personEntity);
+        }
       }
     }
     return returnList;
@@ -42,7 +50,7 @@ public class PersonDaoImpl implements PersonDao {
   public List<PersonEntity> findChildByAddress(String address) {
     List<PersonEntity> returnList = new ArrayList<>();
     for (PersonEntity personEntity : personEntities) {
-      if (personEntity.getAddress().equals(address)
+      if (personEntity.getAddress().equalsIgnoreCase(address)
           && personEntity.getAge() <= 18) {
         returnList.add(personEntity);
       }
@@ -52,12 +60,12 @@ public class PersonDaoImpl implements PersonDao {
 
   // -----------------------------------------------------------------------------------------------
   @Override
-  public List<PersonEntity> findOtherHouseholdPersonsByName(String firstName, String lastName, String address) {
+  public List<PersonEntity> findOtherHouseholdPersonsByNameAddress(String firstName, String lastName, String address) {
     List<PersonEntity> returnList = new ArrayList<>();
     for (PersonEntity personEntity : personEntities) {
-      if (personEntity.getLastName().equals(lastName)
-          && !personEntity.getFirstName().equals(firstName)
-          && personEntity.getAddress().equals(address)) {
+      if (personEntity.getLastName().equalsIgnoreCase(lastName)
+          && !personEntity.getFirstName().equalsIgnoreCase(firstName)
+          && personEntity.getAddress().equalsIgnoreCase(address)) {
         returnList.add(personEntity);
       }
     }
@@ -69,7 +77,7 @@ public class PersonDaoImpl implements PersonDao {
   public List<PersonEntity> findPersonByCity(String city) {
     List<PersonEntity> returnList = new ArrayList<>();
     for (PersonEntity personEntity : personEntities) {
-      if (personEntity.getCity().equals(city)) {
+      if (personEntity.getCity().equalsIgnoreCase(city)) {
         returnList.add(personEntity);
       }
     }
@@ -105,4 +113,15 @@ public class PersonDaoImpl implements PersonDao {
     return personEntity;
   }
 
+  // -----------------------------------------------------------------------------------------------
+  @Override
+  public void delete(String firstName, String lastName) {
+    for (PersonEntity personEntity : personEntities) {
+      if (personEntity.getFirstName().equalsIgnoreCase(firstName)
+          && personEntity.getLastName().equalsIgnoreCase(lastName)) {
+        personEntities.remove(personEntity);
+        return;
+      }
+    }
+  }
 }

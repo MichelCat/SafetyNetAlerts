@@ -22,7 +22,10 @@ class ChildAlertApiControllerTest {
 
   @Test
   void getChildAlert_returnPersonsFromAddress() throws Exception {
+    // GIVEN
+    // WHEN
     mockMvc.perform(get("/childAlert?address=1509 Culver St"))
-    .andExpect(status().isOk());
+        .andExpect(status().isOk());
+    // THEN
   }
 }

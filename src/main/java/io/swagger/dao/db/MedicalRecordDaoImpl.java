@@ -16,10 +16,15 @@ public class MedicalRecordDaoImpl implements MedicalRecordDao {
 
   // -----------------------------------------------------------------------------------------------
   @Override
-  public List<MedicalRecordAllergyEntity> findAllergyEntityByName(String firstName, String lastName) {
+  public void clearTable() {
+    medicalRecordEntities.clear();
+  }
+
+  // -----------------------------------------------------------------------------------------------
+  @Override
+  public List<MedicalRecordAllergyEntity> findAllergyEntityById(Integer idPerson) {
     for (MedicalRecordEntity medicalRecordEntity : medicalRecordEntities) {
-      if (medicalRecordEntity.getLastName().equals(lastName)
-          && medicalRecordEntity.getFirstName().equals(firstName)) {
+      if (medicalRecordEntity.getIdPerson().equals(idPerson)) {
         return medicalRecordEntity.getAllergies();
       }
     }
@@ -28,10 +33,9 @@ public class MedicalRecordDaoImpl implements MedicalRecordDao {
 
   // -----------------------------------------------------------------------------------------------
   @Override
-  public List<MedicalRecordMedicationEntity> findMedicationEntityByName(String firstName, String lastName) {
+  public List<MedicalRecordMedicationEntity> findMedicationEntityById(Integer idPerson) {
     for (MedicalRecordEntity medicalRecordEntity : medicalRecordEntities) {
-      if (medicalRecordEntity.getLastName().equals(lastName)
-          && medicalRecordEntity.getFirstName().equals(firstName)) {
+      if (medicalRecordEntity.getIdPerson().equals(idPerson)) {
         return medicalRecordEntity.getMedications();
       }
     }

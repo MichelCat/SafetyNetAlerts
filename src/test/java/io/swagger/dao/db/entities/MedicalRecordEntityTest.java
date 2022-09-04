@@ -53,56 +53,6 @@ class MedicalRecordEntityTest {
   }
 
   // -----------------------------------------------------------------------------------------------
-  // Method getFirstName
-  // -----------------------------------------------------------------------------------------------
-  @Test
-  @DisplayName("Read null firstName")
-  void getFirstName_nullFirstName_returnNull() {
-    // GIVEN
-    // WHEN
-    // THEN
-    assertThat(medicalRecordEntity.getFirstName()).isNull();
-  }
-
-  // -----------------------------------------------------------------------------------------------
-  // Method setFirstName
-  // -----------------------------------------------------------------------------------------------
-  @Test
-  @DisplayName("Write firstName")
-  void setFirstName_writeFirstName() {
-    // GIVEN
-    // WHEN
-    medicalRecordEntity.setFirstName("John");
-    // THEN
-    assertThat(medicalRecordEntity.getFirstName()).isEqualTo("John");
-  }
-
-  // -----------------------------------------------------------------------------------------------
-  // Method getLastName
-  // -----------------------------------------------------------------------------------------------
-  @Test
-  @DisplayName("Read null lastName")
-  void getLastName_nullLastName_returnNull() {
-    // GIVEN
-    // WHEN
-    // THEN
-    assertThat(medicalRecordEntity.getLastName()).isNull();
-  }
-
-  // -----------------------------------------------------------------------------------------------
-  // Method setLastName
-  // -----------------------------------------------------------------------------------------------
-  @Test
-  @DisplayName("Write lastName")
-  void setLastName_writeLastName() {
-    // GIVEN
-    // WHEN
-    medicalRecordEntity.setLastName("Boyd");
-    // THEN
-    assertThat(medicalRecordEntity.getLastName()).isEqualTo("Boyd");
-  }
-
-  // -----------------------------------------------------------------------------------------------
   // Method getAllergies
   // -----------------------------------------------------------------------------------------------
   @Test

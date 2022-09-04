@@ -6,10 +6,10 @@ import io.swagger.model.Person;
 
 public class PersonData {
 
-  public static Person getPersonJohnBoyd() {
+  public static Person getPersonMickBoyd() {
     Person person = new Person();
     person.setId(1);
-    person.setFirstName("John");
+    person.setFirstName("Mick");
     person.setLastName("Boyd");
     person.setAddress("1509 Culver St");
     person.setPhoneNumber("841-874-6512");
@@ -21,10 +21,10 @@ public class PersonData {
     return(person);
   }
   
-  public static PersonEntity getPersonEntityJohnBoyd() {
+  public static PersonEntity getPersonEntityMickBoyd() {
     PersonEntity personEntity = new PersonEntity();
     personEntity.setId(1);
-    personEntity.setFirstName("John");
+    personEntity.setFirstName("Mick");
     personEntity.setLastName("Boyd");
     personEntity.setAddress("1509 Culver St");
     personEntity.setPhoneNumber("841-874-6512");
@@ -35,10 +35,10 @@ public class PersonData {
     return(personEntity);
   }
   
-  public static String getJsonJohnBoyd() {
+  public static String getJsonMickBoyd() {
     String jsonString= "{"
         + "\"id\": 1,"
-        + "\"firstName\": \"John\","
+        + "\"firstName\": \"Mick\","
         + "\"lastName\": \"Boyd\","
         + "\"address\": \"1509 Culver St\","
         + "\"phoneNumber\": \"841-874-6512\","

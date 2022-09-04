@@ -1,5 +1,6 @@
 package io.swagger.utils;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -23,5 +24,15 @@ public class DateUtils {
 //    }
 //    return null;
 //  }
+  
+  public String stringDDMMYYYYToCetConversion(String stringDate) {
+    try {
+      DateFormat sourceFormat = new SimpleDateFormat("dd/MM/yyyy");
+      return (sourceFormat.parse(stringDate).toString());
+    } catch (Exception e) {
+    }
+    return null;
+  }
+  
   
 }

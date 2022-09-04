@@ -1,6 +1,5 @@
 package io.swagger.api;
 
-import io.swagger.business.ChildAlertBusiness;
 import io.swagger.business.PersonBusiness;
 import io.swagger.model.Error;
 import io.swagger.model.Person;
@@ -36,7 +35,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-08-31T19:30:00.814Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-09-03T23:12:30.667Z[GMT]")
 @RestController
 public class PersonApiController implements PersonApi {
 
@@ -55,8 +54,18 @@ public class PersonApiController implements PersonApi {
         this.personBusiness = personBusiness;
     }
 
+    public ResponseEntity<Void> deletePerson(@Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "firstName", required = false) String firstName,@Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "lastName", required = false) String lastName) {
+      personBusiness.deletePerson(firstName, lastName);
+      return ResponseEntity.ok(null);
+    }
+
+    public ResponseEntity<Person> patchPerson(@Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "firstName", required = false) String firstName,@Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "lastName", required = false) String lastName,@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody Person body) {
+      Person person = personBusiness.updatePerson(firstName, lastName, body);
+      return ResponseEntity.ok().body(person);
+    }
+
     public ResponseEntity<Person> postPerson(@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody Person body) {
-        Person person = personBusiness.save(body);
+        Person person = personBusiness.savePerson(body);
         URI location = ServletUriComponentsBuilder
                       .fromCurrentRequest()
                       .path("/{id}")
