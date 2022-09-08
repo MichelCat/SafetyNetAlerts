@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import io.swagger.dao.db.entities.PersonEntity;
-import io.swagger.data.PersonData;
+import io.swagger.data.MickBoydData;
 import io.swagger.model.Person;
 
 @SpringBootTest
@@ -44,10 +44,10 @@ class PersonUtilsTest {
   @DisplayName("")
   void conversionListPersonEntityToPerson_PersonEntity_returnPersons() {
     // GIVEN
-    PersonEntity personEntity = PersonData.getPersonEntityMickBoyd();
+    PersonEntity personEntity = MickBoydData.getPersonEntity();
     PersonEntities.add(personEntity);
     
-    Person person = PersonData.getPersonMickBoyd();
+    Person person = MickBoydData.getPerson();
     persons.add(person);
     // WHEN
     List<Person> result = personUtils.conversionListPersonEntityToPerson(PersonEntities);
@@ -62,10 +62,10 @@ class PersonUtilsTest {
   @DisplayName("")
   void conversionPersonEntityToPerson_personEntity_returnPerson() {
     // GIVEN
-    PersonEntity personEntity = PersonData.getPersonEntityMickBoyd();
+    PersonEntity personEntity = MickBoydData.getPersonEntity();
     PersonEntities.add(personEntity);
     
-    Person person = PersonData.getPersonMickBoyd();
+    Person person = MickBoydData.getPerson();
     persons.add(person);
     // WHEN
     Person result = personUtils.conversionPersonEntityToPerson(personEntity);

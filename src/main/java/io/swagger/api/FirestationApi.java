@@ -6,6 +6,7 @@
 package io.swagger.api;
 
 import io.swagger.model.Error;
+import io.swagger.model.FireStation;
 import io.swagger.model.PersonInFireStation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -33,9 +34,20 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-08-27T22:35:44.562Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-09-05T20:43:00.293Z[GMT]")
 @Validated
 public interface FirestationApi {
+
+    @Operation(summary = "Delete the mapping of a fire station or an address.", description = "", tags={  })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "204", description = "No Content"),
+        
+        @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))) })
+    @RequestMapping(value = "/firestation",
+        produces = { "application/json" }, 
+        method = RequestMethod.DELETE)
+    ResponseEntity<Void> deleteFirestation(@Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "stationNumber", required = false) String stationNumber, @Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "address", required = false) String address);
+
 
     @Operation(summary = "getPersonsInFirestationArea", description = "", tags={  })
     @ApiResponses(value = { 
@@ -48,6 +60,30 @@ public interface FirestationApi {
         produces = { "application/json" }, 
         method = RequestMethod.GET)
     ResponseEntity<PersonInFireStation> getFirestation(@Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "stationNumber", required = false) String stationNumber);
+
+
+    @Operation(summary = "Add mapping firestation/address", description = "", tags={  })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "201", description = "Created", content = @Content(mediaType = "application/json", schema = @Schema(implementation = FireStation.class))),
+        
+        @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))) })
+    @RequestMapping(value = "/firestation",
+        produces = { "application/json" }, 
+        consumes = { "application/json" }, 
+        method = RequestMethod.POST)
+    ResponseEntity<FireStation> postFirestation(@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody FireStation body);
+
+
+    @Operation(summary = "Update fire station number of an address", description = "", tags={  })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(implementation = FireStation.class))),
+        
+        @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))) })
+    @RequestMapping(value = "/firestation",
+        produces = { "application/json" }, 
+        consumes = { "application/json" }, 
+        method = RequestMethod.PUT)
+    ResponseEntity<FireStation> putFirestation(@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody FireStation body);
 
 }
 

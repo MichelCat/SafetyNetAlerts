@@ -20,7 +20,7 @@ class CommunityEmailApiControllerTest {
   private CommunityEmailBusiness communityEmailBusiness;
 
   @Test
-  void getCommunityEmail_returnEmailFromCity() throws Exception {
+  void getCommunityEmail_return200() throws Exception {
     // GIVEN
     // WHEN
     mockMvc.perform(get("/communityEmail?city=Culver"))

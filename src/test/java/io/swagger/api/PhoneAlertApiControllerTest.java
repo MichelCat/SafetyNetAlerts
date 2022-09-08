@@ -19,7 +19,7 @@ class PhoneAlertApiControllerTest {
   private PhoneAlertBusiness phoneAlertBusiness;
 
   @Test
-  void getPhoneAlert_returnPersonsFromStationThree() throws Exception {
+  void getPhoneAlert_return200() throws Exception {
     // GIVEN
     // WHEN
     mockMvc.perform(get("/phoneAlert?firestation=3")).andExpect(status().isOk());

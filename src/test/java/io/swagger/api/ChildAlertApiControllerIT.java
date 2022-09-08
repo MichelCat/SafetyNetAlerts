@@ -22,7 +22,7 @@ class ChildAlertApiControllerIT {
   private DateUtils dateUtils;
 
   @Test
-  void getChildAlert_returnPersonsFromAddress() throws Exception {
+  void getChildAlert_return200() throws Exception {
     // GIVEN
     // WHEN
     mockMvc.perform(get("/childAlert?address=1509 Culver St")

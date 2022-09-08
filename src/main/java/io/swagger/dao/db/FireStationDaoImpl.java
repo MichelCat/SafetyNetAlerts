@@ -48,4 +48,24 @@ public class FireStationDaoImpl implements FireStationDao {
     return fireStationEntity;
   }
 
+  // -----------------------------------------------------------------------------------------------
+  @Override
+  public FireStationEntity update(FireStationEntity fireStationEntity) {
+    fireStationEntities.remove(fireStationEntity);
+    fireStationEntities.add(fireStationEntity);
+    return fireStationEntity;
+  }
+
+
+  // -----------------------------------------------------------------------------------------------
+  @Override
+  public void delete(Integer stationNumber, String stationAddress) {
+    for (FireStationEntity fireStationEntity : fireStationEntities) {
+      if (fireStationEntity.getAddress().equalsIgnoreCase(stationAddress)
+          && fireStationEntity.getStation().equals(stationNumber)) {
+        fireStationEntities.remove(fireStationEntity);
+        return;
+      }
+    }
+  }
 }

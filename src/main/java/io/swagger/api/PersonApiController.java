@@ -32,10 +32,12 @@ import javax.validation.Valid;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.net.URI;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-09-03T23:12:30.667Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-09-05T20:43:00.293Z[GMT]")
 @RestController
 public class PersonApiController implements PersonApi {
 
@@ -55,23 +57,33 @@ public class PersonApiController implements PersonApi {
     }
 
     public ResponseEntity<Void> deletePerson(@Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "firstName", required = false) String firstName,@Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "lastName", required = false) String lastName) {
-      personBusiness.deletePerson(firstName, lastName);
-      return ResponseEntity.ok(null);
-    }
-
-    public ResponseEntity<Person> patchPerson(@Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "firstName", required = false) String firstName,@Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "lastName", required = false) String lastName,@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody Person body) {
-      Person person = personBusiness.updatePerson(firstName, lastName, body);
-      return ResponseEntity.ok().body(person);
+      try {
+        personBusiness.deletePerson(firstName, lastName);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
+      } catch (Exception e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+      }
     }
 
     public ResponseEntity<Person> postPerson(@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody Person body) {
         Person person = personBusiness.savePerson(body);
+        if (person == null) {
+          return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
         URI location = ServletUriComponentsBuilder
                       .fromCurrentRequest()
                       .path("/{id}")
                       .buildAndExpand(person.getId())
                       .toUri();
         return ResponseEntity.created(location).body(person);
+    }
+
+    public ResponseEntity<Person> putPerson(@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody Person body) {
+      Person person = personBusiness.updatePerson(body);
+      if (person == null) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+      }
+      return ResponseEntity.ok().body(person);
     }
 
 }

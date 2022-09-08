@@ -3,7 +3,7 @@ package io.swagger.api;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,10 +13,10 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import io.swagger.dao.DataBasePrepareBusiness;
 import io.swagger.dao.db.PersonDao;
 import io.swagger.dao.db.entities.PersonEntity;
-import io.swagger.data.PersonData;
-import io.swagger.integration.DataBasePrepareService;
+import io.swagger.data.MickBoydData;
 import io.swagger.utils.DateUtils;
 
 @SpringBootTest
@@ -30,7 +30,7 @@ public class PersonApiControllerIT {
   @Autowired
   private PersonDao personDao;
   @Autowired
-  private DataBasePrepareService dataBasePrepareService;
+  private DataBasePrepareBusiness dataBasePrepareService;
   
 
   @BeforeAll
@@ -46,17 +46,17 @@ public class PersonApiControllerIT {
   // Method postPerson
   // -----------------------------------------------------------------------------------------------
   @Test
-  void postPerson_returnIdPerson() throws Exception {
+  void postPerson_return201() throws Exception {
     // GIVEN
     // WHEN
     mockMvc.perform(post("/person")
-          .content(PersonData.getJsonMickBoyd())
+          .content(MickBoydData.getJson())
           .contentType(MediaType.APPLICATION_JSON)
           .accept(MediaType.APPLICATION_JSON))
           .andExpect(status().isCreated())
           .andExpect(jsonPath("$.firstName").value("Mick"))      
           .andExpect(jsonPath("$.lastName").value("Boyd"))      
-          .andExpect(jsonPath("$.address").value("1509 Culver St"))      
+          .andExpect(jsonPath("$.address").value("1234 Wall Street"))      
           .andExpect(jsonPath("$.phoneNumber").value("841-874-6512"))      
           .andExpect(jsonPath("$.zipCode").value("97451"))      
           .andExpect(jsonPath("$.age").value("38"))      
@@ -70,32 +70,32 @@ public class PersonApiControllerIT {
   // Method deletePerson
   // -----------------------------------------------------------------------------------------------
   @Test
-  void deletePerson_returnOk() throws Exception {
+  void deletePerson_return204() throws Exception {
     // GIVEN
-    PersonEntity personEntity = personDao.save(PersonData.getPersonEntityMickBoyd());
+    PersonEntity personEntity = personDao.save(MickBoydData.getPersonEntity());
     // WHEN
     mockMvc.perform(delete("/person?firstName=Mick&lastName=Boyd")
         .accept(MediaType.APPLICATION_JSON))
-        .andExpect(status().isOk());
+        .andExpect(status().isNoContent());
     // THEN
   }
   
   // -----------------------------------------------------------------------------------------------
-  // Method patchPerson
+  // Method putPerson
   // -----------------------------------------------------------------------------------------------
   @Test
-  void patchPerson_returnOk() throws Exception {
+  void putPerson_return200() throws Exception {
     // GIVEN
-    PersonEntity personEntity = personDao.save(PersonData.getPersonEntityMickBoyd());
+    PersonEntity personEntity = personDao.save(MickBoydData.getPersonEntity());
     // WHEN
-    mockMvc.perform(patch("/person?firstName=Mick&lastName=Boyd")
-          .content(PersonData.getJsonMickBoyd())
+    mockMvc.perform(put("/person")
+          .content(MickBoydData.getJson())
           .contentType(MediaType.APPLICATION_JSON)
           .accept(MediaType.APPLICATION_JSON))
           .andExpect(status().isOk())
           .andExpect(jsonPath("$.firstName").value("Mick"))      
           .andExpect(jsonPath("$.lastName").value("Boyd"))      
-          .andExpect(jsonPath("$.address").value("1509 Culver St"))      
+          .andExpect(jsonPath("$.address").value("1234 Wall Street"))      
           .andExpect(jsonPath("$.phoneNumber").value("841-874-6512"))      
           .andExpect(jsonPath("$.zipCode").value("97451"))      
           .andExpect(jsonPath("$.age").value("38"))      

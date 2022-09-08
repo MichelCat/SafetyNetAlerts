@@ -18,7 +18,7 @@ class FloodApiControllerIT {
   private MockMvc mockMvc;
   
   @Test
-  void getFloodStations_returnPersonsFromStationThree() throws Exception {
+  void getFloodStations_return200() throws Exception {
     // GIVEN
     // WHEN
     mockMvc.perform(get("/flood/stations?stations=3")

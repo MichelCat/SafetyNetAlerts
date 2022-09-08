@@ -18,13 +18,14 @@ class CommunityEmailApiControllerIT {
   private MockMvc mockMvc;
 
   @Test
-  void getCommunityEmail_returnEmailFromCity() throws Exception {
+  void getCommunityEmail_return200() throws Exception {
     // GIVEN
     // WHEN
     mockMvc.perform(get("/communityEmail?city=Culver")
         .accept(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
-        .andExpect(jsonPath("$[0].email").value("aly@imail.com"));
+        .andExpect(jsonPath("$[0].email").value("aly@imail.com"))
+        .andExpect(jsonPath("$[*].email").isNotEmpty());
     // THEN
   }
 

@@ -8,4 +8,6 @@ public interface FireStationDao {
   List<String> fireStationAddressByStationNumber(Integer stationNumber);
   FireStationEntity fireStationByStationAddress(String stationAddress);
   FireStationEntity save(FireStationEntity fireStationEntity);
+  FireStationEntity update(FireStationEntity fireStationEntity);
+  void delete(Integer stationNumber, String stationAddress);
 }

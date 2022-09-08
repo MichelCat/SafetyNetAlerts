@@ -14,4 +14,10 @@ public class FireStationUtils {
     return fireStation;
   }
 
+  public FireStationEntity conversionFireStationToFireStationEntity(FireStation fireStation) {
+    FireStationEntity fireStationEntity = new FireStationEntity();
+    fireStationEntity.setStation(fireStation.getId());
+    fireStationEntity.setAddress(fireStation.getAddress());
+    return fireStationEntity;
+  }
 }

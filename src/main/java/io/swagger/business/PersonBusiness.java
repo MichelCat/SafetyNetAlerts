@@ -27,8 +27,8 @@ public class PersonBusiness {
     personDao.delete(firstName, lastName);
   }
 
-  public Person updatePerson(final String firstName, final String lastName, final Person person) {
-    PersonEntity personEntity = personDao.findPersonByName(firstName, lastName);
+  public Person updatePerson(final Person person) {
+    PersonEntity personEntity = personDao.findPersonByName(person.getFirstName(), person.getLastName());
     personEntity.setAddress(person.getAddress());
     personEntity.setPhoneNumber(person.getPhoneNumber());
     personEntity.setZip(person.getZipCode());

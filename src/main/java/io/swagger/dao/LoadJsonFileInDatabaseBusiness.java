@@ -1,17 +1,20 @@
-package io.swagger.dao.db;
+package io.swagger.dao;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.context.event.EventListener;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.swagger.dao.db.AllergyDao;
+import io.swagger.dao.db.FireStationDao;
+import io.swagger.dao.db.MedicalRecordDao;
+import io.swagger.dao.db.MedicationDao;
+import io.swagger.dao.db.PersonDao;
 import io.swagger.dao.db.entities.AllergyEntity;
 import io.swagger.dao.db.entities.FireStationEntity;
 import io.swagger.dao.db.entities.MedicalRecordAllergyEntity;
@@ -24,10 +27,9 @@ import io.swagger.dao.json.entities.MedicalRecordJson;
 import io.swagger.dao.json.entities.PersonJson;
 import io.swagger.dao.json.entities.SafetyNetJson;
 import io.swagger.utils.DateUtils;
-import io.swagger.integration.DataBasePrepareService;
 
-@Component
-public class SafetyNetDataBase {
+@Service
+public class LoadJsonFileInDatabaseBusiness {
   
   @Autowired
   public DateUtils dateUtils;
@@ -41,26 +43,16 @@ public class SafetyNetDataBase {
   private MedicalRecordDao medicalRecordDao;
   @Autowired
   private PersonDao personDao;
-  @Autowired
-  private DataBasePrepareService dataBasePrepareService;
 
   // -----------------------------------------------------------------------------------------------
-  @EventListener(ContextRefreshedEvent.class)
-  public void contextRefreshedEvent() throws StreamReadException, DatabindException, IOException {
+  public SafetyNetJson readFileJson() throws StreamReadException, DatabindException, IOException {
     ObjectMapper objectMapper = new ObjectMapper();
     File dataJson = ResourceUtils.getFile("classpath:data.json");
-    SafetyNetJson safetyNetJson = objectMapper.readValue(dataJson, SafetyNetJson.class);
-
-    dataBasePrepareService.clearDataBase();
-    this.setListPersonEntity(safetyNetJson);
-    this.setListFireStationEntity(safetyNetJson);
-    this.setListAllergyEntity(safetyNetJson);
-    this.setListMedicationEntity(safetyNetJson);
-    this.setListMedicalRecordEntity(safetyNetJson);
+    return objectMapper.readValue(dataJson, SafetyNetJson.class);
   }
-
+  
   // -----------------------------------------------------------------------------------------------
-  private void setListPersonEntity(SafetyNetJson safetyNetJson) {
+  public void setListPersonEntity(SafetyNetJson safetyNetJson) {
     for (PersonJson personJson : safetyNetJson.getPersons()) {
       PersonEntity personEntity = new PersonEntity();
       personEntity.setFirstName(personJson.getFirstName());
@@ -75,7 +67,7 @@ public class SafetyNetDataBase {
   }
 
   // -----------------------------------------------------------------------------------------------
-  private void setListFireStationEntity(SafetyNetJson safetyNetJson) {
+  public void setListFireStationEntity(SafetyNetJson safetyNetJson) {
     for (FireStationJson fireStationJson : safetyNetJson.getFirestations()) {
       FireStationEntity fireStationEntity = new FireStationEntity();
       fireStationEntity.setStation(Integer.valueOf(fireStationJson.getStation()));
@@ -85,7 +77,7 @@ public class SafetyNetDataBase {
   }
 
   // -----------------------------------------------------------------------------------------------
-  private void setListAllergyEntity(SafetyNetJson safetyNetJson) {
+  public void setListAllergyEntity(SafetyNetJson safetyNetJson) {
     for (MedicalRecordJson medicalRecordJson : safetyNetJson.getMedicalrecords()) {
       for (String allergyJson : medicalRecordJson.getAllergies()) {
         AllergyEntity allergyEntity = new AllergyEntity();
@@ -96,7 +88,7 @@ public class SafetyNetDataBase {
   }
 
   // -----------------------------------------------------------------------------------------------
-  private void setListMedicationEntity(SafetyNetJson safetyNetJson) {
+  public void setListMedicationEntity(SafetyNetJson safetyNetJson) {
     for (MedicalRecordJson medicalRecordJson : safetyNetJson.getMedicalrecords()) {
       for (String medicationJson : medicalRecordJson.getMedications()) {
         if (medicationJson.split(":").length == 2) {
@@ -109,7 +101,7 @@ public class SafetyNetDataBase {
   }
 
   // -----------------------------------------------------------------------------------------------
-  private void setListMedicalRecordEntity(SafetyNetJson safetyNetJson) {
+  public void setListMedicalRecordEntity(SafetyNetJson safetyNetJson) {
     for (MedicalRecordJson medicalRecordJson : safetyNetJson.getMedicalrecords()) {
       PersonEntity personEntity = personDao.findPersonByName(medicalRecordJson.getFirstName(), medicalRecordJson.getLastName());
 

@@ -1,4 +1,4 @@
-package io.swagger.integration;
+package io.swagger.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +9,7 @@ import io.swagger.dao.db.MedicationDao;
 import io.swagger.dao.db.PersonDao;
 
 @Service
-public class DataBasePrepareService {
+public class DataBasePrepareBusiness {
   
   @Autowired
   private AllergyDao allergyDao;

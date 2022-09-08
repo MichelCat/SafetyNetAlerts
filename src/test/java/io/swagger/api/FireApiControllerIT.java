@@ -21,7 +21,7 @@ class FireApiControllerIT {
   private DateUtils dateUtils;
 
   @Test
-  void getFire_returnPersonsMedicalFireStationFromAddress() throws Exception {
+  void getFire_return200() throws Exception {
     // GIVEN
     // WHEN
     mockMvc.perform(get("/fire?address=1509 Culver St")
