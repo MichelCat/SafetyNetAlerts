@@ -8,6 +8,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -19,13 +20,17 @@ import io.swagger.data.MickBoydData;
 import io.swagger.model.Person;
 
 @WebMvcTest(controllers = PersonApiController.class)
-public class PersonApiControllerTest {
+class PersonApiControllerTest {
 
   @Autowired
   private MockMvc mockMvc;
 
   @MockBean
   private PersonBusiness personBusiness;
+
+  @BeforeEach
+  private void setUpPerTest() {
+  }
 
   // -----------------------------------------------------------------------------------------------
   // Method postPerson
@@ -65,7 +70,7 @@ public class PersonApiControllerTest {
     // GIVEN
     doNothing().when(personBusiness).deletePerson(any(String.class), any(String.class));    
     // WHEN
-    mockMvc.perform(delete("/person?firstName=John&lastName=Boyd"))
+    mockMvc.perform(delete("/person?firstName=Mick&lastName=Boyd"))
         .andExpect(status().isNoContent());
     // THEN
   }
@@ -75,7 +80,9 @@ public class PersonApiControllerTest {
     // GIVEN
     doThrow(new IllegalArgumentException()).when(personBusiness).deletePerson(any(String.class), any(String.class));
     // WHEN
-    mockMvc.perform(delete("/person?firstName=John&lastName=Boyd"))
+    mockMvc.perform(delete("/person")
+        .param("firstName", "Mick")
+        .param("lastName", "Boyd"))
         .andExpect(status().isBadRequest());
     // THEN
   }

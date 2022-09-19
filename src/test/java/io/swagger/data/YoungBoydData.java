@@ -1,8 +1,8 @@
 package io.swagger.data;
 
 import java.util.Date;
-import org.springframework.stereotype.Service;
 import io.swagger.dao.db.entities.PersonEntity;
+import io.swagger.model.Allergy;
 import io.swagger.model.Person;
 
 public class YoungBoydData {
@@ -18,10 +18,10 @@ public class YoungBoydData {
     person.setAddress("1234 Wall Street");
     person.setPhoneNumber("841-874-6512");
     person.setZipCode("97451");
-    person.setAge(38);
+    person.setAge(10);
     person.setCity("Culver");
     person.setBirthdate("18/02/2012");
-    person.setEmail("tenz@email.com");
+    person.setEmail("yoboyd@email.com");
     return(person);
   }
   
@@ -34,8 +34,8 @@ public class YoungBoydData {
     personEntity.setPhoneNumber("841-874-6512");
     personEntity.setZip("97451");
     personEntity.setCity("Culver");
-    personEntity.setBirthdate(new Date("2012/18/02"));
-    personEntity.setEmail("tenz@email.com");
+    personEntity.setBirthdate(new Date("2012/02/18"));
+    personEntity.setEmail("yoboyd@email.com");
     return(personEntity);
   }
   
@@ -47,12 +47,17 @@ public class YoungBoydData {
         + "\"address\": \"1234 Wall Street\","
         + "\"phoneNumber\": \"841-874-6512\","
         + "\"zipCode\": \"97451\","
-        + "\"age\": 38,"
+        + "\"age\": 10,"
         + "\"city\": \"Culver\","
         + "\"birthdate\": \"18/02/2012\","
-        + "\"email\": \"tenz@email.com\""
+        + "\"email\": \"yoboyd@email.com\""
         + "}";
     return jsonString;
   }
-
+  
+  public static Allergy getAllergy() {
+    Allergy allergy = new Allergy();
+    allergy.setAllergy("peanut");
+    return allergy;
+  }
 }

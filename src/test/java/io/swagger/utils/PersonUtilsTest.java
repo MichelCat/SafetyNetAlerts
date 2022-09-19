@@ -23,8 +23,8 @@ class PersonUtilsTest {
   @BeforeEach
   private void setUpPerTest() {
     personUtils = new PersonUtils();
-    PersonEntities = new ArrayList<PersonEntity>();
-    persons = new ArrayList<Person>();
+    PersonEntities = new ArrayList<>();
+    persons = new ArrayList<>();
   }
 
   // -----------------------------------------------------------------------------------------------
@@ -37,7 +37,7 @@ class PersonUtilsTest {
     // WHEN
     List<Person> result = personUtils.conversionListPersonEntityToPerson(PersonEntities);
     // THEN
-    assertThat(result.equals(persons));
+    assertThat(result).isEqualTo(persons);
   }
   
   @Test
@@ -52,7 +52,7 @@ class PersonUtilsTest {
     // WHEN
     List<Person> result = personUtils.conversionListPersonEntityToPerson(PersonEntities);
     // THEN
-    assertThat(result.equals(persons));
+    assertThat(result).isEqualTo(persons);
   }
 
   // -----------------------------------------------------------------------------------------------
@@ -70,6 +70,6 @@ class PersonUtilsTest {
     // WHEN
     Person result = personUtils.conversionPersonEntityToPerson(personEntity);
     // THEN
-    assertThat(result.equals(person));
+    assertThat(result).isEqualTo(person);
   }
 }

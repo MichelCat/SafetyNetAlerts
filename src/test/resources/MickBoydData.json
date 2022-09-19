@@ -1,0 +1,26 @@
+{
+	"persons": [
+		{
+			"firstName":"Mick",
+			"lastName":"Boyd",
+			"address":"1234 Wall Street",
+			"city":"Culver",
+			"zip":"97451",
+			"phone":"841-874-6512",
+			"email":"miboyd@email.com"
+		}
+	],
+	"medicalrecords": [
+		{
+			"firstName":"Mick",
+			"lastName":"Boyd",
+			"birthdate":"03/06/1984",
+			"medications": [
+				"aznol:350mg"
+			],
+			"allergies": [
+				"nillacilan"
+			]
+		}
+	] 
+}

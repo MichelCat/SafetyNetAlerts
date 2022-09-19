@@ -1,0 +1,25 @@
+{
+	"persons": [
+		{
+			"firstName":"Young",
+			"lastName":"Boyd",
+			"address":"1234 Wall Street",
+			"city":"Culver",
+			"zip":"97451",
+			"phone":"841-874-6512",
+			"email":"yoboyd@email.com"
+		}
+	],
+	"medicalrecords": [
+		{
+			"firstName":"Young",
+			"lastName":"Boyd",
+			"birthdate":"18/02/2012",
+			"medications": [
+			],
+			"allergies": [
+				"peanut"
+			]
+		}
+	] 
+}

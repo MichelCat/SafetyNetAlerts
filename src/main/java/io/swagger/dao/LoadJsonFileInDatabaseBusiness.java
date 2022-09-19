@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.util.ResourceUtils;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.DatabindException;
@@ -26,13 +27,15 @@ import io.swagger.dao.json.entities.FireStationJson;
 import io.swagger.dao.json.entities.MedicalRecordJson;
 import io.swagger.dao.json.entities.PersonJson;
 import io.swagger.dao.json.entities.SafetyNetJson;
+import io.swagger.utils.AllergyUtils;
 import io.swagger.utils.DateUtils;
+import io.swagger.utils.MedicationUtils;
 
 @Service
 public class LoadJsonFileInDatabaseBusiness {
   
   @Autowired
-  public DateUtils dateUtils;
+  private DateUtils dateUtils;
   @Autowired
   private AllergyDao allergyDao;
   @Autowired
@@ -43,18 +46,36 @@ public class LoadJsonFileInDatabaseBusiness {
   private MedicalRecordDao medicalRecordDao;
   @Autowired
   private PersonDao personDao;
+  @Autowired
+  private AllergyUtils allergyUtils;
+  @Autowired
+  private MedicationUtils medicationUtils;
 
   // -----------------------------------------------------------------------------------------------
-  public SafetyNetJson readFileJson() throws StreamReadException, DatabindException, IOException {
-    ObjectMapper objectMapper = new ObjectMapper();
-    File dataJson = ResourceUtils.getFile("classpath:data.json");
+  public void loadDataBase(String resourceLocation) {
+    SafetyNetJson safetyNetJson;
+    try {
+      safetyNetJson = readFileJson(resourceLocation);
+      setListPersonEntity(safetyNetJson);
+      setListFireStationEntity(safetyNetJson);
+      setListAllergyEntity(safetyNetJson);
+      setListMedicationEntity(safetyNetJson);
+      setListMedicalRecordEntity(safetyNetJson);
+    } catch (Exception e) {
+    } 
+  }
+  
+  // -----------------------------------------------------------------------------------------------
+  public SafetyNetJson readFileJson(String resourceLocation) throws StreamReadException, DatabindException, IOException {
+    var objectMapper = new ObjectMapper();
+    File dataJson = ResourceUtils.getFile("classpath:" + resourceLocation);
     return objectMapper.readValue(dataJson, SafetyNetJson.class);
   }
   
   // -----------------------------------------------------------------------------------------------
   public void setListPersonEntity(SafetyNetJson safetyNetJson) {
-    for (PersonJson personJson : safetyNetJson.getPersons()) {
-      PersonEntity personEntity = new PersonEntity();
+    for (PersonJson personJson : CollectionUtils.emptyIfNull(safetyNetJson.getPersons())) {
+      var personEntity = new PersonEntity();
       personEntity.setFirstName(personJson.getFirstName());
       personEntity.setLastName(personJson.getLastName());
       personEntity.setAddress(personJson.getAddress());
@@ -68,8 +89,8 @@ public class LoadJsonFileInDatabaseBusiness {
 
   // -----------------------------------------------------------------------------------------------
   public void setListFireStationEntity(SafetyNetJson safetyNetJson) {
-    for (FireStationJson fireStationJson : safetyNetJson.getFirestations()) {
-      FireStationEntity fireStationEntity = new FireStationEntity();
+    for (FireStationJson fireStationJson : CollectionUtils.emptyIfNull(safetyNetJson.getFirestations())) {
+      var fireStationEntity = new FireStationEntity();
       fireStationEntity.setStation(Integer.valueOf(fireStationJson.getStation()));
       fireStationEntity.setAddress(fireStationJson.getAddress());
       fireStationEntity = fireStationDao.save(fireStationEntity);
@@ -78,9 +99,9 @@ public class LoadJsonFileInDatabaseBusiness {
 
   // -----------------------------------------------------------------------------------------------
   public void setListAllergyEntity(SafetyNetJson safetyNetJson) {
-    for (MedicalRecordJson medicalRecordJson : safetyNetJson.getMedicalrecords()) {
+    for (MedicalRecordJson medicalRecordJson : CollectionUtils.emptyIfNull(safetyNetJson.getMedicalrecords())) {
       for (String allergyJson : medicalRecordJson.getAllergies()) {
-        AllergyEntity allergyEntity = new AllergyEntity();
+        var allergyEntity = new AllergyEntity();
         allergyEntity.setAllergy(allergyJson);
         allergyEntity = allergyDao.save(allergyEntity);
       }
@@ -89,10 +110,10 @@ public class LoadJsonFileInDatabaseBusiness {
 
   // -----------------------------------------------------------------------------------------------
   public void setListMedicationEntity(SafetyNetJson safetyNetJson) {
-    for (MedicalRecordJson medicalRecordJson : safetyNetJson.getMedicalrecords()) {
+    for (MedicalRecordJson medicalRecordJson : CollectionUtils.emptyIfNull(safetyNetJson.getMedicalrecords())) {
       for (String medicationJson : medicalRecordJson.getMedications()) {
         if (medicationJson.split(":").length == 2) {
-          MedicationEntity medicationEntity = new MedicationEntity();
+          var medicationEntity = new MedicationEntity();
           medicationEntity.setMedication(medicationJson.split(":")[0]);
           medicationEntity = medicationDao.save(medicationEntity);
         }
@@ -102,33 +123,28 @@ public class LoadJsonFileInDatabaseBusiness {
 
   // -----------------------------------------------------------------------------------------------
   public void setListMedicalRecordEntity(SafetyNetJson safetyNetJson) {
-    for (MedicalRecordJson medicalRecordJson : safetyNetJson.getMedicalrecords()) {
-      PersonEntity personEntity = personDao.findPersonByName(medicalRecordJson.getFirstName(), medicalRecordJson.getLastName());
+    for (MedicalRecordJson medicalRecordJson : CollectionUtils.emptyIfNull(safetyNetJson.getMedicalrecords())) {
+      var personEntity = personDao.findPersonByName(medicalRecordJson.getFirstName(), medicalRecordJson.getLastName());
 
       // -----------------------------------------------------------------------------------------------
       personEntity.setBirthdate(dateUtils.stringDDMMYYYYToDateConversion(medicalRecordJson.getBirthdate()));
       personDao.update(personEntity);
 
       // -----------------------------------------------------------------------------------------------
-      MedicalRecordEntity medicalRecordEntity = new MedicalRecordEntity();
+      var medicalRecordEntity = new MedicalRecordEntity();
       medicalRecordEntity.setIdPerson(personEntity.getId());
 
       List<MedicalRecordAllergyEntity> allergies = new ArrayList<>();
       for (String allergyJson : medicalRecordJson.getAllergies()) {
-        MedicalRecordAllergyEntity medicalRecordAllergyEntity = new MedicalRecordAllergyEntity();
-        medicalRecordAllergyEntity.setIdAlergy(allergyDao.findIdAllergyByName(allergyJson));
-        allergies.add(medicalRecordAllergyEntity);
+        CollectionUtils.addIgnoreNull(allergies
+            , allergyUtils.allergyToMedicalRecordAllergyEntity(allergyJson));
       }
       medicalRecordEntity.setAllergies(allergies);
 
       List<MedicalRecordMedicationEntity> medications = new ArrayList<>();
       for (String medicationJson : medicalRecordJson.getMedications()) {
-        if (medicationJson.split(":").length == 2) {
-          MedicalRecordMedicationEntity medicalRecordMedicationEntity = new MedicalRecordMedicationEntity();
-          medicalRecordMedicationEntity.setIdMedication(medicationDao.findIdMedicationByName(medicationJson.split(":")[0]));
-          medicalRecordMedicationEntity.setDosage(medicationJson.split(":")[1]);
-          medications.add(medicalRecordMedicationEntity);
-        }
+        CollectionUtils.addIgnoreNull(medications
+            , medicationUtils.medicationToMedicalRecordMedicationEntity(medicationJson));
       }
       medicalRecordEntity.setMedications(medications);
 

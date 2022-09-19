@@ -14,6 +14,7 @@ public class MedicationDaoImpl implements MedicationDao {
   // -----------------------------------------------------------------------------------------------
   @Override
   public void clearTable() {
+    medicamentSequence = 0;
     medicationEntities.clear();
   }
 

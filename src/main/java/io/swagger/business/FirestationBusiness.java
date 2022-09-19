@@ -9,6 +9,7 @@ import io.swagger.dao.db.entities.FireStationEntity;
 import io.swagger.dao.db.entities.PersonEntity;
 import io.swagger.model.FireStation;
 import io.swagger.model.Person;
+import io.swagger.model.UpdateFireStation;
 import io.swagger.utils.FireStationUtils;
 import io.swagger.utils.PersonUtils;
 
@@ -55,13 +56,14 @@ public class FirestationBusiness {
     return fireStationUtils.conversionFireStationEntityToFireStation(fireStationDao.save(fireStationEntity));
   }
   
-  public FireStation updateFireStation(final FireStation fireStation) {
-    FireStationEntity newFireStationEntity = fireStationDao.fireStationByStationAddress(fireStation.getAddress());
+  public FireStation updateFireStation(final UpdateFireStation updateFireStation) {
+    fireStationDao.delete(updateFireStation.getOldStation(), updateFireStation.getAddress());
     
-    fireStationDao.delete(fireStation.getId(), fireStation.getAddress());
+    var fireStationEntity = new FireStationEntity();
+    fireStationEntity.setStation(updateFireStation.getNewStation());
+    fireStationEntity.setAddress(updateFireStation.getAddress());
     
-    newFireStationEntity.setStation(fireStation.getId());
-    return fireStationUtils.conversionFireStationEntityToFireStation(fireStationDao.update(newFireStationEntity));
+    return fireStationUtils.conversionFireStationEntityToFireStation(fireStationDao.update(fireStationEntity));
   }
 
   public void deleteFireStation(final String stationNumber, final String stationAddress) {

@@ -32,13 +32,14 @@ public class FireStationDaoImpl implements FireStationDao {
 
   // -----------------------------------------------------------------------------------------------
   @Override
-  public FireStationEntity fireStationByStationAddress(String stationAddress) {
+  public List<FireStationEntity> fireStationByStationAddress(String stationAddress) {
+    List<FireStationEntity> FireStationEntities = new ArrayList<>();
     for (FireStationEntity fireStationEntity : fireStationEntities) {
       if (fireStationEntity.getAddress().equalsIgnoreCase(stationAddress)) {
-        return fireStationEntity;
+        FireStationEntities.add(fireStationEntity);
       }
     }
-    return new FireStationEntity();
+    return FireStationEntities;
   }
 
   // -----------------------------------------------------------------------------------------------

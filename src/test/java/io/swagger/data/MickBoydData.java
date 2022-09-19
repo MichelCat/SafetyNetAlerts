@@ -3,26 +3,13 @@ package io.swagger.data;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import io.swagger.dao.db.AllergyDao;
-import io.swagger.dao.db.MedicationDao;
-import io.swagger.dao.db.PersonDao;
-import io.swagger.dao.db.entities.MedicalRecordAllergyEntity;
-import io.swagger.dao.db.entities.MedicalRecordEntity;
-import io.swagger.dao.db.entities.MedicalRecordMedicationEntity;
 import io.swagger.dao.db.entities.PersonEntity;
+import io.swagger.model.Allergy;
+import io.swagger.model.MedicalRecord;
+import io.swagger.model.Medication;
 import io.swagger.model.Person;
 
-@Service
 public class MickBoydData {
-
-  @Autowired
-  private PersonDao personDao;
-  @Autowired
-  private AllergyDao allergyDao;
-  @Autowired
-  private MedicationDao medicationDao;
   
   // -----------------------------------------------------------------------------------------------
   // Mick Boyd
@@ -38,7 +25,7 @@ public class MickBoydData {
     person.setAge(38);
     person.setCity("Culver");
     person.setBirthdate("03/06/1984");
-    person.setEmail("jaboyd@email.com");
+    person.setEmail("miboyd@email.com");
     return(person);
   }
   
@@ -51,8 +38,8 @@ public class MickBoydData {
     personEntity.setPhoneNumber("841-874-6512");
     personEntity.setZip("97451");
     personEntity.setCity("Culver");
-    personEntity.setBirthdate(new Date("1984/03/06"));
-    personEntity.setEmail("jaboyd@email.com");
+    personEntity.setBirthdate(new Date("1984/06/03"));
+    personEntity.setEmail("miboyd@email.com");
     return(personEntity);
   }
   
@@ -67,26 +54,80 @@ public class MickBoydData {
         + "\"age\": 38,"
         + "\"city\": \"Culver\","
         + "\"birthdate\": \"03/06/1984\","
-        + "\"email\": \"jaboyd@email.com\""
+        + "\"email\": \"miboyd@email.com\""
         + "}";
     return jsonString;
   }
-
-  public static MedicalRecordEntity getMedicalRecordEntity() {
-    List<MedicalRecordAllergyEntity> medicalRecordAllergyEntity = new ArrayList<>();
-    
-    
-    
-    List<MedicalRecordMedicationEntity> medicalRecordMedicationEntity = new ArrayList<>(); 
-    
-    
-//    Integer idPerson = personDao.findPersonByName("","").getId();
-    
-    MedicalRecordEntity medicalRecordEntity = new MedicalRecordEntity();
-    medicalRecordEntity.setIdPerson(1);
-    medicalRecordEntity.setAllergies(medicalRecordAllergyEntity);
-    medicalRecordEntity.setMedications(medicalRecordMedicationEntity);
-    return medicalRecordEntity;
+  
+  public static Medication getMedication() {
+    Medication medication = new Medication();
+    medication.setMedication("aznol:350mg");
+    return medication;
   }
   
+  public static Allergy getAllergy() {
+    Allergy allergy = new Allergy();
+    allergy.setAllergy("nillacilan");
+    return allergy;
+  }
+  
+  public static MedicalRecord getMedicalRecord() {
+    MedicalRecord medicalRecord = new MedicalRecord();
+    medicalRecord.setId(1);
+    medicalRecord.setFirstName("Mick");
+    medicalRecord.setLastName("Boyd");
+    medicalRecord.setBirthdate("03/06/1984");
+    
+    List<Allergy> allergies = new ArrayList<>();
+    allergies.add(getAllergy());
+    medicalRecord.setAllergies(allergies);
+    
+    List<Medication> medications = new ArrayList<>();
+    medications.add(getMedication());
+    medicalRecord.setMedications(medications);
+    
+    return medicalRecord;
+  }
+  
+  public static String getMedicalRecordJson() {
+    String jsonString= "{"
+        + "\"allergies\": ["
+          + "{"
+            + "\"allergy\": \"nillacilan\""
+          + "}"
+        + "],"
+        + "\"birthdate\": \"03/06/1984\","
+        + "\"firstName\": \"Mick\","
+        + "\"id\": 0,"
+        + "\"lastName\": \"Boyd\","
+        + "\"medications\": ["
+          + "{"
+            + "\"medication\": \"aznol:350mg\""
+          + "}"
+        + "]"
+        + "}";
+    return jsonString;
+  }
+  
+  public static MedicalRecord getUpdateMedicalRecord() {
+    MedicalRecord medicalRecord = new MedicalRecord();
+    medicalRecord.setId(1);
+    medicalRecord.setFirstName("Mick");
+    medicalRecord.setLastName("Boyd");
+    medicalRecord.setBirthdate("03/06/1980");
+    
+    List<Allergy> allergies = new ArrayList<>();
+    Allergy allergy = new Allergy();
+    allergy.setAllergy("peanut");
+    allergies.add(allergy);
+    medicalRecord.setAllergies(allergies);
+    
+    List<Medication> medications = new ArrayList<>();
+    Medication medication = new Medication();
+    medication.setMedication("tetracyclaz:650mg");
+    medications.add(medication);
+    medicalRecord.setMedications(medications);
+    
+    return medicalRecord;
+  }
 }

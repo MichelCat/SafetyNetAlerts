@@ -14,6 +14,7 @@ public class AllergyDaoImpl implements AllergyDao {
   // -----------------------------------------------------------------------------------------------
   @Override
   public void clearTable() {
+    allergySequence = 0;
     allergyEntities.clear();
   }
 

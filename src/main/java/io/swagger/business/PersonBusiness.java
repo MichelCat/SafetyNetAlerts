@@ -16,7 +16,7 @@ public class PersonBusiness {
   @Autowired
   private PersonDao personDao;
   @Autowired
-  public DateUtils dateUtils;
+  private DateUtils dateUtils;
   
   public Person savePerson(final Person person) {
     PersonEntity personEntity = personUtils.conversionPersonToPersonEntity(person);

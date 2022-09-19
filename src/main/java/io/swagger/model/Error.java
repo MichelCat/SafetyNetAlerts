@@ -2,24 +2,21 @@ package io.swagger.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.validation.annotation.Validated;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Error
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-08-09T21:09:55.880Z[GMT]")
-
-
 public class Error   {
   @JsonProperty("code")
+  @Getter @Setter
   private String code = null;
 
   @JsonProperty("message")
+  @Getter @Setter
   private String message = null;
 
   public Error code(String code) {
@@ -27,39 +24,10 @@ public class Error   {
     return this;
   }
 
-  /**
-   * Get code
-   * @return code
-   **/
-  @Schema(description = "")
-  
-    public String getCode() {
-    return code;
-  }
-
-  public void setCode(String code) {
-    this.code = code;
-  }
-
   public Error message(String message) {
     this.message = message;
     return this;
   }
-
-  /**
-   * Get message
-   * @return message
-   **/
-  @Schema(description = "")
-  
-    public String getMessage() {
-    return message;
-  }
-
-  public void setMessage(String message) {
-    this.message = message;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -81,23 +49,6 @@ public class Error   {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Error {\n");
-    
-    sb.append("    code: ").append(toIndentedString(code)).append("\n");
-    sb.append("    message: ").append(toIndentedString(message)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return "Error [code=" + code + ", message=" + message + "]";
   }
 }

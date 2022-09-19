@@ -11,7 +11,7 @@ import io.swagger.model.Person;
 public class PersonUtils {
   
   @Autowired
-  public DateUtils dateUtils;
+  private DateUtils dateUtils;
 
   public List<Person> conversionListPersonEntityToPerson(List<PersonEntity> personEntities) {
     List<Person> persons = new ArrayList<>();
@@ -22,7 +22,7 @@ public class PersonUtils {
   }
   
   public Person conversionPersonEntityToPerson(PersonEntity personEntity) {
-    Person person = new Person();
+    var person = new Person();
     person.setId(personEntity.getId());
     person.setFirstName(personEntity.getFirstName());
     person.setLastName(personEntity.getLastName());
@@ -30,14 +30,14 @@ public class PersonUtils {
     person.setPhoneNumber(personEntity.getPhoneNumber());
     person.setZipCode(personEntity.getZip());
     person.setCity(personEntity.getCity());
-    person.setBirthdate(personEntity.getBirthdate().toString());
+    person.setBirthdate(dateUtils.dateToStringDDMMYYYYConversion(personEntity.getBirthdate()));
     person.setEmail(personEntity.getEmail());
     person.setAge(personEntity.getAge());
     return person;
   }
   
   public PersonEntity conversionPersonToPersonEntity(Person person) {
-    PersonEntity personEntity = new PersonEntity();
+    var personEntity = new PersonEntity();
     personEntity.setId(person.getId());
     personEntity.setFirstName(person.getFirstName());
     personEntity.setLastName(person.getLastName());

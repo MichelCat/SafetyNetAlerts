@@ -6,6 +6,7 @@ import io.swagger.dao.db.entities.PersonEntity;
 public interface PersonDao {
   void clearTable();
   PersonEntity findPersonByName(String firstName, String lastName);
+  PersonEntity findPersonById(Integer Id);
   List<PersonEntity> findPersonByAddresses(List<String> addresses);
   List<PersonEntity> findChildByAddress(String address);
   List<PersonEntity> findOtherHouseholdPersonsByNameAddress(String firstName, String lastName, String address);

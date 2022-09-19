@@ -16,6 +16,7 @@ public class PersonDaoImpl implements PersonDao {
   // -----------------------------------------------------------------------------------------------
   @Override
   public void clearTable() {
+    personSequence = 0;
     personEntities.clear();
   }
 
@@ -25,6 +26,17 @@ public class PersonDaoImpl implements PersonDao {
     for (PersonEntity personEntity : personEntities) {
       if (personEntity.getFirstName().equalsIgnoreCase(firstName)
           && personEntity.getLastName().equalsIgnoreCase(lastName)) {
+        return personEntity;
+      }
+    }
+    return null;
+  }
+
+  // -----------------------------------------------------------------------------------------------
+  @Override
+  public PersonEntity findPersonById(Integer Id) {
+    for (PersonEntity personEntity : personEntities) {
+      if (personEntity.getId().equals(Id)) {
         return personEntity;
       }
     }

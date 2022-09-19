@@ -44,9 +44,38 @@ public class MedicalRecordDaoImpl implements MedicalRecordDao {
 
   // -----------------------------------------------------------------------------------------------
   @Override
+  public MedicalRecordEntity findMedicalRecordEntityById(Integer idPerson) {
+    for (MedicalRecordEntity medicalRecordEntity : medicalRecordEntities) {
+      if (medicalRecordEntity.getIdPerson().equals(idPerson)) {
+        return medicalRecordEntity;
+      }
+    }
+    return null;
+  }
+
+  // -----------------------------------------------------------------------------------------------
+  @Override
   public MedicalRecordEntity save(MedicalRecordEntity medicalRecordEntity) {
     medicalRecordEntities.add(medicalRecordEntity);
     return medicalRecordEntity;
   }
 
+  // -----------------------------------------------------------------------------------------------
+  @Override
+  public MedicalRecordEntity update(MedicalRecordEntity medicalRecordEntity) {
+    medicalRecordEntities.remove(medicalRecordEntity);
+    medicalRecordEntities.add(medicalRecordEntity);
+    return medicalRecordEntity;
+  }
+  
+  // -----------------------------------------------------------------------------------------------
+  @Override
+  public void delete(Integer idPerson) {
+    for (MedicalRecordEntity medicalRecordEntity : medicalRecordEntities) {
+      if (medicalRecordEntity.getIdPerson().equals(idPerson)) {
+        medicalRecordEntities.remove(medicalRecordEntity);
+        return;
+      }
+    }
+  }
 }

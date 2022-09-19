@@ -5,7 +5,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import org.junit.jupiter.api.BeforeAll;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrlPattern;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,28 +14,19 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import io.swagger.dao.DataBasePrepareBusiness;
-import io.swagger.dao.db.PersonDao;
-import io.swagger.dao.db.entities.PersonEntity;
+import io.swagger.dao.LoadJsonFileInDatabaseBusiness;
 import io.swagger.data.MickBoydData;
-import io.swagger.utils.DateUtils;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class PersonApiControllerIT {
+class PersonApiControllerIT {
 
   @Autowired
   private MockMvc mockMvc;
   @Autowired
-  private DateUtils dateUtils;
-  @Autowired
-  private PersonDao personDao;
-  @Autowired
   private DataBasePrepareBusiness dataBasePrepareService;
-  
-
-  @BeforeAll
-  private static void setUp() throws Exception {
-  }
+  @Autowired
+  private LoadJsonFileInDatabaseBusiness loadJsonFileInDatabaseService;
 
   @BeforeEach
   private void setUpPerTest() throws Exception {
@@ -54,6 +45,7 @@ public class PersonApiControllerIT {
           .contentType(MediaType.APPLICATION_JSON)
           .accept(MediaType.APPLICATION_JSON))
           .andExpect(status().isCreated())
+          .andExpect(redirectedUrlPattern("http://*/person/1"))
           .andExpect(jsonPath("$.firstName").value("Mick"))      
           .andExpect(jsonPath("$.lastName").value("Boyd"))      
           .andExpect(jsonPath("$.address").value("1234 Wall Street"))      
@@ -61,8 +53,8 @@ public class PersonApiControllerIT {
           .andExpect(jsonPath("$.zipCode").value("97451"))      
           .andExpect(jsonPath("$.age").value("38"))      
           .andExpect(jsonPath("$.city").value("Culver"))      
-          .andExpect(jsonPath("$.birthdate").value(dateUtils.stringDDMMYYYYToCetConversion("03/06/1984")))      
-          .andExpect(jsonPath("$.email").value("jaboyd@email.com"));      
+          .andExpect(jsonPath("$.birthdate").value("03/06/1984"))      
+          .andExpect(jsonPath("$.email").value("miboyd@email.com"));      
     // THEN
   }
   
@@ -72,10 +64,11 @@ public class PersonApiControllerIT {
   @Test
   void deletePerson_return204() throws Exception {
     // GIVEN
-    PersonEntity personEntity = personDao.save(MickBoydData.getPersonEntity());
+    loadJsonFileInDatabaseService.loadDataBase("MickBoydData.json");
     // WHEN
-    mockMvc.perform(delete("/person?firstName=Mick&lastName=Boyd")
-        .accept(MediaType.APPLICATION_JSON))
+    mockMvc.perform(delete("/person")
+        .param("firstName", "Mick")
+        .param("lastName", "Boyd"))
         .andExpect(status().isNoContent());
     // THEN
   }
@@ -86,7 +79,7 @@ public class PersonApiControllerIT {
   @Test
   void putPerson_return200() throws Exception {
     // GIVEN
-    PersonEntity personEntity = personDao.save(MickBoydData.getPersonEntity());
+    loadJsonFileInDatabaseService.loadDataBase("MickBoydData.json");
     // WHEN
     mockMvc.perform(put("/person")
           .content(MickBoydData.getJson())
@@ -100,8 +93,8 @@ public class PersonApiControllerIT {
           .andExpect(jsonPath("$.zipCode").value("97451"))      
           .andExpect(jsonPath("$.age").value("38"))      
           .andExpect(jsonPath("$.city").value("Culver"))      
-          .andExpect(jsonPath("$.birthdate").value(dateUtils.stringDDMMYYYYToCetConversion("03/06/1984")))      
-          .andExpect(jsonPath("$.email").value("jaboyd@email.com"));      
+          .andExpect(jsonPath("$.birthdate").value("03/06/1984"))      
+          .andExpect(jsonPath("$.email").value("miboyd@email.com"));      
     // THEN
   }
 
