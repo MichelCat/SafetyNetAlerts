@@ -7,10 +7,15 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import com.safetynet.safetynetalerts.dao.DataBasePrepareBusiness;
-import com.safetynet.safetynetalerts.dao.db.FireStationDao;
 import com.safetynet.safetynetalerts.dao.db.entities.FireStationEntity;
 import com.safetynet.safetynetalerts.data.FireStationData;
 
+/**
+ * FireStationDaoIT is the integration test class managing the FireStationEntity list
+ * 
+ * @author MC
+ * @version 1.0
+ */
 @SpringBootTest
 class FireStationDaoIT {
 
@@ -34,7 +39,9 @@ class FireStationDaoIT {
   // -----------------------------------------------------------------------------------------------
   // Method clearTable
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Clear FireStationEntity list
+   */
   @Test
   void clearTable_Normal() {
     // GIVEN
@@ -48,7 +55,9 @@ class FireStationDaoIT {
   // -----------------------------------------------------------------------------------------------
   // Method fireStationAddressByStationNumber
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, List of addresses served by a fire station
+   */
   @Test
   void fireStationAddressByStationNumber_Normal() {
     // GIVEN
@@ -59,7 +68,9 @@ class FireStationDaoIT {
     assertThat(result.contains(mickFireStationEntity.getAddress())).isTrue();
   }
   
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list, List of addresses served by a fire station
+   */
   @Test
   void fireStationAddressByStationNumber_EmptyList() {
     // GIVEN
@@ -71,7 +82,9 @@ class FireStationDaoIT {
   // -----------------------------------------------------------------------------------------------
   // Method fireStationByStationAddress
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, List of fire stations serving an address
+   */
   @Test
   void fireStationByStationAddress_Normal() {
     // GIVEN
@@ -83,7 +96,9 @@ class FireStationDaoIT {
     assertThat(result.size()).isEqualTo(1);
   }
   
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list, List of fire stations serving an address
+   */
   @Test
   void fireStationByStationAddress_EmptyList() {
     // GIVEN
@@ -95,7 +110,9 @@ class FireStationDaoIT {
   // -----------------------------------------------------------------------------------------------
   // Method fireStationByStationNumberStationAddress
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Search fire station by number and address
+   */
   @Test
   void fireStationByStationNumberStationAddress_Normal() {
     // GIVEN
@@ -107,7 +124,9 @@ class FireStationDaoIT {
     assertThat(result).isEqualTo(mickFireStationEntity);
   }
   
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list, Search fire station by number and address
+   */
   @Test
   void fireStationByStationNumberStationAddress_EmptyList() {
     // GIVEN
@@ -121,7 +140,9 @@ class FireStationDaoIT {
   // -----------------------------------------------------------------------------------------------
   // Method save
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Add a fire station
+   */
   @Test
   void save_Normal() {
     // GIVEN
@@ -133,7 +154,9 @@ class FireStationDaoIT {
                                   mickStationNumber, mickAddress));
   }
   
-  // Borderline cases : Record already created
+  /**
+   * Borderline case test, record already created, Add a fire station
+   */
   @Test
   void save_recordingPresent() {
     // GIVEN
@@ -148,7 +171,9 @@ class FireStationDaoIT {
   // -----------------------------------------------------------------------------------------------
   // Method update
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Update an existing fire station
+   */
   @Test
   void update_Normal() {
     // GIVEN
@@ -167,7 +192,9 @@ class FireStationDaoIT {
     assertThat(result).isEqualTo(readFireStationEntity);
   }
   
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list, Update an existing fire station
+   */
   @Test
   void update_EmptyList() {
     // GIVEN
@@ -182,7 +209,9 @@ class FireStationDaoIT {
   // -----------------------------------------------------------------------------------------------
   // Method delete
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Delete a fire station
+   */
   @Test
   void delete_Normal() {
     // GIVEN
@@ -195,7 +224,9 @@ class FireStationDaoIT {
     assertThat(readFireStationEntity).isNull();
   }
   
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list, Delete a fire station
+   */
   @Test
   void delete_EmptyList() {
     // GIVEN

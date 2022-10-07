@@ -12,11 +12,20 @@ import com.safetynet.safetynetalerts.model.MedicalRecord;
 import com.safetynet.safetynetalerts.model.Medication;
 import com.safetynet.safetynetalerts.model.Person;
 
+/**
+ * MickBoydData is the class containing Mick's test set
+ * 
+ * @author MC
+ * @version 1.0
+ */
 public class MickBoydData {
   
   // -----------------------------------------------------------------------------------------------
   // Mick Boyd
   // -----------------------------------------------------------------------------------------------
+  /**
+   * Set of test Person
+   */
   public static Person getPerson() {
     Person person = new Person();
     person.setId(1);
@@ -32,6 +41,9 @@ public class MickBoydData {
     return(person);
   }
   
+  /**
+   * Set of test PersonEntity
+   */
   public static PersonEntity getPersonEntity() {
     PersonEntity personEntity = new PersonEntity();
     personEntity.setId(1);
@@ -46,6 +58,9 @@ public class MickBoydData {
     return(personEntity);
   }
   
+  /**
+   * Set of test JSON file Person
+   */
   public static String getJson() {
     String jsonString= "{"
         + "\"id\": 1,"
@@ -63,12 +78,18 @@ public class MickBoydData {
   }
   
   // -----------------------------------------------------------------------------------------------
+  /**
+   * Set of test Medication
+   */
   public static Medication getMedicationAznol() {
     Medication medication = new Medication();
     medication.setMedication("aznol:350mg");
     return medication;
   }
   
+  /**
+   * Set of test MedicationEntity
+   */
   public static MedicationEntity getMedicationEntityAznol() {
     MedicationEntity medicationEntity = new MedicationEntity();
     medicationEntity.setId(1);
@@ -76,12 +97,18 @@ public class MickBoydData {
     return medicationEntity;
   }
   
+  /**
+   * Set of test Allergy nillacilan
+   */
   public static Allergy getAllergyNillacilan() {
     Allergy allergy = new Allergy();
     allergy.setAllergy("nillacilan");
     return allergy;
   }
   
+  /**
+   * Set of test AllergyEntity nillacilan
+   */
   public static AllergyEntity getAllergyEntityNillacilan() {
     AllergyEntity allergyEntity = new AllergyEntity();
     allergyEntity.setId(1);
@@ -89,6 +116,9 @@ public class MickBoydData {
     return allergyEntity;
   }
   
+  /**
+   * Set of test MedicalRecord
+   */
   public static MedicalRecord getMedicalRecord() {
     MedicalRecord medicalRecord = new MedicalRecord();
     medicalRecord.setId(1);
@@ -100,6 +130,9 @@ public class MickBoydData {
     return medicalRecord;
   }
   
+  /**
+   * Set of test MedicalRecordEntity
+   */
   public static MedicalRecordEntity getMedicalRecordEntity() {
     MedicalRecordEntity medicalRecordEntity = new MedicalRecordEntity();
     medicalRecordEntity.setIdPerson(1);
@@ -115,6 +148,9 @@ public class MickBoydData {
     return medicalRecordEntity;
   }
   
+  /**
+   * Set of test JSON file MedicalRecord
+   */
   public static String getMedicalRecordJson() {
     String jsonString= "{"
         + "\"allergies\": ["
@@ -136,6 +172,9 @@ public class MickBoydData {
   }
   
   // -----------------------------------------------------------------------------------------------
+  /**
+   * Set of test MedicalRecord update
+   */
   public static MedicalRecord getUpdateMedicalRecord() {
     MedicalRecord medicalRecord = new MedicalRecord();
     medicalRecord.setId(1);
@@ -154,6 +193,9 @@ public class MickBoydData {
     return medicalRecord;
   }
   
+  /**
+   * Set of test AllergyEntity peanut
+   */
   public static AllergyEntity getAllergyEntityPeanut() {
     AllergyEntity allergyEntity = new AllergyEntity();
     allergyEntity.setId(2);
@@ -161,6 +203,9 @@ public class MickBoydData {
     return allergyEntity;
   }
 
+  /**
+   * Set of test AllergyEntity tetracyclaz
+   */
   public static MedicationEntity getMedicationEntityTetracyclaz() {
     MedicationEntity medicationEntity = new MedicationEntity();
     medicationEntity.setId(2);

@@ -27,6 +27,7 @@ import com.safetynet.safetynetalerts.data.YoungBoydData;
 import com.safetynet.safetynetalerts.model.PersonInFireStation;
 
 /**
+ * FirestationApiControllerIT is a class of Endpoint integration tests on fire stations.
  * 
  * @author MC
  * @version 1.0
@@ -50,7 +51,9 @@ class FirestationApiControllerIT {
   // -----------------------------------------------------------------------------------------------
   // Method getFirestation
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * HTTP GET /firestation, general case test, return HTTP 200
+   */
   @Test
   void getFirestation_return200() throws Exception {
     // GIVEN
@@ -76,9 +79,11 @@ class FirestationApiControllerIT {
     assertThat(returnResult).isEqualTo(personInFireStation);
   }
   
-  //Borderline cases : Empty database
+  /**
+   * HTTP GET /firestation, borderline case test, empty database, return HTTP 204
+   */
   @Test
-  void getFirestation_return200EmptyDatabase() throws Exception {
+  void getFirestation_return204EmptyDatabase() throws Exception {
     // GIVEN
     // WHEN
     mockMvc.perform(get("/firestation")
@@ -94,6 +99,9 @@ class FirestationApiControllerIT {
   // -----------------------------------------------------------------------------------------------
   // Method postFirestation
   // -----------------------------------------------------------------------------------------------
+  /**
+   * HTTP POST /firestation, general case test, return HTTP 201
+   */
   @Test
   void postFirestation_return201() throws Exception {
     // GIVEN
@@ -112,6 +120,9 @@ class FirestationApiControllerIT {
   // -----------------------------------------------------------------------------------------------
   // Method deleteFirestation
   // -----------------------------------------------------------------------------------------------
+  /**
+   * HTTP DELETE /firestation, general case test, return HTTP 204
+   */
   @Test
   void deleteFirestation_return204() throws Exception {
     // GIVEN
@@ -127,6 +138,9 @@ class FirestationApiControllerIT {
   // -----------------------------------------------------------------------------------------------
   // Method putFirestation
   // -----------------------------------------------------------------------------------------------
+  /**
+   * HTTP PUT /firestation, general case test, return HTTP 200
+   */
   @Test
   void putFirestation_return200() throws Exception {
     // GIVEN

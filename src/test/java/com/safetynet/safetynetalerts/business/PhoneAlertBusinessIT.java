@@ -6,7 +6,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import com.safetynet.safetynetalerts.business.PhoneAlertBusiness;
 import com.safetynet.safetynetalerts.dao.DataBasePrepareBusiness;
 import com.safetynet.safetynetalerts.dao.db.FireStationDao;
 import com.safetynet.safetynetalerts.dao.db.PersonDao;
@@ -16,6 +15,12 @@ import com.safetynet.safetynetalerts.data.FireStationData;
 import com.safetynet.safetynetalerts.data.MickBoydData;
 import com.safetynet.safetynetalerts.model.Person;
 
+/**
+ * PhoneAlertBusinessIT is a class of integration tests on phone number to alert.
+ * 
+ * @author MC
+ * @version 1.0
+ */
 @SpringBootTest
 class PhoneAlertBusinessIT {
   
@@ -41,7 +46,9 @@ class PhoneAlertBusinessIT {
   // -----------------------------------------------------------------------------------------------
   // Method getPersonsLivingNearStation
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Get the phone numbers of residents served by the fire station
+   */
   @Test
   void getPersonsLivingNearStation_Normal() {
     // GIVEN
@@ -54,7 +61,9 @@ class PhoneAlertBusinessIT {
     assertThat(result.size()).isEqualTo(1);
   }
   
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list, Get the phone numbers of residents served by the fire station
+   */
   @Test
   void getPersonsLivingNearStationn_EmptyList() {
     // GIVEN

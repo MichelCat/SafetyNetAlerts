@@ -4,14 +4,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import com.safetynet.safetynetalerts.dao.DataBasePrepareBusiness;
-import com.safetynet.safetynetalerts.dao.LoadJsonFileInDatabaseBusiness;
 import com.safetynet.safetynetalerts.dao.db.AllergyDao;
 import com.safetynet.safetynetalerts.dao.db.FireStationDao;
 import com.safetynet.safetynetalerts.dao.db.MedicalRecordDao;
 import com.safetynet.safetynetalerts.dao.db.MedicationDao;
 import com.safetynet.safetynetalerts.dao.db.PersonDao;
 
+/**
+ * DataBasePrepareBusinessIT is a class of integration tests on managing the database
+ * 
+ * @author MC
+ * @version 1.0
+ */
 @SpringBootTest
 class DataBasePrepareBusinessIT {
   
@@ -33,7 +37,9 @@ class DataBasePrepareBusinessIT {
   // -----------------------------------------------------------------------------------------------
   // Method clearDataBase
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Clear DataBase
+   */
   @Test
   void clearDataBase_Normal() {
     // GIVEN

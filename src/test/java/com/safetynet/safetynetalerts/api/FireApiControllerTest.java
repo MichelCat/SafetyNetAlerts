@@ -17,7 +17,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import com.safetynet.safetynetalerts.api.FireApiController;
 import com.safetynet.safetynetalerts.business.FireBusiness;
 import com.safetynet.safetynetalerts.data.FireStationData;
 import com.safetynet.safetynetalerts.data.MickBoydData;
@@ -27,6 +26,7 @@ import com.safetynet.safetynetalerts.model.Medication;
 import com.safetynet.safetynetalerts.model.Person;
 
 /**
+ * FireApiControllerTest is a class of Endpoint unit tests on the inhabitants living at the address.
  * 
  * @author MC
  * @version 1.0
@@ -53,7 +53,9 @@ class FireApiControllerTest {
     fireStations = new ArrayList<>();
   }
 
-  // Borderline cases : Empty list
+  /**
+   * HTTP GET /fire, general case test, return HTTP 200
+   */
   @Test
   void getFire_return200() throws Exception {
     // GIVEN
@@ -91,9 +93,11 @@ class FireApiControllerTest {
     verify(fireBusiness, Mockito.times(1)).getFireStationByStationAddress(any(String.class));
   }
 
-  // Borderline cases : Empty list
+  /**
+   * HTTP GET /fire, borderline case test, empty database, return HTTP 204
+   */
   @Test
-  void getFire_return200EmptyList() throws Exception {
+  void getFire_return204EmptyList() throws Exception {
     // GIVEN
     when(fireBusiness.getPersonsLivingInAddress(any(String.class))).thenReturn(persons);
     when(fireBusiness.getAllergyByName(any(Integer.class))).thenReturn(allergies);

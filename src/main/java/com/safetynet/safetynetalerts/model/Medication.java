@@ -7,14 +7,24 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Medication
+ * Medication is business model
+ * 
+ * @author MC
+ * @version 1.0
  */
 @Validated
-public class Medication   {
+public class Medication {
   @JsonProperty("medication")
-  @Getter @Setter
+  @Getter
+  @Setter
   private String medication;
 
+  /**
+   * Compare two objects
+   * 
+   * @param o Object to compare
+   * @return True if the objects are equal, and false if not.
+   */
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -27,6 +37,11 @@ public class Medication   {
     return Objects.equals(this.medication, medication.medication);
   }
 
+  /**
+   * Get the hash code for the object of class Method
+   * 
+   * @return Hash code
+   */
   @Override
   public int hashCode() {
     return Objects.hash(medication);

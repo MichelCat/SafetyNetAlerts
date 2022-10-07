@@ -6,11 +6,20 @@ import com.safetynet.safetynetalerts.model.Allergy;
 import com.safetynet.safetynetalerts.model.Medication;
 import com.safetynet.safetynetalerts.model.Person;
 
+/**
+ * MickBoydData is the class containing Young's test set
+ * 
+ * @author MC
+ * @version 1.0
+ */
 public class YoungBoydData {
 
   // -----------------------------------------------------------------------------------------------
   // Young Boyd
   // -----------------------------------------------------------------------------------------------
+  /**
+   * Set of test Person
+   */
   public static Person getPerson() {
     Person person = new Person();
     person.setId(1);
@@ -23,9 +32,12 @@ public class YoungBoydData {
     person.setCity("Culver");
     person.setBirthdate("18/02/2012");
     person.setEmail("yoboyd@email.com");
-    return(person);
+    return (person);
   }
-  
+
+  /**
+   * Set of test PersonEntity
+   */
   public static PersonEntity getPersonEntity() {
     PersonEntity personEntity = new PersonEntity();
     personEntity.setId(1);
@@ -37,9 +49,12 @@ public class YoungBoydData {
     personEntity.setCity("Culver");
     personEntity.setBirthdate(new Date("2012/02/18"));
     personEntity.setEmail("yoboyd@email.com");
-    return(personEntity);
+    return (personEntity);
   }
-  
+
+  /**
+   * Set of test JSON file Person
+   */
   public static String getJson() {
     String jsonString= "{"
         + "\"id\": 1,"
@@ -55,12 +70,18 @@ public class YoungBoydData {
         + "}";
     return jsonString;
   }
-  
+
   // -----------------------------------------------------------------------------------------------
+  /**
+   * Set of test Medication null
+   */
   public static Medication getMedication() {
     return null;
   }
-  
+
+  /**
+   * Set of test Allergy peanut
+   */
   public static Allergy getAllergyPeanut() {
     Allergy allergy = new Allergy();
     allergy.setAllergy("peanut");

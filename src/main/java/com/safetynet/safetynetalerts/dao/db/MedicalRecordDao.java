@@ -5,6 +5,12 @@ import com.safetynet.safetynetalerts.dao.db.entities.MedicalRecordAllergyEntity;
 import com.safetynet.safetynetalerts.dao.db.entities.MedicalRecordEntity;
 import com.safetynet.safetynetalerts.dao.db.entities.MedicalRecordMedicationEntity;
 
+/**
+ * MedicalRecordDao is interface that manages the MedicalRecordEntity list
+ * 
+ * @author MC
+ * @version 1.0
+ */
 public interface MedicalRecordDao {
   void clearTable();
   List<MedicalRecordAllergyEntity> findAllergyEntityById(Integer idPerson);

@@ -5,7 +5,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import com.safetynet.safetynetalerts.business.PersonBusiness;
 import com.safetynet.safetynetalerts.dao.DataBasePrepareBusiness;
 import com.safetynet.safetynetalerts.dao.db.PersonDao;
 import com.safetynet.safetynetalerts.dao.db.entities.PersonEntity;
@@ -13,6 +12,12 @@ import com.safetynet.safetynetalerts.data.MickBoydData;
 import com.safetynet.safetynetalerts.model.Person;
 import com.safetynet.safetynetalerts.utils.PersonUtils;
 
+/**
+ * PersonBusinessIT is a class of integration tests on person
+ * 
+ * @author MC
+ * @version 1.0
+ */
 @SpringBootTest
 class PersonBusinessIT {
   
@@ -36,7 +41,9 @@ class PersonBusinessIT {
   // -----------------------------------------------------------------------------------------------
   // Method savePerson
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Add a person station
+   */
   @Test
   void savePerson_Normal() {
     // GIVEN
@@ -52,7 +59,9 @@ class PersonBusinessIT {
   // -----------------------------------------------------------------------------------------------
   // Method updatePerson
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Update an existing person
+   */
   @Test
   void updatePerson_Normal() {
     // GIVEN
@@ -72,7 +81,9 @@ class PersonBusinessIT {
   // -----------------------------------------------------------------------------------------------
   // Method deletePerson
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Delete an person
+   */
   @Test
   void deletePerson_Normal() {
     // GIVEN

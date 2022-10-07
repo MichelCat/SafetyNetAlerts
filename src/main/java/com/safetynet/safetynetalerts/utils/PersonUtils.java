@@ -7,12 +7,24 @@ import org.springframework.stereotype.Service;
 import com.safetynet.safetynetalerts.dao.db.entities.PersonEntity;
 import com.safetynet.safetynetalerts.model.Person;
 
+/**
+ * PersonUtils is an Person object conversion utility class
+ * 
+ * @author MC
+ * @version 1.0
+ */
 @Service
 public class PersonUtils {
-  
+
   @Autowired
   private DateUtils dateUtils;
 
+  /**
+   * Conversion PersonEntity list to Person list
+   * 
+   * @param personEntities PersonEntity list
+   * @return Person list
+   */
   public List<Person> conversionListPersonEntityToPerson(List<PersonEntity> personEntities) {
     List<Person> persons = new ArrayList<>();
     personEntities.forEach(e -> {
@@ -20,7 +32,13 @@ public class PersonUtils {
     });
     return persons;
   }
-  
+
+  /**
+   * Conversion PersonEntity to Person
+   * 
+   * @param personEntity PersonEntity object
+   * @return Person
+   */
   public Person conversionPersonEntityToPerson(PersonEntity personEntity) {
     var person = new Person();
     person.setId(personEntity.getId());
@@ -35,7 +53,13 @@ public class PersonUtils {
     person.setAge(personEntity.getAge());
     return person;
   }
-  
+
+  /**
+   * Conversion Person to PersonEntity
+   * 
+   * @param person Person object
+   * @return PersonEntity
+   */
   public PersonEntity conversionPersonToPersonEntity(Person person) {
     var personEntity = new PersonEntity();
     personEntity.setId(person.getId());

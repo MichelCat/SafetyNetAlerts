@@ -17,13 +17,13 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import com.safetynet.safetynetalerts.api.ChildAlertApiController;
 import com.safetynet.safetynetalerts.business.ChildAlertBusiness;
 import com.safetynet.safetynetalerts.data.MickBoydData;
 import com.safetynet.safetynetalerts.data.YoungBoydData;
 import com.safetynet.safetynetalerts.model.Person;
 
 /**
+ * ChildAlertApiControllerTest is a class of Endpoint unit tests on children.
  * 
  * @author MC
  * @version 1.0
@@ -46,7 +46,9 @@ class ChildAlertApiControllerTest {
     familyMembers = new ArrayList<>();
   }
 
-  // Borderline cases : Empty list
+  /**
+   * HTTP GET /childAlert, general case test, return HTTP 200
+   */
   @Test
   void getChildAlert_return200() throws Exception {
     // GIVEN
@@ -84,9 +86,11 @@ class ChildAlertApiControllerTest {
     verify(childAlertBusiness, Mockito.times(1)).getOtherHouseholdPersons(any(String.class), any(String.class), any(String.class));
   }
   
-  // Borderline cases : Empty list
+  /**
+   * HTTP GET /childAlert, borderline case test, empty database, return HTTP 204
+   */
   @Test
-  void getChildAlert_return200EmptyList() throws Exception {
+  void getChildAlert_return204EmptyList() throws Exception {
     // GIVEN
     when(childAlertBusiness.getChildLivingInArea(any(String.class))).thenReturn(children);
     when(childAlertBusiness.getOtherHouseholdPersons(any(String.class),any(String.class),any(String.class))).thenReturn(familyMembers);    

@@ -6,10 +6,15 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import com.safetynet.safetynetalerts.dao.DataBasePrepareBusiness;
-import com.safetynet.safetynetalerts.dao.db.AllergyDao;
 import com.safetynet.safetynetalerts.dao.db.entities.AllergyEntity;
 import com.safetynet.safetynetalerts.data.MickBoydData;
 
+/**
+ * AllergyDaoIT is the integration test class managing the AllergyEntity list
+ * 
+ * @author MC
+ * @version 1.0
+ */
 @SpringBootTest
 class AllergyDaoIT {
 
@@ -29,7 +34,9 @@ class AllergyDaoIT {
   // -----------------------------------------------------------------------------------------------
   // Method clearTable
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Clear AllergyEntity list
+   */
   @Test
   void clearTable_Normal() {
     // GIVEN
@@ -43,7 +50,9 @@ class AllergyDaoIT {
   // -----------------------------------------------------------------------------------------------
   // Method allergyById
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Allergy search by allergy ID
+   */
   @Test
   void allergyById_Normal() {
     // GIVEN
@@ -53,7 +62,9 @@ class AllergyDaoIT {
     // THEN
   }
   
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list, Allergy search by allergy ID
+   */
   @Test
   void allergyById_EmptyList() {
     // GIVEN
@@ -65,7 +76,9 @@ class AllergyDaoIT {
   // -----------------------------------------------------------------------------------------------
   // Method findIdAllergyByName
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Allergy search by allergy name
+   */
   @Test
   void findIdAllergyByName_Normal() {
     // GIVEN
@@ -75,7 +88,9 @@ class AllergyDaoIT {
     // THEN
   }
   
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list, Allergy search by allergy name
+   */
   @Test
   void findIdAllergyByName_EmptyList() {
     // GIVEN
@@ -87,7 +102,9 @@ class AllergyDaoIT {
   // -----------------------------------------------------------------------------------------------
   // Method save
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Add a allergy
+   */
   @Test
   void save_Normal() {
     // GIVEN
@@ -98,7 +115,9 @@ class AllergyDaoIT {
     assertThat(result).isEqualTo(allergyDao.allergyById(result.getId()));
   }
   
-  // Borderline cases : Record already created
+  /**
+   * Borderline case test, record already created, Add a allergy
+   */
   @Test
   void save_recordingPresent() {
     // GIVEN

@@ -6,13 +6,18 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import com.safetynet.safetynetalerts.business.CommunityEmailBusiness;
 import com.safetynet.safetynetalerts.dao.DataBasePrepareBusiness;
 import com.safetynet.safetynetalerts.dao.db.PersonDao;
 import com.safetynet.safetynetalerts.dao.db.entities.PersonEntity;
 import com.safetynet.safetynetalerts.data.MickBoydData;
 import com.safetynet.safetynetalerts.model.Person;
 
+/**
+ * CommunityEmailBusinessIT is a class of integration tests on email addresses of all the inhabitants of the city.
+ * 
+ * @author MC
+ * @version 1.0
+ */
 @SpringBootTest
 class CommunityEmailBusinessIT {
   
@@ -34,7 +39,9 @@ class CommunityEmailBusinessIT {
   // -----------------------------------------------------------------------------------------------
   // Method getPersonByCity
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Get email addresses of all the inhabitants of the city
+   */
   @Test
   void getPersonByCity_Normal() {
     // GIVEN
@@ -46,7 +53,9 @@ class CommunityEmailBusinessIT {
     assertThat(result.size()).isEqualTo(1);
   }
   
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list, Get email addresses of all the inhabitants of the city
+   */
   @Test
   void getPersonByCity_EmptyList() {
     // GIVEN

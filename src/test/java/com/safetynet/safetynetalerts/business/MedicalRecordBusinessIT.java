@@ -5,7 +5,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import com.safetynet.safetynetalerts.business.MedicalRecordBusiness;
 import com.safetynet.safetynetalerts.dao.DataBasePrepareBusiness;
 import com.safetynet.safetynetalerts.dao.db.AllergyDao;
 import com.safetynet.safetynetalerts.dao.db.MedicalRecordDao;
@@ -20,6 +19,12 @@ import com.safetynet.safetynetalerts.model.MedicalRecord;
 import com.safetynet.safetynetalerts.utils.DateUtils;
 import com.safetynet.safetynetalerts.utils.MedicalRecordUtils;
 
+/**
+ * MedicalRecordBusinessIT is a class of integration tests on medical records.
+ * 
+ * @author MC
+ * @version 1.0
+ */
 @SpringBootTest
 class MedicalRecordBusinessIT {
   
@@ -57,7 +62,9 @@ class MedicalRecordBusinessIT {
   // -----------------------------------------------------------------------------------------------
   // Method saveMedicalRecord
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Add a new medical record
+   */
   @Test
   void saveMedicalRecord_Normal() {
     // GIVEN
@@ -80,7 +87,9 @@ class MedicalRecordBusinessIT {
   // -----------------------------------------------------------------------------------------------
   // Method updateMedicalRecord
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Update an existing medical record
+   */
   @Test
   void updateMedicalRecord_Normal() {
     // GIVEN
@@ -108,7 +117,9 @@ class MedicalRecordBusinessIT {
   // -----------------------------------------------------------------------------------------------
   // Method deleteMedicalRecord
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Delete an medical record
+   */
   @Test
   void deleteFireStation_Normal() {
     // GIVEN

@@ -10,45 +10,76 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * PersonAndMedicalRecordInAddress
+ * PersonAndMedicalRecordInAddress is business model
+ * 
+ * @author MC
+ * @version 1.0
  */
 @Validated
-public class PersonAndMedicalRecordInAddress   {
+public class PersonAndMedicalRecordInAddress {
   @JsonProperty("person")
   @Valid
-  @Getter @Setter
+  @Getter
+  @Setter
   private Person person;
 
   @JsonProperty("medications")
   @Valid
-  @Getter @Setter
+  @Getter
+  @Setter
   private List<Medication> medications = new ArrayList<>();
 
   @JsonProperty("allergies")
   @Valid
-  @Getter @Setter
+  @Getter
+  @Setter
   private List<Allergy> allergies = new ArrayList<>();
 
   @JsonProperty("fireStations")
   @Valid
-  @Getter @Setter
+  @Getter
+  @Setter
   private List<FireStation> fireStations = new ArrayList<>();
 
+  /**
+   * Add medication to medication list
+   * 
+   * @param medicationsItem Medication to add
+   * @return Medication list
+   */
   public PersonAndMedicalRecordInAddress addMedicationsItem(Medication medicationsItem) {
     this.medications.add(medicationsItem);
     return this;
   }
 
+  /**
+   * Add allergy to allergy list
+   * 
+   * @param allergiesItem Allergy to add
+   * @return Allergies list
+   */
   public PersonAndMedicalRecordInAddress addAllergiesItem(Allergy allergiesItem) {
     this.allergies.add(allergiesItem);
     return this;
   }
 
+  /**
+   * Add fire station to fire station list
+   * 
+   * @param fireStationsItem Fire station to add
+   * @return Fire station list
+   */
   public PersonAndMedicalRecordInAddress addFireStationsItem(FireStation fireStationsItem) {
     this.fireStations.add(fireStationsItem);
     return this;
   }
 
+  /**
+   * Compare two objects
+   * 
+   * @param o Object to compare
+   * @return True if the objects are equal, and false if not.
+   */
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -58,12 +89,17 @@ public class PersonAndMedicalRecordInAddress   {
       return false;
     }
     var personAndMedicalRecordInAddress = (PersonAndMedicalRecordInAddress) o;
-    return Objects.equals(this.person, personAndMedicalRecordInAddress.person) &&
-        Objects.equals(this.medications, personAndMedicalRecordInAddress.medications) &&
-        Objects.equals(this.allergies, personAndMedicalRecordInAddress.allergies) &&
-        Objects.equals(this.fireStations, personAndMedicalRecordInAddress.fireStations);
+    return Objects.equals(this.person, personAndMedicalRecordInAddress.person)
+        && Objects.equals(this.medications, personAndMedicalRecordInAddress.medications)
+        && Objects.equals(this.allergies, personAndMedicalRecordInAddress.allergies)
+        && Objects.equals(this.fireStations, personAndMedicalRecordInAddress.fireStations);
   }
 
+  /**
+   * Get the hash code for the object of class Method
+   * 
+   * @return Hash code
+   */
   @Override
   public int hashCode() {
     return Objects.hash(person, medications, allergies, fireStations);

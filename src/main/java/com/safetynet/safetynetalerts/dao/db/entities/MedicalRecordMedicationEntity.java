@@ -4,19 +4,37 @@ import java.util.Objects;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * MedicalRecordMedicationEntity is Entity model
+ * 
+ * @author MC
+ * @version 1.0
+ */
 public class MedicalRecordMedicationEntity {
-  @Getter @Setter
+  @Getter
+  @Setter
   private Integer idMedication;
-  
-  @Getter @Setter
+
+  @Getter
+  @Setter
   private String dosage;
 
-  // -----------------------------------------------------------------------------------------------
+  /**
+   * Get the hash code for the object of class Method
+   * 
+   * @return Hash code
+   */
   @Override
   public int hashCode() {
     return Objects.hash(dosage, idMedication);
   }
 
+  /**
+   * Compare two objects
+   * 
+   * @param obj Object to compare
+   * @return True if the objects are equal, and false if not.
+   */
   @Override
   public boolean equals(Object obj) {
     if (this == obj)

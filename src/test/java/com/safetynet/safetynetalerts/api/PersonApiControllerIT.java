@@ -18,6 +18,7 @@ import com.safetynet.safetynetalerts.dao.LoadJsonFileInDatabaseBusiness;
 import com.safetynet.safetynetalerts.data.MickBoydData;
 
 /**
+ * PersonApiControllerIT is a class of Endpoint integration tests on person.
  * 
  * @author MC
  * @version 1.0
@@ -41,6 +42,9 @@ class PersonApiControllerIT {
   // -----------------------------------------------------------------------------------------------
   // Method postPerson
   // -----------------------------------------------------------------------------------------------
+  /**
+   * HTTP POST /person, general case test, return HTTP 201
+   */
   @Test
   void postPerson_return201() throws Exception {
     // GIVEN
@@ -66,6 +70,9 @@ class PersonApiControllerIT {
   // -----------------------------------------------------------------------------------------------
   // Method deletePerson
   // -----------------------------------------------------------------------------------------------
+  /**
+   * HTTP DELETE /person, general case test, return HTTP 204
+   */
   @Test
   void deletePerson_return204() throws Exception {
     // GIVEN
@@ -81,6 +88,9 @@ class PersonApiControllerIT {
   // -----------------------------------------------------------------------------------------------
   // Method putPerson
   // -----------------------------------------------------------------------------------------------
+  /**
+   * HTTP PUT /person, general case test, return HTTP 200
+   */
   @Test
   void putPerson_return200() throws Exception {
     // GIVEN

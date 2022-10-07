@@ -23,6 +23,7 @@ import com.safetynet.safetynetalerts.data.MickBoydData;
 import com.safetynet.safetynetalerts.model.EmailInCity;
 
 /**
+ * CommunityEmailApiControllerIT is a class of Endpoint integration tests on the email addresses of all the inhabitants of the city.
  * 
  * @author MC
  * @version 1.0
@@ -43,7 +44,9 @@ class CommunityEmailApiControllerIT {
     dataBasePrepareService.clearDataBase();
   }
 
-  // General case
+  /**
+   * HTTP GET /communityEmail, general case test, return HTTP 200
+   */
   @Test
   void getCommunityEmail_return200() throws Exception {
     // GIVEN
@@ -67,9 +70,11 @@ class CommunityEmailApiControllerIT {
     assertThat(returnResult).isEqualTo(emailsInCity);
   }
 
-  // Borderline cases : Empty database
+  /**
+   * HTTP GET /communityEmail, borderline case test, empty database, return HTTP 204
+   */
   @Test
-  void getCommunityEmail_return200EmptyDatabase() throws Exception {
+  void getCommunityEmail_return204EmptyDatabase() throws Exception {
     // GIVEN
     // WHEN
     mockMvc.perform(get("/communityEmail")

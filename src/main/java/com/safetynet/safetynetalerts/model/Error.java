@@ -7,18 +7,29 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Error
+ * Error is business model
+ * 
+ * @author MC
+ * @version 1.0
  */
 @Validated
-public class Error   {
+public class Error {
   @JsonProperty("code")
-  @Getter @Setter
+  @Getter
+  @Setter
   private String code;
 
   @JsonProperty("message")
-  @Getter @Setter
+  @Getter
+  @Setter
   private String message;
 
+  /**
+   * Compare two objects
+   * 
+   * @param o Object to compare
+   * @return True if the objects are equal, and false if not.
+   */
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -28,10 +39,15 @@ public class Error   {
       return false;
     }
     var error = (Error) o;
-    return Objects.equals(this.code, error.code) &&
-        Objects.equals(this.message, error.message);
+    return Objects.equals(this.code, error.code)
+        && Objects.equals(this.message, error.message);
   }
 
+  /**
+   * Get the hash code for the object of class Method
+   * 
+   * @return Hash code
+   */
   @Override
   public int hashCode() {
     return Objects.hash(code, message);

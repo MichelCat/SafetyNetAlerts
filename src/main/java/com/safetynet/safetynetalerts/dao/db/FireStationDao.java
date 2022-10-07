@@ -3,6 +3,12 @@ package com.safetynet.safetynetalerts.dao.db;
 import java.util.List;
 import com.safetynet.safetynetalerts.dao.db.entities.FireStationEntity;
 
+/**
+ * FireStationDaois interface that manages the FireStationEntity list
+ * 
+ * @author MC
+ * @version 1.0
+ */
 public interface FireStationDao {
   void clearTable();
   List<String> fireStationAddressByStationNumber(Integer stationNumber);

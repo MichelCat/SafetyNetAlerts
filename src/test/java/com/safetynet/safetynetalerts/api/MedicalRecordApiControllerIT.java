@@ -21,6 +21,7 @@ import com.safetynet.safetynetalerts.dao.db.PersonDao;
 import com.safetynet.safetynetalerts.data.MickBoydData;
 
 /**
+ * MedicalRecordApiControllerIT is a class of Endpoint integration tests on medical records.
  * 
  * @author MC
  * @version 1.0
@@ -50,6 +51,9 @@ class MedicalRecordApiControllerIT {
   // -----------------------------------------------------------------------------------------------
   // Method postMedicalRecord
   // -----------------------------------------------------------------------------------------------
+  /**
+   * HTTP POST /medicalRecord, general case test, return HTTP 201
+   */
   @Test
   void postMedicalRecord_return201() throws Exception {
     // GIVEN
@@ -75,6 +79,9 @@ class MedicalRecordApiControllerIT {
   // -----------------------------------------------------------------------------------------------
   // Method deleteMedicalRecord
   // -----------------------------------------------------------------------------------------------
+  /**
+   * HTTP DELETE /medicalRecord, general case test, return HTTP 204
+   */
   @Test
   void deleteMedicalRecord_return204() throws Exception {
     // GIVEN
@@ -91,6 +98,9 @@ class MedicalRecordApiControllerIT {
   // -----------------------------------------------------------------------------------------------
   // Method putMedicalRecord
   // -----------------------------------------------------------------------------------------------
+  /**
+   * HTTP PUT /medicalRecord, general case test, return HTTP 200
+   */
   @Test
   void putMedicalRecord_return200() throws Exception {
     // GIVEN

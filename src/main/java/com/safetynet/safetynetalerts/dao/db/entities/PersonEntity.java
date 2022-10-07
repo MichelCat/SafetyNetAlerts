@@ -7,35 +7,54 @@ import java.util.Objects;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * PersonEntity is Entity model
+ * 
+ * @author MC
+ * @version 1.0
+ */
 public class PersonEntity {
-  @Getter @Setter
+  @Getter
+  @Setter
   private Integer id;
 
-  @Getter @Setter
+  @Getter
+  @Setter
   private String firstName;
 
-  @Getter @Setter
+  @Getter
+  @Setter
   private String lastName;
 
-  @Getter @Setter
+  @Getter
+  @Setter
   private String address;
 
-  @Getter @Setter
+  @Getter
+  @Setter
   private String city;
 
-  @Getter @Setter
+  @Getter
+  @Setter
   private String zip;
 
-  @Getter @Setter
+  @Getter
+  @Setter
   private String phoneNumber;
 
-  @Getter @Setter
+  @Getter
+  @Setter
   private String email;
 
-  @Getter @Setter
+  @Getter
+  @Setter
   private Date birthdate;
 
-  // -----------------------------------------------------------------------------------------------
+  /**
+   * Calculate the person's age
+   * 
+   * @return Person's age
+   */
   public Integer getAge() {
     if (birthdate == null) {
       return (0);
@@ -44,12 +63,22 @@ public class PersonEntity {
     return (Period.between(birthDate, LocalDate.now()).getYears());
   }
 
-  // -----------------------------------------------------------------------------------------------
+  /**
+   * Get the hash code for the object of class Method
+   * 
+   * @return Hash code
+   */
   @Override
   public int hashCode() {
     return Objects.hash(address, birthdate, city, email, firstName, id, lastName, phoneNumber, zip);
   }
 
+  /**
+   * Compare two objects
+   * 
+   * @param obj Object to compare
+   * @return True if the objects are equal, and false if not.
+   */
   @Override
   public boolean equals(Object obj) {
     if (this == obj)
@@ -64,7 +93,7 @@ public class PersonEntity {
         && Objects.equals(city, other.city)
         && Objects.equals(email, other.email)
         && firstName.equalsIgnoreCase(other.firstName)
-//        && Objects.equals(id, other.id)
+    // && Objects.equals(id, other.id)
         && lastName.equalsIgnoreCase(other.lastName)
         && Objects.equals(phoneNumber, other.phoneNumber)
         && Objects.equals(zip, other.zip);

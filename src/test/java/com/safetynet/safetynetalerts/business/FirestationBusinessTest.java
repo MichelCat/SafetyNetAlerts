@@ -12,7 +12,6 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import com.safetynet.safetynetalerts.business.FirestationBusiness;
 import com.safetynet.safetynetalerts.dao.db.FireStationDao;
 import com.safetynet.safetynetalerts.dao.db.PersonDao;
 import com.safetynet.safetynetalerts.dao.db.entities.FireStationEntity;
@@ -26,6 +25,12 @@ import com.safetynet.safetynetalerts.model.UpdateFireStation;
 import com.safetynet.safetynetalerts.utils.FireStationUtils;
 import com.safetynet.safetynetalerts.utils.PersonUtils;
 
+/**
+ * FirestationBusinessTest is a class of unit tests on fire stations.
+ * 
+ * @author MC
+ * @version 1.0
+ */
 @SpringBootTest
 class FirestationBusinessTest {
 
@@ -55,7 +60,9 @@ class FirestationBusinessTest {
   // -----------------------------------------------------------------------------------------------
   // Method getAdultsLivingIn
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Count the number of adults in a list of people
+   */
   @Test
   void getAdultsLivingIn_Normal() {
     // GIVEN
@@ -66,7 +73,9 @@ class FirestationBusinessTest {
     // THEN
   }
 
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list, Count the number of adults in a list of people
+   */
   @Test
   void getAdultsLivingIn_EmptyList() {
     // GIVEN
@@ -78,7 +87,9 @@ class FirestationBusinessTest {
   // -----------------------------------------------------------------------------------------------
   // Method getChildrenLivingIn
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Count the number of children in a list of people
+   */
   @Test
   void getChildrenLivingIn_Normal() {
     // GIVEN
@@ -89,7 +100,9 @@ class FirestationBusinessTest {
     // THEN
   }
 
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list, Count the number of children in a list of people
+   */
   @Test
   void getChildrenLivingIn_EmptyList() {
     // GIVEN
@@ -101,7 +114,9 @@ class FirestationBusinessTest {
   // -----------------------------------------------------------------------------------------------
   // Method getPersonsLivingNearStation
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Get the list of inhabitants living at the given address
+   */
   @Test
   void getPersonsLivingNearStation_Normal() {
     // GIVEN
@@ -119,7 +134,9 @@ class FirestationBusinessTest {
     verify(personUtils, Mockito.times(1)).conversionListPersonEntityToPerson(personEntities);
   }
 
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list, Get the list of inhabitants living at the given address
+   */
   @Test
   void getPersonsLivingNearStation_EmptyList() {
     // GIVEN
@@ -137,7 +154,9 @@ class FirestationBusinessTest {
   // -----------------------------------------------------------------------------------------------
   // Method saveFireStation
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Add a new fire station
+   */
   @Test
   void saveFireStation_Normal() {
     // GIVEN
@@ -154,7 +173,9 @@ class FirestationBusinessTest {
     verify(fireStationUtils, Mockito.times(1)).conversionFireStationEntityToFireStation(fireStationEntity);
   }
 
-  // Borderline cases : Null data
+  /**
+   * Borderline case test, null data, Add a new fire station
+   */
   @Test
   void saveFireStation_NullData() {
     // GIVEN
@@ -173,7 +194,9 @@ class FirestationBusinessTest {
   // -----------------------------------------------------------------------------------------------
   // Method updateFireStation
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Update an existing fire station
+   */
   @Test
   void updateFireStation_Normal() {
     // GIVEN
@@ -198,7 +221,9 @@ class FirestationBusinessTest {
     // THEN
   }
 
-  // Borderline cases : Null data
+  /**
+   * Borderline case test, null data, Update an existing fire station
+   */
   @Test
   void updateFireStation_NullData() {
     // GIVEN
@@ -214,7 +239,9 @@ class FirestationBusinessTest {
   // -----------------------------------------------------------------------------------------------
   // Method deleteFireStation
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Delete an fire station
+   */
   @Test
   void deleteFireStation_Normal() {
     // GIVEN

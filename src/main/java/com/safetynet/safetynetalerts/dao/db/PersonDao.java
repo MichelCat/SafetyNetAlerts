@@ -3,6 +3,12 @@ package com.safetynet.safetynetalerts.dao.db;
 import java.util.List;
 import com.safetynet.safetynetalerts.dao.db.entities.PersonEntity;
 
+/**
+ * PersonDao is interface that manages the PersonEntity list
+ * 
+ * @author MC
+ * @version 1.0
+ */
 public interface PersonDao {
   void clearTable();
   PersonEntity findPersonByName(String firstName, String lastName);

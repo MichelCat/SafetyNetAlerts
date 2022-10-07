@@ -6,7 +6,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import com.safetynet.safetynetalerts.business.PersonInfoBusiness;
 import com.safetynet.safetynetalerts.dao.DataBasePrepareBusiness;
 import com.safetynet.safetynetalerts.dao.db.AllergyDao;
 import com.safetynet.safetynetalerts.dao.db.MedicalRecordDao;
@@ -22,6 +21,12 @@ import com.safetynet.safetynetalerts.model.Allergy;
 import com.safetynet.safetynetalerts.model.Medication;
 import com.safetynet.safetynetalerts.model.Person;
 
+/**
+ * PersonInfoBusinessIT is a class of integration tests on people's information.
+ * 
+ * @author MC
+ * @version 1.0
+ */
 @SpringBootTest
 class PersonInfoBusinessIT {
   
@@ -57,7 +62,9 @@ class PersonInfoBusinessIT {
   // -----------------------------------------------------------------------------------------------
   // Method getAllPersonsWithTheSameName
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Get people's information of each resident
+   */
   @Test
   void getAllPersonsWithTheSameName_Normal() {
     // GIVEN
@@ -71,7 +78,9 @@ class PersonInfoBusinessIT {
     assertThat(result.size()).isEqualTo(2);
   }
   
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list, Get people's information of each resident
+   */
   @Test
   void getAllPersonsWithTheSameName_EmptyList() {
     // GIVEN
@@ -83,7 +92,9 @@ class PersonInfoBusinessIT {
   // -----------------------------------------------------------------------------------------------
   // Method getMedicationByName
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Get medications by person ID
+   */
   @Test
   void getMedicationByName_Normal() {
     // GIVEN
@@ -98,7 +109,9 @@ class PersonInfoBusinessIT {
     assertThat(result.size()).isEqualTo(1);
   }
   
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list, Get medications by person ID
+   */
   @Test
   void getMedicationByName_EmptyList() {
     // GIVEN
@@ -110,7 +123,9 @@ class PersonInfoBusinessIT {
   // -----------------------------------------------------------------------------------------------
   // Method getAllergyByName
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Get allergies by person ID
+   */
   @Test
   void getAllergyByName_Normal() {
     // GIVEN
@@ -125,7 +140,9 @@ class PersonInfoBusinessIT {
     assertThat(result.size()).isEqualTo(1);
   }
   
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list, Get allergies by person ID
+   */
   @Test
   void getAllergyByName_EmptyList() {
     // GIVEN

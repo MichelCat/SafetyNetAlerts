@@ -24,6 +24,7 @@ import com.safetynet.safetynetalerts.data.YoungBoydData;
 import com.safetynet.safetynetalerts.model.PersonAndMedicalRecordInFirstNameLastName;
 
 /**
+ * PersonInfoApiControllerIT is a class of Endpoint integration tests on people's information.
  * 
  * @author MC
  * @version 1.0
@@ -44,7 +45,9 @@ class PersonInfoApiControllerIT {
     dataBasePrepareService.clearDataBase();
   }
 
-  // General case
+  /**
+   * HTTP GET /personInfo, general case test, return HTTP 200
+   */
   @Test
   void getPersonInfo_return200() throws Exception {
     // GIVEN
@@ -87,9 +90,11 @@ class PersonInfoApiControllerIT {
     assertThat(returnResult).isEqualTo(personsAndMedicalRecordInFirstNameLastName);
   }
 
-  // Borderline cases : Empty database
+  /**
+   * HTTP GET /personInfo, borderline case test, empty database, return HTTP 204
+   */
   @Test
-  void getPersonInfo_return200EmptyDatabase() throws Exception {
+  void getPersonInfo_return204EmptyDatabase() throws Exception {
     // GIVEN
     // WHEN
     mockMvc.perform(get("/personInfo")

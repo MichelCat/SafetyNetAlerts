@@ -8,11 +8,16 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import com.safetynet.safetynetalerts.dao.DataBasePrepareBusiness;
-import com.safetynet.safetynetalerts.dao.db.PersonDao;
 import com.safetynet.safetynetalerts.dao.db.entities.PersonEntity;
 import com.safetynet.safetynetalerts.data.MickBoydData;
 import com.safetynet.safetynetalerts.data.YoungBoydData;
 
+/**
+ * PersonDaoIT is the integration test class managing the PersonEntity list
+ * 
+ * @author MC
+ * @version 1.0
+ */
 @SpringBootTest
 class PersonDaoIT {
 
@@ -40,7 +45,9 @@ class PersonDaoIT {
   // -----------------------------------------------------------------------------------------------
   // Method clearTable
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Clear PersonEntity list
+   */
   @Test
   void clearTable_Normal() {
     // GIVEN
@@ -54,7 +61,9 @@ class PersonDaoIT {
   // -----------------------------------------------------------------------------------------------
   // Method findPersonByName
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Search person by first name and last name
+   */
   @Test
   void findPersonByName_Normal() {
     // GIVEN
@@ -65,7 +74,9 @@ class PersonDaoIT {
     assertThat(result).isEqualTo(mickPersonEntity);
   }
   
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list, Search person by first name and last name
+   */
   @Test
   void findPersonByName_EmptyList() {
     // GIVEN
@@ -78,7 +89,9 @@ class PersonDaoIT {
   // -----------------------------------------------------------------------------------------------
   // Method findPersonByAddresses
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Search people by address
+   */
   @Test
   void findPersonByAddresses_Normal() {
     // GIVEN
@@ -92,7 +105,9 @@ class PersonDaoIT {
     assertThat(result.size()).isEqualTo(1);
   }
   
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list, Search people by address
+   */
   @Test
   void findPersonByAddresses_EmptyList() {
     // GIVEN
@@ -106,7 +121,9 @@ class PersonDaoIT {
   // -----------------------------------------------------------------------------------------------
   // Method findChildByAddress
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Search children by address
+   */
   @Test
   void findChildByAddress_Normal() {
     // GIVEN
@@ -118,7 +135,9 @@ class PersonDaoIT {
     assertThat(result.size()).isEqualTo(1);
   }
   
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list, Search children by address
+   */
   @Test
   void findChildByAddress_EmptyList() {
     // GIVEN
@@ -130,7 +149,9 @@ class PersonDaoIT {
   // -----------------------------------------------------------------------------------------------
   // Method findOtherHouseholdPersonsByNameAddress
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Finding other family members
+   */
   @Test
   void findOtherHouseholdPersonsByNameAddress_Normal() {
     // GIVEN
@@ -143,7 +164,9 @@ class PersonDaoIT {
     assertThat(result.size()).isEqualTo(1);
   }
   
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list, Finding other family members
+   */
   @Test
   void findOtherHouseholdPersonsByNameAddress_EmptyList() {
     // GIVEN
@@ -155,7 +178,9 @@ class PersonDaoIT {
   // -----------------------------------------------------------------------------------------------
   // Method findPersonByCity
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Search people by city
+   */
   @Test
   void findPersonByCity_Normal() {
     // GIVEN
@@ -169,7 +194,9 @@ class PersonDaoIT {
     assertThat(result.size()).isEqualTo(2);
   }
   
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list, Search people by city
+   */
   @Test
   void findPersonByCity_EmptyList() {
     // GIVEN
@@ -181,7 +208,9 @@ class PersonDaoIT {
   // -----------------------------------------------------------------------------------------------
   // Method findAllPersonsWithTheSameName
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Search for people with the same name
+   */
   @Test
   void findAllPersonsWithTheSameName_Normal() {
     // GIVEN
@@ -195,7 +224,9 @@ class PersonDaoIT {
     assertThat(result.size()).isEqualTo(2);
   }
   
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list, Search for people with the same name
+   */
   @Test
   void findAllPersonsWithTheSameName_EmptyList() {
     // GIVEN
@@ -207,7 +238,9 @@ class PersonDaoIT {
   // -----------------------------------------------------------------------------------------------
   // Method save
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Add a person
+   */
   @Test
   void save_Normal() {
     // GIVEN
@@ -218,7 +251,9 @@ class PersonDaoIT {
     assertThat(result).isEqualTo(personDao.findPersonByName(mickFirstName, mickLastName));
   }
   
-  // Borderline cases : Record already created
+  /**
+   * Borderline case test, record already created, Add a person
+   */
   @Test
   void save_recordingPresent() {
     // GIVEN
@@ -232,7 +267,9 @@ class PersonDaoIT {
   // -----------------------------------------------------------------------------------------------
   // Method update
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Update an existing person
+   */
   @Test
   void update_Normal() {
     // GIVEN
@@ -247,7 +284,9 @@ class PersonDaoIT {
     assertThat(result).isEqualTo(personDao.findPersonByName(mickFirstName, mickLastName));
   }
   
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list, Update an existing person
+   */
   @Test
   void update_EmptyList() {
     // GIVEN
@@ -259,7 +298,9 @@ class PersonDaoIT {
   // -----------------------------------------------------------------------------------------------
   // Method delete
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Delete a person
+   */
   @Test
   void delete_Normal() {
     // GIVEN
@@ -271,7 +312,9 @@ class PersonDaoIT {
     assertThat(readPersonEntity).isNull();
   }
   
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list, Delete a person
+   */
   @Test
   void delete_EmptyList() {
     // GIVEN

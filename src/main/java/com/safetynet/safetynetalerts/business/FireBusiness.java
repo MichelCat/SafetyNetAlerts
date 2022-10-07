@@ -17,9 +17,15 @@ import com.safetynet.safetynetalerts.utils.FireStationUtils;
 import com.safetynet.safetynetalerts.utils.MedicalRecordUtils;
 import com.safetynet.safetynetalerts.utils.PersonUtils;
 
+/**
+ * FireBusiness is the service dealing with residents living at the address
+ * 
+ * @author MC
+ * @version 1.0
+ */
 @Service
 public class FireBusiness {
-  
+
   @Autowired
   private PersonUtils personUtils;
   @Autowired
@@ -33,21 +39,45 @@ public class FireBusiness {
   @Autowired
   private MedicalRecordUtils medicalRecordUtils;
 
+  /**
+   * Get the list of inhabitants living at the given address.
+   * 
+   * @param personAddress Search address
+   * @return List of inhabitants living at the given address
+   */
   public List<Person> getPersonsLivingInAddress(final String personAddress) {
     List<String> stationAddresses = new ArrayList<>();
     stationAddresses.add(personAddress);
     List<PersonEntity> personEntities = personDao.findPersonByAddresses(stationAddresses);
     return personUtils.conversionListPersonEntityToPerson(personEntities);
   }
-  
+
+  /**
+   * Get a person's medication
+   * 
+   * @param idPerson Person ID
+   * @return A person's medication list
+   */
   public List<Medication> getMedicationByName(final Integer idPerson) {
     return medicalRecordUtils.medicalRecordMedicationEntityListToMedicationList(medicalRecordDao.findMedicationEntityById(idPerson));
   }
-  
+
+  /**
+   * Get a person's allergy
+   * 
+   * @param idPerson Person ID
+   * @return A person's allergy list
+   */
   public List<Allergy> getAllergyByName(final Integer idPerson) {
     return medicalRecordUtils.medicalRecordAllergyEntityListToAllergyList(medicalRecordDao.findAllergyEntityById(idPerson));
   }
-  
+
+  /**
+   * Get fire stations serving an address
+   * 
+   * @param stationAddress Search address
+   * @return List of fire stations serving an address
+   */
   public List<FireStation> getFireStationByStationAddress(final String stationAddress) {
     List<FireStationEntity> fireStationEntities = fireStationDao.fireStationByStationAddress(stationAddress);
     return fireStationUtils.conversionListFireStationEntityToFireStation(fireStationEntities);

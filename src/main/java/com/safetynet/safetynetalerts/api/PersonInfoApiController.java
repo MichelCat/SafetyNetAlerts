@@ -21,7 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * PersonInfoApiController is the Endpoint class that will perform Gets with HTTP on people's information.
+ * PersonInfoApiController is the Endpoint will perform the following actions via Get on people's information.
+ * 
  * @author MC
  * @version 1.0
  */
@@ -34,8 +35,8 @@ public class PersonInfoApiController implements PersonInfoApi {
     private PersonInfoBusiness personInfoBusiness;
 
     /**
-     * Read - Get the name, address, age, email address and medical history (medications, dosage, allergies)
-     * of each resident. If multiple people have the same name, they must all appear.
+     * Read - Get people's information of each resident.
+     * 
      * @param firstName First name
      * @param lastName Last name
      * @return List of email addresses 

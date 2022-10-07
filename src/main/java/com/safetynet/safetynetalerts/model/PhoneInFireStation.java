@@ -8,15 +8,25 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * PhoneInFireStation
+ * PhoneInFireStation is business model
+ * 
+ * @author MC
+ * @version 1.0
  */
 @Validated
-public class PhoneInFireStation   {
+public class PhoneInFireStation {
   @JsonProperty("person")
-  @Getter @Setter
+  @Getter
+  @Setter
   @Valid
   private Person person;
 
+  /**
+   * Compare two objects
+   * 
+   * @param o Object to compare
+   * @return True if the objects are equal, and false if not.
+   */
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -29,6 +39,11 @@ public class PhoneInFireStation   {
     return Objects.equals(this.person, phoneInFireStation.person);
   }
 
+  /**
+   * Get the hash code for the object of class Method
+   * 
+   * @return Hash code
+   */
   @Override
   public int hashCode() {
     return Objects.hash(person);

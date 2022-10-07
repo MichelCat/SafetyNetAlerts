@@ -22,7 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * FireApiController est la classe Endpoint permettra d’effectuer des Get avec HTTP sur les habitants vivant à l’adresse.
+ * FireApiController is the Endpoint will perform the following actions via Get with HTTP on the inhabitants living at the address.
+ * 
  * @author MC
  * @version 1.0
  */
@@ -35,10 +36,10 @@ public class FireApiController implements FireApi {
     private FireBusiness fireBusiness;
 
     /**
-     * Read - Get the list of inhabitants living at the given address. With fire station number,
-     * name, phone number, age and medical history.
-     * @param address Child's address
-     * @return List of email addresses 
+     * Read - Get the list of inhabitants living at the given address.
+     * 
+     * @param address Search address 
+     * @return List of inhabitants living at the given address
      */
     public ResponseEntity<List<PersonAndMedicalRecordInAddress>> getFire(@Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "address", required = false) String address) {
       LOGGER.debug("HTTP GET, List of residents living at an address and records medical ({}).", address);

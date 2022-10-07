@@ -7,18 +7,29 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * FireStation
+ * FireStation is business model
+ * 
+ * @author MC
+ * @version 1.0
  */
 @Validated
-public class FireStation   {
+public class FireStation {
   @JsonProperty("id")
-  @Getter @Setter
+  @Getter
+  @Setter
   private Integer id;
 
   @JsonProperty("address")
-  @Getter @Setter
+  @Getter
+  @Setter
   private String address;
 
+  /**
+   * Compare two objects
+   * 
+   * @param o Object to compare
+   * @return True if the objects are equal, and false if not.
+   */
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -28,10 +39,15 @@ public class FireStation   {
       return false;
     }
     var fireStation = (FireStation) o;
-    return Objects.equals(this.id, fireStation.id) &&
-        Objects.equals(this.address, fireStation.address);
+    return Objects.equals(this.id, fireStation.id)
+        && Objects.equals(this.address, fireStation.address);
   }
 
+  /**
+   * Get the hash code for the object of class Method
+   * 
+   * @return Hash code
+   */
   @Override
   public int hashCode() {
     return Objects.hash(id, address);

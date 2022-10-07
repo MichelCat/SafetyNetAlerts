@@ -10,56 +10,90 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * PersonAndMedicalRecordInFireStation
+ * PersonAndMedicalRecordInFireStation is business model
+ * 
+ * @author MC
+ * @version 1.0
  */
 @Validated
-public class PersonAndMedicalRecordInFireStation   {
+public class PersonAndMedicalRecordInFireStation {
   @JsonProperty("address")
-  @Getter @Setter
+  @Getter
+  @Setter
   private String address;
 
   @JsonProperty("lastName")
-  @Getter @Setter
+  @Getter
+  @Setter
   private String lastName;
 
   @JsonProperty("medications")
   @Valid
-  @Getter @Setter
+  @Getter
+  @Setter
   private List<Medication> medications = new ArrayList<>();
 
   @JsonProperty("allergies")
   @Valid
-  @Getter @Setter
+  @Getter
+  @Setter
   private List<Allergy> allergies = new ArrayList<>();
 
   @JsonProperty("phoneNumber")
-  @Getter @Setter
+  @Getter
+  @Setter
   private String phoneNumber;
 
   @JsonProperty("age")
-  @Getter @Setter
+  @Getter
+  @Setter
   private Integer age;
 
   @JsonProperty("fireStations")
   @Valid
-  @Getter @Setter
+  @Getter
+  @Setter
   private List<FireStation> fireStations = new ArrayList<>();
 
+  /**
+   * Add medication to medication list
+   * 
+   * @param medicationsItem Medication to add
+   * @return Medication list
+   */
   public PersonAndMedicalRecordInFireStation addMedicationsItem(Medication medicationsItem) {
     this.medications.add(medicationsItem);
     return this;
   }
 
+  /**
+   * Add allergy to allergy list
+   * 
+   * @param allergiesItem Object to add
+   * @return Allergies list
+   */
   public PersonAndMedicalRecordInFireStation addAllergiesItem(Allergy allergiesItem) {
     this.allergies.add(allergiesItem);
     return this;
   }
 
+  /**
+   * Add fire station to fire station list
+   * 
+   * @param fireStationsItem Fire station to add
+   * @return Fire station list
+   */
   public PersonAndMedicalRecordInFireStation addFireStationsItem(FireStation fireStationsItem) {
     this.fireStations.add(fireStationsItem);
     return this;
   }
 
+  /**
+   * Compare two objects
+   * 
+   * @param o Object to compare
+   * @return True if the objects are equal, and false if not.
+   */
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -69,15 +103,20 @@ public class PersonAndMedicalRecordInFireStation   {
       return false;
     }
     var personAndMedicalRecordInFireStation = (PersonAndMedicalRecordInFireStation) o;
-    return Objects.equals(this.address, personAndMedicalRecordInFireStation.address) &&
-        Objects.equals(this.lastName, personAndMedicalRecordInFireStation.lastName) &&
-        Objects.equals(this.medications, personAndMedicalRecordInFireStation.medications) &&
-        Objects.equals(this.allergies, personAndMedicalRecordInFireStation.allergies) &&
-        Objects.equals(this.phoneNumber, personAndMedicalRecordInFireStation.phoneNumber) &&
-        Objects.equals(this.age, personAndMedicalRecordInFireStation.age) &&
-        Objects.equals(this.fireStations, personAndMedicalRecordInFireStation.fireStations);
+    return Objects.equals(this.address, personAndMedicalRecordInFireStation.address)
+        && Objects.equals(this.lastName, personAndMedicalRecordInFireStation.lastName)
+        && Objects.equals(this.medications, personAndMedicalRecordInFireStation.medications)
+        && Objects.equals(this.allergies, personAndMedicalRecordInFireStation.allergies)
+        && Objects.equals(this.phoneNumber, personAndMedicalRecordInFireStation.phoneNumber)
+        && Objects.equals(this.age, personAndMedicalRecordInFireStation.age)
+        && Objects.equals(this.fireStations, personAndMedicalRecordInFireStation.fireStations);
   }
 
+  /**
+   * Get the hash code for the object of class Method
+   * 
+   * @return Hash code
+   */
   @Override
   public int hashCode() {
     return Objects.hash(address, lastName, medications, allergies, phoneNumber, age, fireStations);

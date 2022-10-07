@@ -7,12 +7,17 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import com.safetynet.safetynetalerts.dao.DataBasePrepareBusiness;
-import com.safetynet.safetynetalerts.dao.db.MedicalRecordDao;
 import com.safetynet.safetynetalerts.dao.db.entities.MedicalRecordAllergyEntity;
 import com.safetynet.safetynetalerts.dao.db.entities.MedicalRecordEntity;
 import com.safetynet.safetynetalerts.dao.db.entities.MedicalRecordMedicationEntity;
 import com.safetynet.safetynetalerts.data.MickBoydData;
 
+/**
+ * MedicalRecordDaoIT is the integration test class managing the MedicalRecordEntity list
+ * 
+ * @author MC
+ * @version 1.0
+ */
 @SpringBootTest
 class MedicalRecordDaoIT {
 
@@ -34,7 +39,9 @@ class MedicalRecordDaoIT {
   // -----------------------------------------------------------------------------------------------
   // Method clearTable
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Clear MedicalRecordEntity list
+   */
   @Test
   void clearTable_Normal() {
     // GIVEN
@@ -48,7 +55,9 @@ class MedicalRecordDaoIT {
   // -----------------------------------------------------------------------------------------------
   // Method findAllergyEntityById
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Search allergies by person ID
+   */
   @Test
   void findAllergyEntityById_Normal() {
     // GIVEN
@@ -59,7 +68,9 @@ class MedicalRecordDaoIT {
     assertThat(result).isEqualTo(mickMedicalRecordEntity.getAllergies());
   }
   
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list, Search allergies by person ID
+   */
   @Test
   void findAllergyEntityById_EmptyList() {
     // GIVEN
@@ -71,7 +82,9 @@ class MedicalRecordDaoIT {
   // -----------------------------------------------------------------------------------------------
   // Method findMedicationEntityById
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Search medications by person ID
+   */
   @Test
   void findMedicationEntityById_Normal() {
     // GIVEN
@@ -82,7 +95,9 @@ class MedicalRecordDaoIT {
     assertThat(result).isEqualTo(mickMedicalRecordEntity.getMedications());
   }
   
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list, Search medications by person ID
+   */
   @Test
   void findMedicationEntityById_EmptyList() {
     // GIVEN
@@ -94,7 +109,9 @@ class MedicalRecordDaoIT {
   // -----------------------------------------------------------------------------------------------
   // Method findMedicalRecordEntityById
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Search medical record by person ID
+   */
   @Test
   void findMedicalRecordEntityById_Normal() {
     // GIVEN
@@ -105,7 +122,9 @@ class MedicalRecordDaoIT {
     assertThat(result).isEqualTo(mickMedicalRecordEntity);
   }
   
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list, Search medical record by person ID
+   */
   @Test
   void findMedicalRecordEntityById_EmptyList() {
     // GIVEN
@@ -117,7 +136,9 @@ class MedicalRecordDaoIT {
   // -----------------------------------------------------------------------------------------------
   // Method save
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Add a medical record
+   */
   @Test
   void save_Normal() {
     // GIVEN
@@ -128,7 +149,9 @@ class MedicalRecordDaoIT {
     assertThat(result).isEqualTo(medicalRecordDao.findMedicalRecordEntityById(mickIdPerson));
   }
   
-  // Borderline cases : Record already created
+  /**
+   * Borderline case test, record already created, Add a medical record
+   */
   @Test
   void save_recordingPresent() {
     // GIVEN
@@ -142,7 +165,9 @@ class MedicalRecordDaoIT {
   // -----------------------------------------------------------------------------------------------
   // Method update
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Update an existing medical record
+   */
   @Test
   void update_Normal() {
     // GIVEN
@@ -160,7 +185,9 @@ class MedicalRecordDaoIT {
     assertThat(result).isEqualTo(readMedicalRecordEntity);
   }
   
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list, Update an existing medical record
+   */
   @Test
   void update_EmptyList() {
     // GIVEN
@@ -172,7 +199,9 @@ class MedicalRecordDaoIT {
   // -----------------------------------------------------------------------------------------------
   // Method delete
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Delete a medical record
+   */
   @Test
   void delete_Normal() {
     // GIVEN
@@ -184,7 +213,9 @@ class MedicalRecordDaoIT {
     assertThat(readMedicalRecordEntity).isNull();
   }
   
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list, Delete a medical record
+   */
   @Test
   void delete_EmptyList() {
     // GIVEN

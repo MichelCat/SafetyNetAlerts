@@ -18,6 +18,7 @@ import javax.validation.Valid;
 import java.net.URI;
 
 /**
+ * PersonApiController is the Endpoint will perform the following actions via Post/Put/Delete with HTTP on person.
  * 
  * @author MC
  * @version 1.0
@@ -30,16 +31,12 @@ public class PersonApiController implements PersonApi {
     @Autowired
     private PersonBusiness personBusiness;
 
-    public ResponseEntity<Void> deletePerson(@Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "firstName", required = false) String firstName,@Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "lastName", required = false) String lastName) {
-      LOGGER.debug("HTTP DELETE, Delete a person ({}, {}).", firstName, lastName);
-      if (personBusiness.deletePerson(firstName, lastName) == false) {
-        LOGGER.debug("HTTP DELETE, BAD_REQUEST ({}, {}).", firstName, lastName);
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-      }
-      LOGGER.debug("HTTP DELETE, NO_CONTENT ({}, {}).", firstName, lastName);
-      return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
-    }
-
+    /**
+     * Create - Add a person
+     * 
+     * @param body An object person
+     * @return The person object saved
+     */
     public ResponseEntity<Person> postPerson(@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody Person body) {
       LOGGER.debug("HTTP POST, Add a person ({}, {}).", body.getFirstName(), body.getLastName());
         Person person = personBusiness.savePerson(body);
@@ -56,6 +53,12 @@ public class PersonApiController implements PersonApi {
         return ResponseEntity.created(location).body(person);
     }
 
+    /**
+     * Update - Update an existing person
+     * 
+     * @param body An object person
+     * @return The person object updated
+     */
     public ResponseEntity<Person> putPerson(@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody Person body) {
       LOGGER.debug("HTTP PUT, Update person ({}, {}).", body.getFirstName(), body.getLastName());
       Person person = personBusiness.updatePerson(body);
@@ -67,4 +70,19 @@ public class PersonApiController implements PersonApi {
       return ResponseEntity.ok().body(person);
     }
 
+    /**
+     * Delete - Delete an person
+     * 
+     * @param firstName - The first name of the person to delete
+     * @param lastName - The last name of the person to delete
+     */
+    public ResponseEntity<Void> deletePerson(@Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "firstName", required = false) String firstName,@Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "lastName", required = false) String lastName) {
+      LOGGER.debug("HTTP DELETE, Delete a person ({}, {}).", firstName, lastName);
+      if (personBusiness.deletePerson(firstName, lastName) == false) {
+        LOGGER.debug("HTTP DELETE, BAD_REQUEST ({}, {}).", firstName, lastName);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+      }
+      LOGGER.debug("HTTP DELETE, NO_CONTENT ({}, {}).", firstName, lastName);
+      return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
+    }
 }

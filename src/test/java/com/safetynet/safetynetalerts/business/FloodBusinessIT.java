@@ -6,7 +6,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import com.safetynet.safetynetalerts.business.FloodBusiness;
 import com.safetynet.safetynetalerts.dao.DataBasePrepareBusiness;
 import com.safetynet.safetynetalerts.dao.db.AllergyDao;
 import com.safetynet.safetynetalerts.dao.db.FireStationDao;
@@ -25,6 +24,12 @@ import com.safetynet.safetynetalerts.model.FireStation;
 import com.safetynet.safetynetalerts.model.Medication;
 import com.safetynet.safetynetalerts.model.Person;
 
+/**
+ * FloodBusinessIT is a class of integration tests on households served by the fire station.
+ * 
+ * @author MC
+ * @version 1.0
+ */
 @SpringBootTest
 class FloodBusinessIT {
   
@@ -62,7 +67,9 @@ class FloodBusinessIT {
   // -----------------------------------------------------------------------------------------------
   // Method getPersonsLivingNearStation
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Get a list of all households served by the station
+   */
   @Test
   void getPersonsLivingNearStation_Normal() {
     // GIVEN
@@ -75,7 +82,9 @@ class FloodBusinessIT {
     assertThat(result.size()).isEqualTo(1);
   }
   
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list, Get a list of all households served by the station
+   */
   @Test
   void getPersonsLivingNearStation_EmptyList() {
     // GIVEN
@@ -87,7 +96,9 @@ class FloodBusinessIT {
   // -----------------------------------------------------------------------------------------------
   // Method getMedicationByName
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Get medications by person ID
+   */
   @Test
   void getMedicationByName_Normal() {
     // GIVEN
@@ -101,7 +112,9 @@ class FloodBusinessIT {
     assertThat(result.size()).isEqualTo(1);
   }
   
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list, Get medications by person ID
+   */
   @Test
   void getMedicationByName_EmptyList() {
     // GIVEN
@@ -113,7 +126,9 @@ class FloodBusinessIT {
   // -----------------------------------------------------------------------------------------------
   // Method getAllergyByName
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Get allergies by person ID
+   */
   @Test
   void getAllergyByName_Normal() {
     // GIVEN
@@ -127,7 +142,9 @@ class FloodBusinessIT {
     assertThat(result.size()).isEqualTo(1);
   }
   
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list, Get allergies by person ID
+   */
   @Test
   void getAllergyByName_EmptyList() {
     // GIVEN
@@ -139,7 +156,9 @@ class FloodBusinessIT {
   // -----------------------------------------------------------------------------------------------
   // Method getFireStationByStationAddress
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Get fire stations by address
+   */
   @Test
   void getFireStationByStationAddress_Normal() {
     // GIVEN
@@ -151,7 +170,9 @@ class FloodBusinessIT {
     assertThat(result.size()).isEqualTo(1);
   }
   
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list, Get fire stations by address
+   */
   @Test
   void getFireStationByStationAddress_EmptyList() {
     // GIVEN

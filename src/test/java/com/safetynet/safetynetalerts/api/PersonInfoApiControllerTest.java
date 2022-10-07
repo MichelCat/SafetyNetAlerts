@@ -17,7 +17,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import com.safetynet.safetynetalerts.api.PersonInfoApiController;
 import com.safetynet.safetynetalerts.business.PersonInfoBusiness;
 import com.safetynet.safetynetalerts.data.MickBoydData;
 import com.safetynet.safetynetalerts.model.Allergy;
@@ -25,6 +24,7 @@ import com.safetynet.safetynetalerts.model.Medication;
 import com.safetynet.safetynetalerts.model.Person;
 
 /**
+ * PersonInfoApiControllerIT is a class of Endpoint unit tests on people's information.
  * 
  * @author MC
  * @version 1.0
@@ -49,7 +49,9 @@ class PersonInfoApiControllerTest {
     medications = new ArrayList<>();
   }
 
-  // Borderline cases : Empty list
+  /**
+   * HTTP GET /personInfo, general case test, return HTTP 200
+   */
   @Test
   void getPersonInfo_return200() throws Exception {
     // GIVEN
@@ -79,9 +81,11 @@ class PersonInfoApiControllerTest {
     verify(personInfoBusiness, Mockito.times(1)).getAllergyByName(any(Integer.class));
   }
 
-  // Borderline cases : Empty list
+  /**
+   * HTTP GET /personInfo, borderline case test, empty database, return HTTP 204
+   */
   @Test
-  void getPersonInfo_return200EmptyList() throws Exception {
+  void getPersonInfo_return204EmptyList() throws Exception {
     // GIVEN
     when(personInfoBusiness.getAllPersonsWithTheSameName(any(String.class), any(String.class))).thenReturn(persons);
     when(personInfoBusiness.getAllergyByName(any(Integer.class))).thenReturn(allergies);

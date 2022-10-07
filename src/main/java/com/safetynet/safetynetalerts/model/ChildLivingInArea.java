@@ -10,25 +10,42 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * ChildLivingInArea
+ * ChildLivingInArea is business model
+ * 
+ * @author MC
+ * @version 1.0
  */
 @Validated
-public class ChildLivingInArea   {
+public class ChildLivingInArea {
   @JsonProperty("child")
   @Valid
-  @Getter @Setter
+  @Getter
+  @Setter
   private Person child;
 
   @JsonProperty("familyMembers")
   @Valid
-  @Getter @Setter
+  @Getter
+  @Setter
   private List<Person> familyMembers = new ArrayList<>();
 
+  /**
+   * Add person to person list
+   * 
+   * @param familyMembersItem Person to add
+   * @return Person list
+   */
   public ChildLivingInArea addFamilyMembersItem(Person familyMembersItem) {
     this.familyMembers.add(familyMembersItem);
     return this;
   }
 
+  /**
+   * Compare two objects
+   * 
+   * @param o Object to compare
+   * @return True if the objects are equal, and false if not.
+   */
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -38,10 +55,15 @@ public class ChildLivingInArea   {
       return false;
     }
     var childLivingInArea = (ChildLivingInArea) o;
-    return Objects.equals(this.child, childLivingInArea.child) &&
-        Objects.equals(this.familyMembers, childLivingInArea.familyMembers);
+    return Objects.equals(this.child, childLivingInArea.child)
+        && Objects.equals(this.familyMembers, childLivingInArea.familyMembers);
   }
 
+  /**
+   * Get the hash code for the object of class Method
+   * 
+   * @return Hash code
+   */
   @Override
   public int hashCode() {
     return Objects.hash(child, familyMembers);

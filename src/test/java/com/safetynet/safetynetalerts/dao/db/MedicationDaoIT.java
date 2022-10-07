@@ -6,10 +6,15 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import com.safetynet.safetynetalerts.dao.DataBasePrepareBusiness;
-import com.safetynet.safetynetalerts.dao.db.MedicationDao;
 import com.safetynet.safetynetalerts.dao.db.entities.MedicationEntity;
 import com.safetynet.safetynetalerts.data.MickBoydData;
 
+/**
+ * MedicationDaoIT is the integration test class managing the MedicationEntity list
+ * 
+ * @author MC
+ * @version 1.0
+ */
 @SpringBootTest
 class MedicationDaoIT {
 
@@ -29,7 +34,9 @@ class MedicationDaoIT {
   // -----------------------------------------------------------------------------------------------
   // Method clearTable
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test,
+   */
   @Test
   void clearTable_Normal() {
     // GIVEN
@@ -43,7 +50,9 @@ class MedicationDaoIT {
   // -----------------------------------------------------------------------------------------------
   // Method medicationById
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test,
+   */
   @Test
   void medicationById_Normal() {
     // GIVEN
@@ -53,7 +62,9 @@ class MedicationDaoIT {
     // THEN
   }
   
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list,
+   */
   @Test
   void medicationById_EmptyList() {
     // GIVEN
@@ -65,7 +76,9 @@ class MedicationDaoIT {
   // -----------------------------------------------------------------------------------------------
   // Method findIdMedicationByName
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test,
+   */
   @Test
   void findIdMedicationByName_Normal() {
     // GIVEN
@@ -75,7 +88,9 @@ class MedicationDaoIT {
     // THEN
   }
   
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list,
+   */
   @Test
   void findIdMedicationByName_EmptyList() {
     // GIVEN
@@ -87,7 +102,9 @@ class MedicationDaoIT {
   // -----------------------------------------------------------------------------------------------
   // Method save
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test,
+   */
   @Test
   void save_Normal() {
     // GIVEN
@@ -98,7 +115,9 @@ class MedicationDaoIT {
     assertThat(result).isEqualTo(medicationDao.medicationById(result.getId()));
   }
   
-  // Borderline cases : Record already created
+  /**
+   * Borderline case test, record already created,
+   */
   @Test
   void save_recordingPresent() {
     // GIVEN

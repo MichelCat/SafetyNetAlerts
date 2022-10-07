@@ -24,6 +24,7 @@ import com.safetynet.safetynetalerts.data.YoungBoydData;
 import com.safetynet.safetynetalerts.model.ChildLivingInArea;
 
 /**
+ * ChildAlertApiControllerIT is a class of Endpoint integration tests on children.
  * 
  * @author MC
  * @version 1.0
@@ -44,7 +45,9 @@ class ChildAlertApiControllerIT {
     dataBasePrepareService.clearDataBase();
   }
 
-  // General case
+  /**
+   * HTTP GET /childAlert, general case test, return HTTP 200
+   */
   @Test
   void getChildAlert_return200() throws Exception {
     // GIVEN
@@ -52,34 +55,36 @@ class ChildAlertApiControllerIT {
     loadJsonFileInDatabaseService.loadDataBase("YoungBoydData.json");
     // WHEN
     MvcResult mvcResult = mockMvc.perform(get("/childAlert")
-        .param("address", "1234 Wall Street")
-        .accept(MediaType.APPLICATION_JSON))
-        .andExpect(status().isOk())
-        .andExpect(jsonPath("$", hasSize(1)))
-        .andExpect(jsonPath("$[0].familyMembers", hasSize(1)))
-        .andReturn();
+          .param("address", "1234 Wall Street")
+          .accept(MediaType.APPLICATION_JSON))
+          .andExpect(status().isOk())
+          .andExpect(jsonPath("$", hasSize(1)))
+          .andExpect(jsonPath("$[0].familyMembers", hasSize(1)))
+          .andReturn();
     // THEN
-    List<ChildLivingInArea> returnResult = new ObjectMapper().readValue(mvcResult.getResponse().getContentAsString(), new TypeReference<List<ChildLivingInArea>>() { });
-    
+    List<ChildLivingInArea> returnResult = new ObjectMapper().readValue(mvcResult.getResponse().getContentAsString(), new TypeReference<List<ChildLivingInArea>>() {});
+
     List<ChildLivingInArea> childrenLivingInArea = new ArrayList<>();
     var childLivingInArea = new ChildLivingInArea();
     childLivingInArea.setChild(YoungBoydData.getPerson());
     childLivingInArea.addFamilyMembersItem(MickBoydData.getPerson());
     childrenLivingInArea.add(childLivingInArea);
-    
+
     assertThat(returnResult).isEqualTo(childrenLivingInArea);
   }
-  
-  // Borderline cases : Empty database
+
+  /**
+   * HTTP GET /childAlert, borderline case test, empty database, return HTTP 204
+   */
   @Test
-  void getChildAlert_return200EmptyDatabase() throws Exception {
+  void getChildAlert_return204EmptyDatabase() throws Exception {
     // GIVEN
     // WHEN
     mockMvc.perform(get("/childAlert")
-        .param("address", "1234 Wall Street")
-        .accept(MediaType.APPLICATION_JSON))
-        .andExpect(status().isNoContent())
-        .andExpect(jsonPath("$", hasSize(0)));
+          .param("address", "1234 Wall Street")
+          .accept(MediaType.APPLICATION_JSON))
+          .andExpect(status().isNoContent())
+          .andExpect(jsonPath("$", hasSize(0)));
     // THEN
   }
 }

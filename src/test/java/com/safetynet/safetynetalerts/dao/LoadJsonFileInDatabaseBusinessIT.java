@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.DatabindException;
-import com.safetynet.safetynetalerts.dao.DataBasePrepareBusiness;
-import com.safetynet.safetynetalerts.dao.LoadJsonFileInDatabaseBusiness;
 import com.safetynet.safetynetalerts.dao.db.AllergyDao;
 import com.safetynet.safetynetalerts.dao.db.FireStationDao;
 import com.safetynet.safetynetalerts.dao.db.MedicalRecordDao;
@@ -30,6 +28,12 @@ import com.safetynet.safetynetalerts.dao.json.entities.SafetyNetJson;
 import com.safetynet.safetynetalerts.data.FireStationData;
 import com.safetynet.safetynetalerts.data.MickBoydData;
 
+/**
+ * LoadJsonFileInDatabaseBusinessIT is an class of integration tests to load database from JSON file
+ * 
+ * @author MC
+ * @version 1.0
+ */
 @SpringBootTest
 class LoadJsonFileInDatabaseBusinessIT {
   
@@ -59,7 +63,9 @@ class LoadJsonFileInDatabaseBusinessIT {
   // -----------------------------------------------------------------------------------------------
   // Method loadDataBase
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, loading JSON file into database
+   */
   @Test
   void loadDataBase_Normal() {
     // GIVEN
@@ -78,7 +84,9 @@ class LoadJsonFileInDatabaseBusinessIT {
   // -----------------------------------------------------------------------------------------------
   // Method readFileJson
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, loading JSON file into SafetyNetJson object
+   */
   @Test
   void readFileJson_Normal() throws StreamReadException, DatabindException, IOException {
     // GIVEN
@@ -97,7 +105,9 @@ class LoadJsonFileInDatabaseBusinessIT {
   // -----------------------------------------------------------------------------------------------
   // Method setListPersonEntity
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, loading PersonEntity table
+   */
   @Test
   void setListPersonEntity_Normal() {
     // GIVEN
@@ -123,7 +133,9 @@ class LoadJsonFileInDatabaseBusinessIT {
   // -----------------------------------------------------------------------------------------------
   // Method setListFireStationEntity
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, loading FireStationEntity table
+   */
   @Test
   void setListFireStationEntity_Normal() {
     // GIVEN
@@ -141,7 +153,9 @@ class LoadJsonFileInDatabaseBusinessIT {
   // -----------------------------------------------------------------------------------------------
   // Method setListAllergyEntity
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, loading AllergyEntity table
+   */
   @Test
   void setListAllergyEntity_Normal() {
     // GIVEN
@@ -158,7 +172,9 @@ class LoadJsonFileInDatabaseBusinessIT {
   // -----------------------------------------------------------------------------------------------
   // Method setListMedicationEntity
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, loading MedicationEntity table
+   */
   @Test
   void setListMedicationEntity_Normal() {
     // GIVEN
@@ -172,7 +188,9 @@ class LoadJsonFileInDatabaseBusinessIT {
     assertThat(readMedication).isEqualTo(MickBoydData.getMedicationEntityAznol());
   }
 
-  // Medicament without dosage
+  /**
+   * Borderline case test, medication without dosage, loading MedicationEntity table
+   */
   @Test
   void setListMedicationEntity_withoutDosage() {
     // GIVEN
@@ -188,7 +206,9 @@ class LoadJsonFileInDatabaseBusinessIT {
   // -----------------------------------------------------------------------------------------------
   // Method setListMedicalRecordEntity
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, loading MedicalRecordEntity table
+   */
   @Test
   void setListMedicalRecordEntity_Normal() {
     // GIVEN

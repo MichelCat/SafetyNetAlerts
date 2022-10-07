@@ -6,7 +6,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import com.safetynet.safetynetalerts.business.ChildAlertBusiness;
 import com.safetynet.safetynetalerts.dao.DataBasePrepareBusiness;
 import com.safetynet.safetynetalerts.dao.db.PersonDao;
 import com.safetynet.safetynetalerts.dao.db.entities.PersonEntity;
@@ -14,6 +13,12 @@ import com.safetynet.safetynetalerts.data.MickBoydData;
 import com.safetynet.safetynetalerts.data.YoungBoydData;
 import com.safetynet.safetynetalerts.model.Person;
 
+/**
+ * ChildAlertBusinessIT is a class of integration tests on children living at an address.
+ * 
+ * @author MC
+ * @version 1.0
+ */
 @SpringBootTest
 class ChildAlertBusinessIT {
   
@@ -37,7 +42,9 @@ class ChildAlertBusinessIT {
   // -----------------------------------------------------------------------------------------------
   // Method getChildLivingInArea
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Get a list of children living at this address
+   */
   @Test
   void getChildLivingInArea_Normal() {
     // GIVEN
@@ -49,7 +56,9 @@ class ChildAlertBusinessIT {
     assertThat(result.size()).isEqualTo(1);
   }
   
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list, Get a list of children living at this address
+   */
   @Test
   void getChildLivingInArea_EmptyList() {
     // GIVEN
@@ -61,7 +70,9 @@ class ChildAlertBusinessIT {
   // -----------------------------------------------------------------------------------------------
   // Method getOtherHouseholdPersons
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Get a list of other homemakers
+   */
   @Test
   void getOtherHouseholdPersons_Normal() {
     // GIVEN
@@ -73,7 +84,9 @@ class ChildAlertBusinessIT {
     assertThat(result.size()).isEqualTo(1);
   }
   
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list, Get a list of other homemakers
+   */
   @Test
   void getOtherHouseholdPersons_EmptyList() {
     // GIVEN

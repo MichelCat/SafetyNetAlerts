@@ -24,6 +24,7 @@ import com.safetynet.safetynetalerts.data.MickBoydData;
 import com.safetynet.safetynetalerts.model.PersonAndMedicalRecordInAddress;
 
 /**
+ * FireApiControllerIT is a class of Endpoint integration tests on the inhabitants living at the address.
  * 
  * @author MC
  * @version 1.0
@@ -44,7 +45,9 @@ class FireApiControllerIT {
     dataBasePrepareService.clearDataBase();
   }
 
-  // General case
+  /**
+   * HTTP GET /fire, general case test, return HTTP 200
+   */
   @Test
   void getFire_return200() throws Exception {
     // GIVEN
@@ -71,9 +74,11 @@ class FireApiControllerIT {
     assertThat(returnResult).isEqualTo(personsAndMedicalRecordInAddress);
   }
 
-  // Borderline cases : Empty database
+  /**
+   * HTTP GET /fire, borderline case test, empty database, return HTTP 204
+   */
   @Test
-  void getFire_return200EmptyDatabase() throws Exception {
+  void getFire_return204EmptyDatabase() throws Exception {
     // GIVEN
     // WHEN
     mockMvc.perform(get("/fire")

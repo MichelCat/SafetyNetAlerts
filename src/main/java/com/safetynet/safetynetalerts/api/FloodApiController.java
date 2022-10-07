@@ -23,7 +23,8 @@ import java.util.List;
 import java.util.TreeMap;
 
 /**
- * FloodApiController is the Endpoint class that will allow Gets to be performed with HTTP on the households served by the barracks.
+ * FloodApiController is the Endpoint class that will allow Gets to be performed with HTTP on the households served by the fire station.
+ * 
  * @author MC
  * @version 1.0
  */
@@ -38,6 +39,7 @@ public class FloodApiController implements FloodApi {
     /**
      * Read - Get a list of all households served by the station. This list groups people by address.
      * It includes the name, phone number and age of residents, and medical history.
+     * 
      * @param stations List of fire stations
      * @return List of households served by the station
      */

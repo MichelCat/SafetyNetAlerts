@@ -17,7 +17,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import com.safetynet.safetynetalerts.api.FloodApiController;
 import com.safetynet.safetynetalerts.business.FloodBusiness;
 import com.safetynet.safetynetalerts.data.FireStationData;
 import com.safetynet.safetynetalerts.data.MickBoydData;
@@ -27,6 +26,7 @@ import com.safetynet.safetynetalerts.model.Medication;
 import com.safetynet.safetynetalerts.model.Person;
 
 /**
+ * FloodApiControllerTest is a class of Endpoint unit tests on the households served by the fire station.
  * 
  * @author MC
  * @version 1.0
@@ -53,7 +53,9 @@ class FloodApiControllerTest {
     fireStations = new ArrayList<>();
   }
 
-  // Borderline cases : Empty list
+  /**
+   * HTTP GET /flood/stations, general case test, return HTTP 200
+   */
   @Test
   void getFloodStations_return200() throws Exception {
     // GIVEN
@@ -86,9 +88,11 @@ class FloodApiControllerTest {
     verify(floodBusiness, Mockito.times(1)).getFireStationByStationAddress(any(String.class));
   }
 
-  // Borderline cases : Empty list
+  /**
+   * HTTP GET /flood/stations, borderline case test, empty database, return HTTP 204
+   */
   @Test
-  void getFloodStations_return200EmptyList() throws Exception {
+  void getFloodStations_return204EmptyList() throws Exception {
     // GIVEN
     when(floodBusiness.getPersonsLivingNearStation(any(String.class))).thenReturn(persons);
     when(floodBusiness.getAllergyByName(any(Integer.class))).thenReturn(allergies);

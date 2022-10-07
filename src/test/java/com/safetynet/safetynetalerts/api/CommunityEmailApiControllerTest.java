@@ -17,12 +17,13 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import com.safetynet.safetynetalerts.api.CommunityEmailApiController;
 import com.safetynet.safetynetalerts.business.CommunityEmailBusiness;
 import com.safetynet.safetynetalerts.data.MickBoydData;
 import com.safetynet.safetynetalerts.model.Person;
 
 /**
+ * 
+ * CommunityEmailApiControllerTest is a class of Endpoint unit tests on the email addresses of all the inhabitants of the city.
  * 
  * @author MC
  * @version 1.0
@@ -43,7 +44,9 @@ class CommunityEmailApiControllerTest {
     persons = new ArrayList<>();
   }
 
-  // Borderline cases : Empty list
+  /**
+   * HTTP GET /communityEmail, general case test, return HTTP 200
+   */
   @Test
   void getCommunityEmail_return200() throws Exception {
     // GIVEN
@@ -61,9 +64,11 @@ class CommunityEmailApiControllerTest {
     verify(communityEmailBusiness, Mockito.times(1)).getPersonByCity(any(String.class));
   }
 
-  // Borderline cases : Empty list
+  /**
+   * HTTP GET /communityEmail, borderline case test, empty database, return HTTP 204
+   */
   @Test
-  void getCommunityEmail_returnEmptyList200() throws Exception {
+  void getCommunityEmail_return204EmptyList() throws Exception {
     // GIVEN
     when(communityEmailBusiness.getPersonByCity(any(String.class))).thenReturn(persons);    
     // WHEN

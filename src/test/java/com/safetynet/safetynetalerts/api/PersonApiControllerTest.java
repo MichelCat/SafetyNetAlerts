@@ -13,12 +13,12 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import com.safetynet.safetynetalerts.api.PersonApiController;
 import com.safetynet.safetynetalerts.business.PersonBusiness;
 import com.safetynet.safetynetalerts.data.MickBoydData;
 import com.safetynet.safetynetalerts.model.Person;
 
 /**
+ * PersonApiControllerTest is a class of Endpoint unit tests on person.
  * 
  * @author MC
  * @version 1.0
@@ -39,6 +39,9 @@ class PersonApiControllerTest {
   // -----------------------------------------------------------------------------------------------
   // Method postPerson
   // -----------------------------------------------------------------------------------------------
+  /**
+   * HTTP POST /person, general case test, return HTTP 201
+   */
   @Test
   void postPerson_return201() throws Exception {
     // GIVEN
@@ -53,6 +56,9 @@ class PersonApiControllerTest {
     // THEN
   }
   
+  /**
+   * HTTP POST /person, borderline case test, existing person, return HTTP 400
+   */
   @Test
   void postPerson_return400() throws Exception {
     // GIVEN
@@ -69,6 +75,9 @@ class PersonApiControllerTest {
   // -----------------------------------------------------------------------------------------------
   // Method deletePerson
   // -----------------------------------------------------------------------------------------------
+  /**
+   * HTTP DELETE /person, general case test, return HTTP 204
+   */
   @Test
   void deletePerson_return204() throws Exception {
     // GIVEN
@@ -79,6 +88,9 @@ class PersonApiControllerTest {
     // THEN
   }
   
+  /**
+   * HTTP DELETE /person, borderline case test, non-existent person, return HTTP 400
+   */
   @Test
   void deletePerson_return400() throws Exception {
     // GIVEN
@@ -94,6 +106,9 @@ class PersonApiControllerTest {
   // -----------------------------------------------------------------------------------------------
   // Method putPerson
   // -----------------------------------------------------------------------------------------------
+  /**
+   * HTTP PUT /person, general case test, return HTTP 200
+   */
   @Test
   void putPerson_return200() throws Exception {
     // GIVEN
@@ -108,6 +123,9 @@ class PersonApiControllerTest {
     // THEN
   }
   
+  /**
+   * HTTP PUT /person, borderline case test, non-existent person, return HTTP 400
+   */
   @Test
   void putPerson_return400() throws Exception {
     // GIVEN

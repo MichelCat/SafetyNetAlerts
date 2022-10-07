@@ -13,12 +13,12 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import com.safetynet.safetynetalerts.api.MedicalRecordApiController;
 import com.safetynet.safetynetalerts.business.MedicalRecordBusiness;
 import com.safetynet.safetynetalerts.data.MickBoydData;
 import com.safetynet.safetynetalerts.model.MedicalRecord;
 
 /**
+ * MedicalRecordApiControllerTest is a class of Endpoint unit tests on medical records.
  * 
  * @author MC
  * @version 1.0
@@ -39,6 +39,9 @@ class MedicalRecordApiControllerTest {
   // -----------------------------------------------------------------------------------------------
   // Method postMedicalRecord
   // -----------------------------------------------------------------------------------------------
+  /**
+   * HTTP POST /medicalRecord, general case test, return HTTP 201
+   */
   @Test
   void postMedicalRecord_return201() throws Exception {
     // GIVEN
@@ -53,6 +56,9 @@ class MedicalRecordApiControllerTest {
     // THEN
   }
   
+  /**
+   * HTTP POST /medicalRecord, borderline case test, existing person, return HTTP 400
+   */
   @Test
   void postMedicalRecord_return400() throws Exception {
     // GIVEN
@@ -70,6 +76,9 @@ class MedicalRecordApiControllerTest {
   // -----------------------------------------------------------------------------------------------
   // Method deleteMedicalRecord
   // -----------------------------------------------------------------------------------------------
+  /**
+   * HTTP DELETE /medicalRecord, general case test, return HTTP 204
+   */
   @Test
   void deleteMedicalRecord_return204() throws Exception {
     // GIVEN
@@ -82,6 +91,9 @@ class MedicalRecordApiControllerTest {
     // THEN
   }
   
+  /**
+   * HTTP DELETE /medicalRecord, borderline case test, non-existent person, return HTTP 400
+   */
   @Test
   void deleteMedicalRecord_return400() throws Exception {
     // GIVEN
@@ -98,6 +110,9 @@ class MedicalRecordApiControllerTest {
   // -----------------------------------------------------------------------------------------------
   // Method putMedicalRecord
   // -----------------------------------------------------------------------------------------------
+  /**
+   * HTTP PUT /medicalRecord, general case test, return HTTP 200
+   */
   @Test
   void putMedicalRecord_return200() throws Exception {
     // GIVEN
@@ -112,6 +127,9 @@ class MedicalRecordApiControllerTest {
     // THEN
   }
   
+  /**
+   * HTTP PUT /medicalRecord, borderline case test, non-existent person, return HTTP 400
+   */
   @Test
   void putMedicalRecord_return400() throws Exception {
     // GIVEN

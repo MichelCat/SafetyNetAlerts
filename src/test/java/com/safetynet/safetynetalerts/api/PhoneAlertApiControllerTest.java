@@ -17,12 +17,12 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import com.safetynet.safetynetalerts.api.PhoneAlertApiController;
 import com.safetynet.safetynetalerts.business.PhoneAlertBusiness;
 import com.safetynet.safetynetalerts.data.MickBoydData;
 import com.safetynet.safetynetalerts.model.Person;
 
 /**
+ * PhoneAlertApiControllerTest is a class of Endpoint unit tests on phone number to alert.
  * 
  * @author MC
  * @version 1.0
@@ -43,7 +43,9 @@ class PhoneAlertApiControllerTest {
     persons = new ArrayList<>();
   }
 
-  // Borderline cases : Empty list
+  /**
+   * HTTP GET /phoneAlert, general case test, return HTTP 200
+   */
   @Test
   void getPhoneAlert_return200() throws Exception {
     // GIVEN
@@ -68,9 +70,11 @@ class PhoneAlertApiControllerTest {
     verify(phoneAlertBusiness, Mockito.times(1)).getPersonsLivingNearStation(any(String.class));
   }
 
-  // Borderline cases : Empty list
+  /**
+   * HTTP GET /phoneAlert, borderline case test, empty database, return HTTP 204
+   */
   @Test
-  void getPhoneAlert_return200EmptyList() throws Exception {
+  void getPhoneAlert_return204EmptyList() throws Exception {
     // GIVEN
     when(phoneAlertBusiness.getPersonsLivingNearStation(any(String.class))).thenReturn(persons);
     // WHEN

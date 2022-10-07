@@ -25,6 +25,7 @@ import com.safetynet.safetynetalerts.data.MickBoydData;
 import com.safetynet.safetynetalerts.model.PersonAndMedicalRecordInFireStation;
 
 /**
+ * FloodApiControllerIT is a class of Endpoint integration tests on the households served by the fire station.
  * 
  * @author MC
  * @version 1.0
@@ -45,7 +46,9 @@ class FloodApiControllerIT {
     dataBasePrepareService.clearDataBase();
   }
   
-  // General case
+  /**
+   * HTTP GET /flood/stations, general case test, return HTTP 200
+   */
   @Test
   void getFloodStations_return200() throws Exception {
     // GIVEN
@@ -77,9 +80,11 @@ class FloodApiControllerIT {
     assertThat(returnResult).isEqualTo(new ArrayList<PersonAndMedicalRecordInFireStation>(personsAndMedicalRecordInFireStation.values()));
   }
 
-  // Borderline cases : Empty database
+  /**
+   * HTTP GET /flood/stations, borderline case test, empty database, return HTTP 204
+   */
   @Test
-  void getFloodStations_return200EmptyDatabase() throws Exception {
+  void getFloodStations_return204EmptyDatabase() throws Exception {
     // GIVEN
     // WHEN
     mockMvc.perform(get("/flood/stations")

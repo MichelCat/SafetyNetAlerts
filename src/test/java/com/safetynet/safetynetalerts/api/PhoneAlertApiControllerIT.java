@@ -23,6 +23,7 @@ import com.safetynet.safetynetalerts.data.MickBoydData;
 import com.safetynet.safetynetalerts.model.PhoneInFireStation;
 
 /**
+ * PhoneAlertApiControllerIT is a class of Endpoint integration tests on phone number to alert.
  * 
  * @author MC
  * @version 1.0
@@ -43,7 +44,9 @@ class PhoneAlertApiControllerIT {
     dataBasePrepareService.clearDataBase();
   }
 
-  // General case
+  /**
+   * HTTP GET /phoneAlert, general case test, return HTTP 200
+   */
   @Test
   void getPhoneAlert_return200() throws Exception {
     // GIVEN
@@ -68,9 +71,11 @@ class PhoneAlertApiControllerIT {
     assertThat(returnResult).isEqualTo(phonesInFireStation);
   }
 
-  // Borderline cases : Empty database
+  /**
+   * HTTP GET /phoneAlert, borderline case test, empty database, return HTTP 204
+   */
   @Test
-  void getPhoneAlert_return200EmptyDatabase() throws Exception {
+  void getPhoneAlert_return204EmptyDatabase() throws Exception {
     // GIVEN
     // WHEN
     mockMvc.perform(get("/phoneAlert")

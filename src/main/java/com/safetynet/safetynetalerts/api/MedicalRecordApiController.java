@@ -18,6 +18,7 @@ import javax.validation.Valid;
 import java.net.URI;
 
 /**
+ * MedicalRecordApiController is the Endpoint will perform the following actions via Post/Put/Delete with HTTP on medical records.
  * 
  * @author MC
  * @version 1.0
@@ -30,16 +31,12 @@ public class MedicalRecordApiController implements MedicalRecordApi {
     @Autowired
     private MedicalRecordBusiness medicalRecordBusiness;
 
-    public ResponseEntity<Void> deleteMedicalRecord(@Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "firstName", required = false) String firstName,@Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "lastName", required = false) String lastName) {
-      LOGGER.debug("HTTP DELETE, Delete a medical record ({}, {}).", firstName, lastName);
-      if (medicalRecordBusiness.deleteMedicalRecord(firstName, lastName) == false) {
-        LOGGER.debug("HTTP DELETE, BAD_REQUEST ({}, {}).", firstName, lastName);
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-      }
-      LOGGER.debug("HTTP DELETE, NO_CONTENT ({}, {}).", firstName, lastName);
-      return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
-    }
-
+    /**
+     * Create - Add a new medical record
+     * 
+     * @param body An object medical record
+     * @return The medical record object saved
+     */
     public ResponseEntity<MedicalRecord> postMedicalRecord(@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody MedicalRecord body) {
       LOGGER.debug("HTTP POST, Add a medical record ({}, {}).", body.getFirstName(), body.getLastName());
       MedicalRecord medicalRecord = medicalRecordBusiness.saveMedicalRecord(body);
@@ -56,6 +53,12 @@ public class MedicalRecordApiController implements MedicalRecordApi {
       return ResponseEntity.created(location).body(medicalRecord);
     }
 
+    /**
+     * Update - Update an existing medical record
+     * 
+     * @param body An object medical record
+     * @return The medical record object updated
+     */
     public ResponseEntity<MedicalRecord> putMedicalRecord(@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody MedicalRecord body) {
       LOGGER.debug("HTTP PUT, Update medical record ({}, {}).", body.getFirstName(), body.getLastName());
       MedicalRecord medicalRecord = medicalRecordBusiness.updateMedicalRecord(body);
@@ -67,4 +70,19 @@ public class MedicalRecordApiController implements MedicalRecordApi {
       return ResponseEntity.ok().body(medicalRecord);
     }
 
+    /**
+     * Delete - Delete an medical record
+     * 
+     * @param firstName - The first name of the medical record to delete
+     * @param lastName - The last name of the medical record to delete
+     */
+    public ResponseEntity<Void> deleteMedicalRecord(@Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "firstName", required = false) String firstName,@Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "lastName", required = false) String lastName) {
+      LOGGER.debug("HTTP DELETE, Delete a medical record ({}, {}).", firstName, lastName);
+      if (medicalRecordBusiness.deleteMedicalRecord(firstName, lastName) == false) {
+        LOGGER.debug("HTTP DELETE, BAD_REQUEST ({}, {}).", firstName, lastName);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+      }
+      LOGGER.debug("HTTP DELETE, NO_CONTENT ({}, {}).", firstName, lastName);
+      return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
+    }
 }

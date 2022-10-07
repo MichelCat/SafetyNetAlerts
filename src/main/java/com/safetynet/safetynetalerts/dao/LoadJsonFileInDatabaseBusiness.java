@@ -27,11 +27,17 @@ import com.safetynet.safetynetalerts.utils.AllergyUtils;
 import com.safetynet.safetynetalerts.utils.DateUtils;
 import com.safetynet.safetynetalerts.utils.MedicationUtils;
 
+/**
+ * LoadJsonFileInDatabaseBusiness is the service for loading the database from a JSON file
+ * 
+ * @author MC
+ * @version 1.0
+ */
 @Service
 public class LoadJsonFileInDatabaseBusiness {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(LoadJsonFileInDatabaseBusiness.class);
-  
+
   @Autowired
   private DateUtils dateUtils;
   @Autowired
@@ -49,7 +55,12 @@ public class LoadJsonFileInDatabaseBusiness {
   @Autowired
   private MedicationUtils medicationUtils;
 
-  // -----------------------------------------------------------------------------------------------
+  /**
+   * Loading JSON file into database
+   * 
+   * @param resourceLocation Resource location
+   * @return True, if successful JSON file upload, and false if not.
+   */
   public boolean loadDataBase(String resourceLocation) {
     SafetyNetJson safetyNetJson;
     try {
@@ -61,11 +72,16 @@ public class LoadJsonFileInDatabaseBusiness {
       setListMedicalRecordEntity(safetyNetJson);
     } catch (Exception e) {
       return false;
-    } 
+    }
     return true;
   }
-  
-  // -----------------------------------------------------------------------------------------------
+
+  /**
+   * Loading JSON file into SafetyNetJson object
+   * 
+   * @param resourceLocation Resource location
+   * @return SafetyNetJson, if successfully loaded JSON file into object, and null if not.
+   */
   public SafetyNetJson readFileJson(String resourceLocation) throws IOException {
     File dataJson;
     SafetyNetJson safetyNetJson;
@@ -84,8 +100,12 @@ public class LoadJsonFileInDatabaseBusiness {
     }
     return safetyNetJson;
   }
-  
-  // -----------------------------------------------------------------------------------------------
+
+  /**
+   * Loading PersonEntity table
+   * 
+   * @param safetyNetJson SafetyNetJson object
+   */
   public void setListPersonEntity(SafetyNetJson safetyNetJson) {
     for (PersonJson personJson : CollectionUtils.emptyIfNull(safetyNetJson.getPersons())) {
       var personEntity = new PersonEntity();
@@ -102,7 +122,11 @@ public class LoadJsonFileInDatabaseBusiness {
     }
   }
 
-  // -----------------------------------------------------------------------------------------------
+  /**
+   * Loading FireStationEntity table
+   * 
+   * @param safetyNetJson SafetyNetJson object
+   */
   public void setListFireStationEntity(SafetyNetJson safetyNetJson) {
     for (FireStationJson fireStationJson : CollectionUtils.emptyIfNull(safetyNetJson.getFirestations())) {
       var fireStationEntity = new FireStationEntity();
@@ -114,7 +138,11 @@ public class LoadJsonFileInDatabaseBusiness {
     }
   }
 
-  // -----------------------------------------------------------------------------------------------
+  /**
+   * Loading AllergyEntity table
+   * 
+   * @param safetyNetJson SafetyNetJson object
+   */
   public void setListAllergyEntity(SafetyNetJson safetyNetJson) {
     for (MedicalRecordJson medicalRecordJson : CollectionUtils.emptyIfNull(safetyNetJson.getMedicalrecords())) {
       for (String allergyJson : medicalRecordJson.getAllergies()) {
@@ -130,13 +158,18 @@ public class LoadJsonFileInDatabaseBusiness {
     }
   }
 
-  // -----------------------------------------------------------------------------------------------
+  /**
+   * Loading MedicationEntity table
+   * 
+   * @param safetyNetJson SafetyNetJson object
+   */
   public void setListMedicationEntity(SafetyNetJson safetyNetJson) {
     for (MedicalRecordJson medicalRecordJson : CollectionUtils.emptyIfNull(safetyNetJson.getMedicalrecords())) {
       for (String medicationJson : medicalRecordJson.getMedications()) {
         if (medicationJson.split(":").length == 2) {
           String medication = medicationJson.split(":")[0];
           if (medicationDao.findIdMedicationByName(medication) == null) {
+            // Medication not present
             var medicationEntity = new MedicationEntity();
             medicationEntity.setMedication(medication);
             if (medicationDao.save(medicationEntity) == null) {
@@ -148,7 +181,11 @@ public class LoadJsonFileInDatabaseBusiness {
     }
   }
 
-  // -----------------------------------------------------------------------------------------------
+  /**
+   * Loading MedicalRecordEntity table
+   * 
+   * @param safetyNetJson SafetyNetJson object
+   */
   public void setListMedicalRecordEntity(SafetyNetJson safetyNetJson) {
     for (MedicalRecordJson medicalRecordJson : CollectionUtils.emptyIfNull(safetyNetJson.getMedicalrecords())) {
       var personEntity = personDao.findPersonByName(medicalRecordJson.getFirstName(), medicalRecordJson.getLastName());

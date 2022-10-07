@@ -7,12 +7,24 @@ import com.safetynet.safetynetalerts.dao.db.entities.MedicalRecordMedicationEnti
 import com.safetynet.safetynetalerts.dao.db.entities.MedicationEntity;
 import com.safetynet.safetynetalerts.model.Medication;
 
+/**
+ * MedicationUtils is an Medication object conversion utility class
+ * 
+ * @author MC
+ * @version 1.0
+ */
 @Service
 public class MedicationUtils {
-  
+
   @Autowired
   private MedicationDao medicationDao;
 
+  /**
+   * Conversion Medication name to MedicalRecordMedicationEntity
+   * 
+   * @param medication Medication name
+   * @return MedicalRecordMedicationEntity
+   */
   public MedicalRecordMedicationEntity medicationToMedicalRecordMedicationEntity(String medication) {
     if (medication.split(":").length != 2) {
       return null;
@@ -25,6 +37,12 @@ public class MedicationUtils {
     return medicalRecordMedicationEntity;
   }
 
+  /**
+   * Conversion MedicalRecordMedicationEntity to Medication
+   * 
+   * @param medicalRecordMedicationEntity Object MedicalRecordMedicationEntity
+   * @return Medication
+   */
   public Medication medicalRecordMedicationEntityToMedication(MedicalRecordMedicationEntity medicalRecordMedicationEntity) {
     var medication = new Medication();
     MedicationEntity medicationEntity = medicationDao.medicationById(medicalRecordMedicationEntity.getIdMedication());

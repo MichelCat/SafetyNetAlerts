@@ -20,7 +20,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import com.safetynet.safetynetalerts.api.FirestationApiController;
 import com.safetynet.safetynetalerts.business.FirestationBusiness;
 import com.safetynet.safetynetalerts.data.FireStationData;
 import com.safetynet.safetynetalerts.data.MickBoydData;
@@ -29,6 +28,7 @@ import com.safetynet.safetynetalerts.model.Person;
 import com.safetynet.safetynetalerts.model.UpdateFireStation;
 
 /**
+ * FirestationApiControllerTest is a class of Endpoint unit tests on fire stations.
  * 
  * @author MC
  * @version 1.0
@@ -52,7 +52,9 @@ class FirestationApiControllerTest {
   // -----------------------------------------------------------------------------------------------
   // Method getFirestation
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * HTTP GET /firestation, general case test, return HTTP 200
+   */
   @Test
   void getFirestation_return200() throws Exception {
     // GIVEN
@@ -81,9 +83,11 @@ class FirestationApiControllerTest {
     verify(firestationBusiness, Mockito.times(1)).getChildrenLivingIn(any(List.class));
   }
   
-  // Borderline cases : Empty list
+  /**
+   * HTTP GET /firestation, borderline case test, empty database, return HTTP 204
+   */
   @Test
-  void getFirestation_return200EmptyList() throws Exception {
+  void getFirestation_return204EmptyList() throws Exception {
     // GIVEN
     when(firestationBusiness.getPersonsLivingNearStation(any(String.class))).thenReturn(persons);    
     when(firestationBusiness.getAdultsLivingIn(persons)).thenReturn(0);    
@@ -105,6 +109,9 @@ class FirestationApiControllerTest {
   // -----------------------------------------------------------------------------------------------
   // Method postFirestation
   // -----------------------------------------------------------------------------------------------
+  /**
+   * HTTP POST /firestation, general case test, return HTTP 201
+   */
   @Test
   void postFirestation_return201() throws Exception {
     // GIVEN
@@ -119,6 +126,9 @@ class FirestationApiControllerTest {
     // THEN
   }
   
+  /**
+   * HTTP POST /firestation, borderline case test, existing person, return HTTP 400
+   */
   @Test
   void postFirestation_return400() throws Exception {
     // GIVEN
@@ -135,6 +145,9 @@ class FirestationApiControllerTest {
   // -----------------------------------------------------------------------------------------------
   // Method deleteFirestation
   // -----------------------------------------------------------------------------------------------
+  /**
+   * HTTP DELETE /firestation, general case test, return HTTP 204
+   */
   @Test
   void deleteFirestation_return204() throws Exception {
     // GIVEN
@@ -147,6 +160,9 @@ class FirestationApiControllerTest {
     // THEN
   }
   
+  /**
+   * HTTP DELETE /firestation, borderline case test, non-existent person, return HTTP 400
+   */
   @Test
   void deleteFirestation_return400() throws Exception {
     // GIVEN
@@ -162,6 +178,9 @@ class FirestationApiControllerTest {
   // -----------------------------------------------------------------------------------------------
   // Method putFirestation
   // -----------------------------------------------------------------------------------------------
+  /**
+   * HTTP PUT /firestation, general case test, return HTTP 200
+   */
   @Test
   void putFirestation_return200() throws Exception {
     // GIVEN
@@ -176,6 +195,9 @@ class FirestationApiControllerTest {
     // THEN
   }
   
+  /**
+   * HTTP PUT /firestation, borderline case test, non-existent person, return HTTP 400
+   */
   @Test
   void putFirestation_return400() throws Exception {
     // GIVEN

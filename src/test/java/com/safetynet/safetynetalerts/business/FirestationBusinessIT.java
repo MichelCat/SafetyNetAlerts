@@ -6,7 +6,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import com.safetynet.safetynetalerts.business.FirestationBusiness;
 import com.safetynet.safetynetalerts.dao.DataBasePrepareBusiness;
 import com.safetynet.safetynetalerts.dao.db.FireStationDao;
 import com.safetynet.safetynetalerts.dao.db.PersonDao;
@@ -19,6 +18,12 @@ import com.safetynet.safetynetalerts.model.Person;
 import com.safetynet.safetynetalerts.model.UpdateFireStation;
 import com.safetynet.safetynetalerts.utils.FireStationUtils;
 
+/**
+ * FirestationBusinessIT is a class of integration tests on fire stations.
+ * 
+ * @author MC
+ * @version 1.0
+ */
 @SpringBootTest
 class FirestationBusinessIT {
 
@@ -48,7 +53,9 @@ class FirestationBusinessIT {
   // -----------------------------------------------------------------------------------------------
   // Method getPersonsLivingNearStation
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Get the list of inhabitants living at the given address
+   */
   @Test
   void getPersonsLivingNearStation_Normal() {
     // GIVEN
@@ -61,7 +68,9 @@ class FirestationBusinessIT {
     assertThat(result.size()).isEqualTo(1);
   }
   
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list, Get the list of inhabitants living at the given address
+   */
   @Test
   void getPersonsLivingNearStation_EmptyList() {
     // GIVEN
@@ -73,7 +82,9 @@ class FirestationBusinessIT {
   // -----------------------------------------------------------------------------------------------
   // Method saveFireStation
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Add a new fire station
+   */
   @Test
   void saveFireStation_Normal() {
     // GIVEN
@@ -91,7 +102,7 @@ class FirestationBusinessIT {
   // -----------------------------------------------------------------------------------------------
   // Method updateFireStation
   // -----------------------------------------------------------------------------------------------
-  // General case
+  // General case, Update an existing fire station
   @Test
   void updateFireStation_Normal() {
     // GIVEN
@@ -113,7 +124,9 @@ class FirestationBusinessIT {
   // -----------------------------------------------------------------------------------------------
   // Method deleteFireStation
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Delete an fire station
+   */
   @Test
   void deleteFireStation_Normal() {
     // GIVEN

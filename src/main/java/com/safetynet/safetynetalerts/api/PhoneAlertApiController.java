@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * PhoneAlertApiController is the Endpoint will perform the following actions via Get with HTTP on phone number to alert.
  * 
  * @author MC
  * @version 1.0
@@ -31,6 +32,12 @@ public class PhoneAlertApiController implements PhoneAlertApi {
     @Autowired
     private PhoneAlertBusiness phoneAlertBusiness;
 
+    /**
+     * Read - Get the phone numbers of residents served by the fire station
+     * 
+     * @param firestation Fire station
+     * @return List of telephone numbers served by the fire station 
+     */
     public ResponseEntity<List<PhoneInFireStation>> getPhoneAlert(@Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "firestation", required = false) String firestation) {
       LOGGER.debug("HTTP GET, List of telephone numbers of residents served by the fire station ({}).", firestation);
       List<Person> persons = phoneAlertBusiness.getPersonsLivingNearStation(firestation);

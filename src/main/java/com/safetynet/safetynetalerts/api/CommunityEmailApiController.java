@@ -19,7 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * CommunityEmailApiController is the Endpoint class that will perform Get with HTTP on the email addresses of all the inhabitants of the city.
+ * CommunityEmailApiController is the Endpoint will perform the following actions via Get with HTTP the email addresses of all the inhabitants of the city.
+ * 
  * @author MC
  * @version 1.0
  */
@@ -33,6 +34,7 @@ public class CommunityEmailApiController implements CommunityEmailApi {
 
     /**
      * Read - Get email addresses of all the inhabitants of the city.
+     * 
      * @param city City searched
      * @return List of email addresses 
      */

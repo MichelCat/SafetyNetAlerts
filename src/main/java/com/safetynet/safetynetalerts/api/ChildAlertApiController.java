@@ -19,7 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * ChildAlertApiController is the Endpoint class that will perform Gets with HTTP on children.
+ * ChildAlertApiController is the Endpoint will perform the following actions via Get with HTTP on children.
+ * 
  * @author MC
  * @version 1.0
  */
@@ -34,6 +35,7 @@ public class ChildAlertApiController implements ChildAlertApi {
     /***
      * Read - Get a list of children (any individual aged 18 or younger) living at this address.
      * The list includes each child's first and last name, age, and a list of other household members.
+     * 
      * @param address Child's address
      * @return List of children
      */
@@ -61,5 +63,4 @@ public class ChildAlertApiController implements ChildAlertApi {
     LOGGER.debug("HTTP GET, SUCCESSFUL ({}).", address);
     return ResponseEntity.ok(childrenLivingInArea);
     }
-
 }

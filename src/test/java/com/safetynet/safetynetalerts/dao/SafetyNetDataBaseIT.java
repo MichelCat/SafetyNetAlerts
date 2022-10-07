@@ -4,12 +4,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import com.safetynet.safetynetalerts.dao.SafetyNetDataBase;
 import com.safetynet.safetynetalerts.dao.db.FireStationDao;
 import com.safetynet.safetynetalerts.dao.db.MedicalRecordDao;
 import com.safetynet.safetynetalerts.dao.db.PersonDao;
 import com.safetynet.safetynetalerts.dao.db.entities.PersonEntity;
 
+/**
+ * SafetyNetDataBaseIT is the class of integration tests on the Event Listener component to load the database from a JSON file
+ * 
+ * @author MC
+ * @version 1.0
+ */
 @SpringBootTest
 class SafetyNetDataBaseIT {
 
@@ -25,7 +30,9 @@ class SafetyNetDataBaseIT {
   // -----------------------------------------------------------------------------------------------
   // Method contextRefreshedEvent
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, ContextRefreshedEvent for loading the database from a JSON file
+   */
   @Test
   void contextRefreshedEvent_Normal() {
     // GIVEN

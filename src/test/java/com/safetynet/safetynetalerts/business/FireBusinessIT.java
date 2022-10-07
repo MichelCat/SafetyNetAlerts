@@ -6,7 +6,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import com.safetynet.safetynetalerts.business.FireBusiness;
 import com.safetynet.safetynetalerts.dao.DataBasePrepareBusiness;
 import com.safetynet.safetynetalerts.dao.db.AllergyDao;
 import com.safetynet.safetynetalerts.dao.db.FireStationDao;
@@ -25,6 +24,12 @@ import com.safetynet.safetynetalerts.model.FireStation;
 import com.safetynet.safetynetalerts.model.Medication;
 import com.safetynet.safetynetalerts.model.Person;
 
+/**
+ * FireBusinessIT is a class of integration tests on residents living at the address
+ * 
+ * @author MC
+ * @version 1.0
+ */
 @SpringBootTest
 class FireBusinessIT {
   
@@ -62,7 +67,9 @@ class FireBusinessIT {
   // -----------------------------------------------------------------------------------------------
   // Method getPersonsLivingInAddress
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Get the list of inhabitants living at the given address
+   */
   @Test
   void getPersonsLivingInAddress_Normal() {
     // GIVEN
@@ -75,7 +82,9 @@ class FireBusinessIT {
     assertThat(result.size()).isEqualTo(1);
   }
   
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list, Get the list of inhabitants living at the given address
+   */
   @Test
   void getPersonsLivingInAddress_EmptyList() {
     // GIVEN
@@ -87,7 +96,9 @@ class FireBusinessIT {
   // -----------------------------------------------------------------------------------------------
   // Method getMedicationByName
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Get a person's medication
+   */
   @Test
   void getMedicationByName_Normal() {
     // GIVEN
@@ -102,7 +113,9 @@ class FireBusinessIT {
     assertThat(result.size()).isEqualTo(1);
   }
   
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list, Get a person's medication
+   */
   @Test
   void getMedicationByName_EmptyList() {
     // GIVEN
@@ -114,7 +127,9 @@ class FireBusinessIT {
   // -----------------------------------------------------------------------------------------------
   // Method getAllergyByName
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Get a person's allergy
+   */
   @Test
   void getAllergyByName_Normal() {
     // GIVEN
@@ -129,7 +144,9 @@ class FireBusinessIT {
     assertThat(result.size()).isEqualTo(1);
   }
   
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list, Get a person's allergy
+   */
   @Test
   void getAllergyByName_EmptyList() {
     // GIVEN
@@ -141,7 +158,9 @@ class FireBusinessIT {
   // -----------------------------------------------------------------------------------------------
   // Method getFireStationByStationAddress
   // -----------------------------------------------------------------------------------------------
-  // General case
+  /**
+   * General case test, Get fire stations serving an address
+   */
   @Test
   void getFireStationByStationAddress_Normal() {
     // GIVEN
@@ -153,7 +172,9 @@ class FireBusinessIT {
     assertThat(result.size()).isEqualTo(1);
   }
   
-  // Borderline cases : Empty list
+  /**
+   * Borderline case test, empty list, Get fire stations serving an address
+   */
   @Test
   void getFireStationByStationAddress_EmptyList() {
     // GIVEN
