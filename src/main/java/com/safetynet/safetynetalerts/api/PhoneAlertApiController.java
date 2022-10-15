@@ -52,7 +52,7 @@ public class PhoneAlertApiController implements PhoneAlertApi {
         phoneInFireStation.setPerson(person);
         phonesInFireStation.add(phoneInFireStation);
       }
-      LOGGER.debug("HTTP GET, SUCCESSFUL ({}).", firestation);
+      LOGGER.info("HTTP GET, SUCCESSFUL ({}).", firestation);
       return ResponseEntity.ok(phonesInFireStation);
     }
 }

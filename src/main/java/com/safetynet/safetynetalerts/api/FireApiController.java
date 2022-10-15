@@ -65,7 +65,7 @@ public class FireApiController implements FireApi {
 
         personsAndMedicalRecordInAddress.add(personAndMedicalRecordInAddress);
       }
-      LOGGER.debug("HTTP GET, SUCCESSFUL ({}).", address);
+      LOGGER.info("HTTP GET, SUCCESSFUL ({}).", address);
       return ResponseEntity.ok(personsAndMedicalRecordInAddress);
     }
 

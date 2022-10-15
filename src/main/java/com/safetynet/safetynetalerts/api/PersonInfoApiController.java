@@ -66,7 +66,7 @@ public class PersonInfoApiController implements PersonInfoApi {
 
         personsAndMedicalRecordInFirstNameLastName.add(personAndMedicalRecordInFirstNameLastName);
       }
-      LOGGER.debug("HTTP GET, SUCCESSFUL ({}, {}).", firstName, lastName);
+      LOGGER.info("HTTP GET, SUCCESSFUL ({}, {}).", firstName, lastName);
       return ResponseEntity.ok(personsAndMedicalRecordInFirstNameLastName);
     }
 

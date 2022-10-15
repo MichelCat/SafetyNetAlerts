@@ -52,7 +52,7 @@ public class CommunityEmailApiController implements CommunityEmailApi {
         emailInCity.setEmail(person.getEmail());
         emailsInCity.add(emailInCity);
       }
-      LOGGER.debug("HTTP GET, SUCCESSFUL ({}).", city);
+      LOGGER.info("HTTP GET, SUCCESSFUL ({}).", city);
       return ResponseEntity.ok(emailsInCity);
     }
 

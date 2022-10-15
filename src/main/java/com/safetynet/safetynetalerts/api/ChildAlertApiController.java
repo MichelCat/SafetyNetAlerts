@@ -60,7 +60,7 @@ public class ChildAlertApiController implements ChildAlertApi {
 
       childrenLivingInArea.add(childLivingInArea);
     }
-    LOGGER.debug("HTTP GET, SUCCESSFUL ({}).", address);
+    LOGGER.info("HTTP GET, SUCCESSFUL ({}).", address);
     return ResponseEntity.ok(childrenLivingInArea);
     }
 }

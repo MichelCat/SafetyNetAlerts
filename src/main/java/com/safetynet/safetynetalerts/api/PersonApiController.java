@@ -49,7 +49,7 @@ public class PersonApiController implements PersonApi {
                       .path("/{id}")
                       .buildAndExpand(person.getId())
                       .toUri();
-        LOGGER.debug("HTTP POST, CREATED ({}, {}).", body.getFirstName(), body.getLastName());
+        LOGGER.info("HTTP POST, CREATED ({}, {}).", body.getFirstName(), body.getLastName());
         return ResponseEntity.created(location).body(person);
     }
 
@@ -66,7 +66,7 @@ public class PersonApiController implements PersonApi {
         LOGGER.debug("HTTP PUT, BAD_REQUEST ({}, {}).", body.getFirstName(), body.getLastName());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
       }
-      LOGGER.debug("HTTP PUT, SUCCESSFUL ({}, {}).", body.getFirstName(), body.getLastName());
+      LOGGER.info("HTTP PUT, SUCCESSFUL ({}, {}).", body.getFirstName(), body.getLastName());
       return ResponseEntity.ok().body(person);
     }
 
@@ -82,7 +82,7 @@ public class PersonApiController implements PersonApi {
         LOGGER.debug("HTTP DELETE, BAD_REQUEST ({}, {}).", firstName, lastName);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
       }
-      LOGGER.debug("HTTP DELETE, NO_CONTENT ({}, {}).", firstName, lastName);
+      LOGGER.info("HTTP DELETE, NO_CONTENT ({}, {}).", firstName, lastName);
       return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
     }
 }

@@ -73,7 +73,7 @@ public class FloodApiController implements FloodApi {
 
         personsAndMedicalRecordInFireStation.put(person.getAddress() + person.getLastName(), personAndMedicalRecordInFireStation);
       }
-      LOGGER.debug("HTTP GET, SUCCESSFUL ({}).", stations);
+      LOGGER.info("HTTP GET, SUCCESSFUL ({}).", stations);
       return ResponseEntity.ok(new ArrayList<PersonAndMedicalRecordInFireStation>(personsAndMedicalRecordInFireStation.values()));
     }
 

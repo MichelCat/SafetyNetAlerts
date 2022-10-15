@@ -57,7 +57,7 @@ public class FirestationApiController implements FirestationApi {
         LOGGER.debug("HTTP GET, NO_CONTENT ({}).", stationNumber);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(personInFireStation);
       }
-      LOGGER.debug("HTTP GET, SUCCESSFUL ({}).", stationNumber);
+      LOGGER.info("HTTP GET, SUCCESSFUL ({}).", stationNumber);
       return ResponseEntity.ok(personInFireStation);
     }
 
@@ -79,7 +79,7 @@ public class FirestationApiController implements FirestationApi {
                     .path("/{id}")
                     .buildAndExpand(fireStation.getId())
                     .toUri();
-      LOGGER.debug("HTTP POST, CREATED ({}, {}).", body.getId(), body.getAddress());
+      LOGGER.info("HTTP POST, CREATED ({}, {}).", body.getId(), body.getAddress());
       return ResponseEntity.created(location).body(fireStation);
     }
 
@@ -96,7 +96,7 @@ public class FirestationApiController implements FirestationApi {
         LOGGER.debug("HTTP PUT, BAD_REQUEST ({}, {}) in ({}, {}).", body.getOldStation(), body.getAddress(), body.getNewStation(), body.getAddress());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
       }
-      LOGGER.debug("HTTP PUT, SUCCESSFUL ({}, {}) in ({}, {}).", body.getOldStation(), body.getAddress(), body.getNewStation(), body.getAddress());
+      LOGGER.info("HTTP PUT, SUCCESSFUL ({}, {}) in ({}, {}).", body.getOldStation(), body.getAddress(), body.getNewStation(), body.getAddress());
       return ResponseEntity.ok().body(fireStation);
     }
 
@@ -112,7 +112,7 @@ public class FirestationApiController implements FirestationApi {
         LOGGER.debug("HTTP DELETE, BAD_REQUEST ({}, {}).", stationNumber, address);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
       }
-      LOGGER.debug("HTTP DELETE, NO_CONTENT ({}, {}).", stationNumber, address);
+      LOGGER.info("HTTP DELETE, NO_CONTENT ({}, {}).", stationNumber, address);
       return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
     }
 }
