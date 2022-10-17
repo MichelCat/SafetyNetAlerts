@@ -12,17 +12,11 @@ import lombok.Setter;
  * @author MC
  * @version 1.0
  */
+@Getter
+@Setter
 public class MedicalRecordEntity {
-  @Getter
-  @Setter
   private Integer idPerson;
-
-  @Getter
-  @Setter
   private List<MedicalRecordAllergyEntity> allergies = new ArrayList<>();
-
-  @Getter
-  @Setter
   private List<MedicalRecordMedicationEntity> medications = new ArrayList<>();
 
   /**

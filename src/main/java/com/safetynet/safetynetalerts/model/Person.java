@@ -13,55 +13,37 @@ import lombok.Setter;
  * @version 1.0
  */
 @Validated
+@Getter
+@Setter
 public class Person {
   @JsonProperty("id")
-  @Getter
-  @Setter
   private Integer id;
 
   @JsonProperty("firstName")
-  @Getter
-  @Setter
   private String firstName;
 
   @JsonProperty("lastName")
-  @Getter
-  @Setter
   private String lastName;
 
   @JsonProperty("address")
-  @Getter
-  @Setter
   private String address;
 
   @JsonProperty("phoneNumber")
-  @Getter
-  @Setter
   private String phoneNumber;
 
   @JsonProperty("zipCode")
-  @Getter
-  @Setter
   private String zipCode;
 
   @JsonProperty("age")
-  @Getter
-  @Setter
   private Integer age;
 
   @JsonProperty("city")
-  @Getter
-  @Setter
   private String city;
 
   @JsonProperty("birthdate")
-  @Getter
-  @Setter
   private String birthdate;
 
   @JsonProperty("email")
-  @Getter
-  @Setter
   private String email;
 
   /**

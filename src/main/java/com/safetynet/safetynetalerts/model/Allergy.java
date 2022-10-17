@@ -13,10 +13,10 @@ import lombok.Setter;
  * @version 1.0
  */
 @Validated
+@Getter
+@Setter
 public class Allergy {
   @JsonProperty("allergy")
-  @Getter
-  @Setter
   private String allergy;
 
   /**

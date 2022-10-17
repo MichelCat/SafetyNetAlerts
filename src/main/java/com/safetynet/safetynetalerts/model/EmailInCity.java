@@ -13,10 +13,10 @@ import lombok.Setter;
  * @version 1.0
  */
 @Validated
+@Getter
+@Setter
 public class EmailInCity {
   @JsonProperty("email")
-  @Getter
-  @Setter
   private String email;
 
   /**

@@ -16,29 +16,23 @@ import lombok.Setter;
  * @version 1.0
  */
 @Validated
+@Getter
+@Setter
 public class PersonAndMedicalRecordInAddress {
   @JsonProperty("person")
   @Valid
-  @Getter
-  @Setter
   private Person person;
 
   @JsonProperty("medications")
   @Valid
-  @Getter
-  @Setter
   private List<Medication> medications = new ArrayList<>();
 
   @JsonProperty("allergies")
   @Valid
-  @Getter
-  @Setter
   private List<Allergy> allergies = new ArrayList<>();
 
   @JsonProperty("fireStations")
   @Valid
-  @Getter
-  @Setter
   private List<FireStation> fireStations = new ArrayList<>();
 
   /**

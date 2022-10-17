@@ -10,15 +10,12 @@ import lombok.Setter;
  * @author MC
  * @version 1.0
  */
+@Getter
+@Setter
 public class FireStationJson {
   // { "address":"1509 Culver St", "station":"3" }
 
-  @Getter
-  @Setter
   private String address;
-
-  @Getter
-  @Setter
   private String station;
 
   /**

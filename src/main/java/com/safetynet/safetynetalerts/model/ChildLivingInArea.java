@@ -16,17 +16,15 @@ import lombok.Setter;
  * @version 1.0
  */
 @Validated
+@Getter
+@Setter
 public class ChildLivingInArea {
   @JsonProperty("child")
   @Valid
-  @Getter
-  @Setter
   private Person child;
 
   @JsonProperty("familyMembers")
   @Valid
-  @Getter
-  @Setter
   private List<Person> familyMembers = new ArrayList<>();
 
   /**

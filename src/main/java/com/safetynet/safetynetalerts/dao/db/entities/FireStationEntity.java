@@ -10,13 +10,10 @@ import lombok.Setter;
  * @author MC
  * @version 1.0
  */
+@Getter
+@Setter
 public class FireStationEntity {
-  @Getter
-  @Setter
   private Integer station;
-
-  @Getter
-  @Setter
   private String address;
 
   /**

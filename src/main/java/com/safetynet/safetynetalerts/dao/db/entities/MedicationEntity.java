@@ -10,13 +10,10 @@ import lombok.Setter;
  * @author MC
  * @version 1.0
  */
+@Getter
+@Setter
 public class MedicationEntity {
-  @Getter
-  @Setter
   private Integer id;
-
-  @Getter
-  @Setter
   private String medication;
 
   /**

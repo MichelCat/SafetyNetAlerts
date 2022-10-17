@@ -16,21 +16,17 @@ import lombok.Setter;
  * @version 1.0
  */
 @Validated
+@Getter
+@Setter
 public class PersonInFireStation {
   @JsonProperty("adultsCount")
-  @Getter
-  @Setter
   private Integer adultsCount;
 
   @JsonProperty("childrenCount")
-  @Getter
-  @Setter
   private Integer childrenCount;
 
   @JsonProperty("persons")
   @Valid
-  @Getter
-  @Setter
   private List<Person> persons = new ArrayList<>();
 
   /**

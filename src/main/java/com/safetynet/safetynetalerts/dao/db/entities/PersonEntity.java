@@ -13,41 +13,17 @@ import lombok.Setter;
  * @author MC
  * @version 1.0
  */
+@Getter
+@Setter
 public class PersonEntity {
-  @Getter
-  @Setter
   private Integer id;
-
-  @Getter
-  @Setter
   private String firstName;
-
-  @Getter
-  @Setter
   private String lastName;
-
-  @Getter
-  @Setter
   private String address;
-
-  @Getter
-  @Setter
   private String city;
-
-  @Getter
-  @Setter
   private String zip;
-
-  @Getter
-  @Setter
   private String phoneNumber;
-
-  @Getter
-  @Setter
   private String email;
-
-  @Getter
-  @Setter
   private Date birthdate;
 
   /**

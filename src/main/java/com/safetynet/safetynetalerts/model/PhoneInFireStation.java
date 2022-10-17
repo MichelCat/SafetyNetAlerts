@@ -14,10 +14,10 @@ import lombok.Setter;
  * @version 1.0
  */
 @Validated
+@Getter
+@Setter
 public class PhoneInFireStation {
   @JsonProperty("person")
-  @Getter
-  @Setter
   @Valid
   private Person person;
 

@@ -10,9 +10,9 @@ import lombok.Setter;
  * @author MC
  * @version 1.0
  */
+@Getter
+@Setter
 public class MedicalRecordAllergyEntity {
-  @Getter
-  @Setter
   private Integer idAlergy;
 
   /**

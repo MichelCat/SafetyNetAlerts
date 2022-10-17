@@ -11,27 +11,15 @@ import lombok.Setter;
  * @author MC
  * @version 1.0
  */
+@Getter
+@Setter
 public class MedicalRecordJson {
   // { "firstName":"John", "lastName":"Boyd", "birthdate":"03/06/1984", "medications":["aznol:350mg", "hydrapermazol:100mg"], "allergies":["nillacilan"] }
 
-  @Getter
-  @Setter
   private String firstName;
-
-  @Getter
-  @Setter
   private String lastName;
-
-  @Getter
-  @Setter
   private String birthdate;
-
-  @Getter
-  @Setter
   private List<String> medications = new ArrayList<>();
-
-  @Getter
-  @Setter
   private List<String> allergies = new ArrayList<>();
 
   /**

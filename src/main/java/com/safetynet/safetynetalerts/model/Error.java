@@ -13,15 +13,13 @@ import lombok.Setter;
  * @version 1.0
  */
 @Validated
+@Getter
+@Setter
 public class Error {
   @JsonProperty("code")
-  @Getter
-  @Setter
   private String code;
 
   @JsonProperty("message")
-  @Getter
-  @Setter
   private String message;
 
   /**

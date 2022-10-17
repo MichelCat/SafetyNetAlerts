@@ -13,20 +13,16 @@ import lombok.Setter;
  * @version 1.0
  */
 @Validated
+@Getter
+@Setter
 public class UpdateFireStation {
   @JsonProperty("oldStation")
-  @Getter
-  @Setter
   private Integer oldStation;
 
   @JsonProperty("newStation")
-  @Getter
-  @Setter
   private Integer newStation;
 
   @JsonProperty("address")
-  @Getter
-  @Setter
   private String address;
 
   /**

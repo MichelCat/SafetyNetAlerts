@@ -81,6 +81,7 @@ public class LoadJsonFileInDatabaseBusiness {
    * 
    * @param resourceLocation Resource location
    * @return SafetyNetJson, if successfully loaded JSON file into object, and null if not.
+   * @throws IOException, if Unknown JSON file or JSON file deserialization error
    */
   public SafetyNetJson readFileJson(String resourceLocation) throws IOException {
     File dataJson;

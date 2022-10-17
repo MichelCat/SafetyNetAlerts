@@ -12,18 +12,12 @@ import lombok.Setter;
  * @author MC
  * @version 1.0
  */
+@Getter
+@Setter
 public class SafetyNetJson {
 
-  @Getter
-  @Setter
   private List<PersonJson> persons = new ArrayList<>();
-
-  @Getter
-  @Setter
   private List<FireStationJson> firestations = new ArrayList<>();
-
-  @Getter
-  @Setter
   private List<MedicalRecordJson> medicalrecords = new ArrayList<>();
 
   /**
